@@ -15,16 +15,16 @@ public class DestructibleBlock : MonoBehaviour
     [SerializeField] private GameObject actionFeedback;
 
     [Header("Interaction Settings")]
-    [SerializeField] private KeyCode interactionKey = KeyCode. Space;
+    [SerializeField] private KeyCode interactionKey = KeyCode.LeftShift;
     [SerializeField] private string playerTag = "Player";
 
-    [Header("Events (Optional)")]
+    [Header("Events")]
     [SerializeField] private UnityEvent onBlockDestroyed;
     [SerializeField] private UnityEvent onBlockHit;
 
     private bool playerInRange = false;
 
-    protected virtual void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
         
@@ -39,41 +39,32 @@ public class DestructibleBlock : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange && Input. GetKeyDown(interactionKey))
+        if (playerInRange && Input.GetKeyDown(interactionKey))
         {
             TakeDamage(damagePerHit);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnPlayerEnterRange()
     {
-        if (collision.CompareTag(playerTag))
-        {
-            playerInRange = true;
-            
-            if (actionFeedback != null)
-                actionFeedback.SetActive(true);
-        }
+        playerInRange = true;
+        if (actionFeedback != null)
+            actionFeedback.SetActive(true);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnPlayerExitRange()
     {
-        if (collision.CompareTag(playerTag))
-        {
-            playerInRange = false;
-            
-            if (actionFeedback != null)
-                actionFeedback.SetActive(false);
-        }
+        playerInRange = false;
+        if (actionFeedback != null)
+            actionFeedback. SetActive(false);
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Max(currentHealth, 0); 
+        currentHealth = Mathf.Max(currentHealth, 0);
 
         UpdateVisuals();
-        
         onBlockHit?.Invoke();
 
         if (currentHealth <= 0)
@@ -101,30 +92,10 @@ public class DestructibleBlock : MonoBehaviour
     private void DestroyBlock()
     {
         onBlockDestroyed?.Invoke();
-
+        
         if (actionFeedback != null)
             actionFeedback.SetActive(false);
 
         Destroy(gameObject);
-    }
-
-    public void SetDamagePerHit(int newDamage)
-    {
-        damagePerHit = newDamage;
-    }
-
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color. yellow;
-        if (GetComponent<Collider2D>() != null)
-        {
-            Collider2D col = GetComponent<Collider2D>();
-            Gizmos.DrawWireCube(transform.position, col.bounds.size);
-        }
     }
 }
