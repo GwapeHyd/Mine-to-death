@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.Events;
 
 public class AutoTileBlock : MonoBehaviour
@@ -20,6 +21,10 @@ public class AutoTileBlock : MonoBehaviour
     [SerializeField] private Sprite bottomRightSprite;    // Coin bas-droite
     [SerializeField] private Sprite horizontalSprite;     // Vide haut et bas
     [SerializeField] private Sprite verticalSprite;       // Vide gauche et droite
+    [SerializeField] private Sprite borderLeftSprite;     // Vide haut gauche bas
+    [SerializeField] private Sprite borderRightSprite;    // Vide haut droite bas
+    [SerializeField] private Sprite borderTopSprite;      // Vide gauche haut droite
+    [SerializeField] private Sprite borderBottomSprite;   // Vide gauche bas droite
     [SerializeField] private Sprite isolatedSprite;       // Bloc isolé
 
     [Header("Tile Sprites - Damaged")]
@@ -51,7 +56,13 @@ public class AutoTileBlock : MonoBehaviour
         if (blockSpriteRenderer == null)
             blockSpriteRenderer = GetComponent<SpriteRenderer>();
 
+        Invoke(nameof(InitialUpdate), 0.2f);
+    }
+
+    private void InitialUpdate()
+    {
         UpdateVisuals();
+        UpdateNeighbors();
     }
 
     private void Update()
@@ -92,19 +103,40 @@ public class AutoTileBlock : MonoBehaviour
 
     private void UpdateVisuals()
     {
-        if (blockSpriteRenderer == null) return;
+        if (blockSpriteRenderer == null) 
+        {
+            Debug.LogWarning("Block SpriteRenderer is not assigned!");
+            return;
+        }
 
         float healthPercentage = (float)currentHealth / maxHealth;
+
+        Debug.Log($"Updating visuals for {gameObject.name} ({healthPercentage * 100}%)");
 
         // État endommagé (50% ou moins)
         if (healthPercentage <= 0.5f && healthPercentage > 0f)
         {
             blockSpriteRenderer.sprite = damagedSprite;
+            Debug.Log($"Set to damaged sprite for {gameObject.name}");
+            return;
         }
-        // État intact - utilise auto-tiling
-        else if (healthPercentage > 0.5f)
+
+        if (healthPercentage > 0.5f)
         {
-            blockSpriteRenderer.sprite = GetAutoTileSprite();
+            bool hasTop = HasNeighbor(Vector2.up);
+            bool hasBottom = HasNeighbor(Vector2.down);
+            bool hasLeft = HasNeighbor(Vector2.left);
+            bool hasRight = HasNeighbor(Vector2.right);
+
+            Debug.Log($"Neighbors for {gameObject.name} - Top: {hasTop}, Bottom: {hasBottom}, Left: {hasLeft}, Right: {hasRight}");
+
+            Sprite selectedSprite = GetAutoTileSprite();
+
+            Debug.Log($"Selected sprite for {gameObject.name}: {selectedSprite.name}");
+
+            blockSpriteRenderer.sprite = selectedSprite;
+
+            Debug.Log($"{name}: Applied sprite = {(blockSpriteRenderer.sprite != null ? blockSpriteRenderer.sprite.name : "NULL")}");
         }
     }
 
@@ -145,23 +177,23 @@ public class AutoTileBlock : MonoBehaviour
 
         // 2 voisins adjacents (coins)
         if (hasBottom && hasRight && !hasTop && !hasLeft)
-            return topLeftSprite != null ? topLeftSprite : fullSprite;
+            return bottomRightSprite != null ? bottomRightSprite : fullSprite;
         if (hasBottom && hasLeft && !hasTop && !hasRight)
-            return topRightSprite != null ? topRightSprite : fullSprite;
-        if (hasTop && hasRight && !hasBottom && !hasLeft)
             return bottomLeftSprite != null ? bottomLeftSprite : fullSprite;
+        if (hasTop && hasRight && !hasBottom && !hasLeft)
+            return topRightSprite != null ? topRightSprite : fullSprite;
         if (hasTop && hasLeft && ! hasBottom && !hasRight)
-            return bottomRightSprite != null ? bottomRightSprite :  fullSprite;
+            return topLeftSprite != null ? topLeftSprite :  fullSprite;
 
         // 1 voisin
-        if (hasTop && !hasBottom && !hasLeft && ! hasRight)
-            return bottomSprite != null ? bottomSprite : fullSprite;
-        if (hasBottom && !hasTop && ! hasLeft && !hasRight)
-            return topSprite != null ?  topSprite : fullSprite;
+        if (hasTop && !hasBottom && !hasLeft && !hasRight)
+            return borderTopSprite != null ? borderTopSprite : fullSprite;
+        if (hasBottom && !hasTop && !hasLeft && !hasRight)
+            return borderBottomSprite != null ?  borderBottomSprite : fullSprite;
         if (hasLeft && !hasTop && !hasBottom && !hasRight)
-            return rightSprite != null ? rightSprite : fullSprite;
+            return borderLeftSprite != null ? borderLeftSprite : fullSprite;
         if (hasRight && !hasTop && !hasBottom && !hasLeft)
-            return leftSprite != null ? leftSprite : fullSprite;
+            return borderRightSprite != null ? borderRightSprite : fullSprite;
 
         return fullSprite;
     }
@@ -169,22 +201,32 @@ public class AutoTileBlock : MonoBehaviour
     private bool HasNeighbor(Vector2 direction)
     {
         Vector2 checkPosition = (Vector2)transform.position + direction * tileSize;
-        
-        // Utilise OverlapPoint pour vérifier s'il y a un bloc intact
-        Collider2D hit = Physics2D.OverlapPoint(checkPosition);
-        
-        if (hit != null)
+    
+        // Utilise OverlapCircle pour plus de tolérance
+        Collider2D[] hits = Physics2D.OverlapCircleAll(checkPosition, 0.1f);
+    
+        foreach (Collider2D hit in hits)
         {
-            AutoTileBlock neighborBlock = hit.GetComponent<AutoTileBlock>();
-            
-            // Retourne true si le voisin existe ET est intact (>50% HP)
-            if (neighborBlock != null)
+            // Ignore les triggers (TriggerZone)
+            if (hit.isTrigger) continue;
+        
+            // Ignore soi-même
+            if (hit.transform == transform) continue;
+        
+            // 🔧 FIX : Utilise GetComponentInParent au lieu de GetComponent
+            AutoTileBlock neighborBlock = hit.GetComponentInParent<AutoTileBlock>();
+        
+            // Si pas trouvé sur le parent, essaye sur l'objet lui-même
+            if (neighborBlock == null)
+                neighborBlock = hit.GetComponent<AutoTileBlock>();
+        
+            if (neighborBlock != null && neighborBlock != this)
             {
                 float neighborHealth = (float)neighborBlock.currentHealth / neighborBlock.maxHealth;
                 return neighborHealth > 0.5f;
             }
         }
-        
+    
         return false;
     }
 
@@ -194,6 +236,8 @@ public class AutoTileBlock : MonoBehaviour
         
         if (actionFeedback != null)
             actionFeedback.SetActive(false);
+
+        currentHealth = 0;
 
         // ⚠️ IMPORTANT :  Met à jour les voisins AVANT de détruire
         UpdateNeighbors();
@@ -209,14 +253,29 @@ public class AutoTileBlock : MonoBehaviour
         foreach (Vector2 dir in directions)
         {
             Vector2 checkPosition = (Vector2)transform.position + dir * tileSize;
-            Collider2D hit = Physics2D.OverlapPoint(checkPosition);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(checkPosition, 0.1f);
             
-            if (hit != null)
+            foreach (var hit in hits)
             {
-                AutoTileBlock neighbor = hit.GetComponent<AutoTileBlock>();
-                if (neighbor != null)
+                if (hit != null)
                 {
-                    neighbor.UpdateVisuals(); // Force la mise à jour du sprite
+                    if (hit == null) continue;
+
+                    if (hit.isTrigger) continue;
+
+                    if (hit.transform == transform) continue;  
+
+                    AutoTileBlock neighbor = hit.GetComponent<AutoTileBlock>();
+
+                    if (neighbor == null)
+                    {
+                        neighbor = hit.GetComponent<AutoTileBlock>();
+                    }
+
+                    if (neighbor != null && neighbor != this)
+                    {
+                        neighbor.UpdateVisuals();
+                    }
                 }
             }
         }
@@ -227,4 +286,30 @@ public class AutoTileBlock : MonoBehaviour
     {
         UpdateVisuals();
     }
+
+    [ContextMenu("Debug Neighbors")]
+public void DebugNeighbors()
+{
+    Debug.Log($"=== {gameObject.name} at {transform.position} ===");
+    Debug.Log($"Has TOP (0,1): {HasNeighbor(Vector2.up)}");
+    Debug.Log($"Has BOTTOM (0,-1): {HasNeighbor(Vector2.down)}");
+    Debug.Log($"Has LEFT (-1,0): {HasNeighbor(Vector2.left)}");
+    Debug.Log($"Has RIGHT (1,0): {HasNeighbor(Vector2.right)}");
+    
+    // Vérifie manuellement
+    Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+    string[] names = { "TOP", "BOTTOM", "LEFT", "RIGHT" };
+    
+    for (int i = 0; i < directions.Length; i++)
+    {
+        Vector2 checkPos = (Vector2)transform.position + directions[i] * tileSize;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(checkPos, 0.2f);
+        
+        Debug. Log($"  {names[i]} ({checkPos}): Found {hits.Length} colliders");
+        foreach (var hit in hits)
+        {
+            Debug.Log($"    - {hit.gameObject.name} (Trigger: {hit.isTrigger})");
+        }
+    }
+}
 }

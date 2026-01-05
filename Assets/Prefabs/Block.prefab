@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7785766390068920651}
   - component: {fileID: 5311826506794754516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ActionFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 6531867721555975764}
   - component: {fileID: 2423344260853219054}
   - component: {fileID: 2422774319640577688}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TriggerZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 1128553039576084580}
   - component: {fileID: 5878733071178256376}
   - component: {fileID: 8062261621511561501}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -394302954, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  m_Sprite: {fileID: 967032652, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -354,19 +354,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
   maxHealth: 100
   damagePerHit: 50
-  fullSprite: {fileID: -235444696, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  topSprite: {fileID: 664219502, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  bottomSprite: {fileID: 983955579, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  leftSprite: {fileID: -1932789528, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  rightSprite: {fileID: 633417461, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  topLeftSprite: {fileID: 1051463836, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  topRightSprite: {fileID: 176909352, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  bottomLeftSprite: {fileID: 283774248, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  bottomRightSprite: {fileID: -1908840221670958142, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  horizontalSprite: {fileID: -454106296, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  verticalSprite: {fileID: 1504817374, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  isolatedSprite: {fileID: -394302954, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  damagedSprite: {fileID: -875958482, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  fullSprite: {fileID: 721628454, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  topSprite: {fileID: 1971162929, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  bottomSprite: {fileID: 1355150851, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  leftSprite: {fileID: 200418853, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  rightSprite: {fileID: 161692988, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  topLeftSprite: {fileID: -1908840221670958142, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  topRightSprite: {fileID: -787699132, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  bottomLeftSprite: {fileID: -1906816761, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  bottomRightSprite: {fileID: -440114153, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  horizontalSprite: {fileID: 868171458, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  verticalSprite: {fileID: 690793747, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  borderLeftSprite: {fileID: 408266284, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  borderRightSprite: {fileID: 1651402774, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  borderTopSprite: {fileID: -59850038, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  borderBottomSprite: {fileID: 1719016239, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  isolatedSprite: {fileID: 967032652, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  damagedSprite: {fileID: 1289679380, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
   interactionKey: 101
