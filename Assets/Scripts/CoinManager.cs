@@ -23,6 +23,11 @@ public class CoinManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (onCoinCountChanged == null)
+        {
+            onCoinCountChanged = new UnityEvent<int>();
+        }
     }
 
     private void Start()
@@ -32,18 +37,17 @@ public class CoinManager : MonoBehaviour
 
     public void AddCoins(int amount)
     {
-        totalCoins += amount;
-        Debug.Log($"Added {amount} coins. Total coins: {totalCoins}");
-
+        TotalCoins += amount;
+        Debug.Log($"Added {amount} coins. Total now: {totalCoins}");
         onCoinsAdded?.Invoke(amount);
-        onCoinCountChanged?.Invoke(totalCoins);
+        Debug.Log("onCoinsAdded event invoked.");
     }
 
     public bool SpendCoins(int amount)
     {
         if (totalCoins >= amount)
         {
-            totalCoins -= amount;
+            TotalCoins -= amount;
             onCoinCountChanged?.Invoke(totalCoins);
             return true;
         }
@@ -56,7 +60,15 @@ public class CoinManager : MonoBehaviour
         onCoinCountChanged?.Invoke(totalCoins);
     }
 
-    public int TotalCoins => totalCoins;
+    public int TotalCoins
+    {
+        get => totalCoins;
+        private set
+        {
+            totalCoins = value;
+            onCoinCountChanged?.Invoke(totalCoins);
+        }
+    }
 
     
 

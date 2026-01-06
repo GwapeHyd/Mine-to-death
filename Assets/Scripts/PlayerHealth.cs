@@ -18,9 +18,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private UnityEvent onDeath;
     [SerializeField] private UnityEvent onTakeDamage;
 
+    private Vector3 respawnPosition;
+
     private void Start()
     {
         currentHealth = maxHealth;
+        respawnPosition = transform.position;
 
         onHealthChanged?.Invoke(currentHealth);
     }
@@ -72,14 +75,10 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         onDeath?.Invoke();
-        
-        PlayerController controller = GetComponent<PlayerController>();
-        if (controller != null)
-        {
-            controller.enabled = false;
-        }
 
+        transform.position = respawnPosition;
         
+        Heal(maxHealth);
     }
 
     public int CurrentHealth => currentHealth;
