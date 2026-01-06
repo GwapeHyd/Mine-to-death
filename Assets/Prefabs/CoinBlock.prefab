@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
   isSpecialBlock: 1
-  maxHealth: 50
+  maxHealth: 1
   fullSprite: {fileID: 2052037215, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   topSprite: {fileID: 0}
   bottomSprite: {fileID: 0}
@@ -397,6 +397,7 @@ MonoBehaviour:
   coinPrefab: {fileID: 2371372518722143769, guid: 062a86ac46098e844a71ebcb94dec88c, type: 3}
   coinsToDrop: 1
   depthMultiplierInterval: 50
+  surfaceLevel: 200
   dropForce: 5
   spreadAngle: 30
   isSpecialBlock: 0

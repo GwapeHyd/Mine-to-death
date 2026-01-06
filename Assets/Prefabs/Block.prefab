@@ -352,8 +352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b8adc1dee4f6f4e9d7f35cc50c0146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
-  maxHealth: 100
-  damagePerHit: 50
+  isSpecialBlock: 0
+  maxHealth: 5
   fullSprite: {fileID: -1092630627, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   topSprite: {fileID: 1480051826, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   bottomSprite: {fileID: -473639462, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
@@ -373,8 +373,7 @@ MonoBehaviour:
   damagedSprite: {fileID: 2059792854, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
-  interactionKey: 101
-  playerTag: Player
+  collectilePrefab: {fileID: 0}
   tileSize: 1
   onBlockDestroyed:
     m_PersistentCalls:

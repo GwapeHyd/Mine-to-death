@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "1_bit_game.sln"
+    "dotnet.defaultSolution": "Mine-to-death.sln"
 }
