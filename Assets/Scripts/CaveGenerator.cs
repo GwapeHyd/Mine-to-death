@@ -133,8 +133,10 @@ public class CaveGenerator : MonoBehaviour
         }
 
         PlaceHintBlocksAtDistance(hintBlockFarCount, farHintMinDistance, float.MaxValue, 3);
+        SanityManager.Instance.currentHintBlock++;
 
         PlaceHintBlocksAtDistance(hintBlockNearCount, 0, nearHintMinDistance, 4);
+        SanityManager.Instance.currentHintBlock++;
     }
 
     private void PlaceHintBlocksAtDistance(int count, float minDistance, float maxDistance, int blockTypeValue)
