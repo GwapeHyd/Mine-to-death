@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
+
+    [SerializeField] private Animator animator;
     
     private Rigidbody2D rb;
     private float moveInput;
@@ -27,11 +30,25 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = gravityScale;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         moveInput = Input.GetAxis("Horizontal");
+        
+        if (moveInput != 0)
+        {
+            animator.SetBool("isMoving", true);
+            if (moveInput > 0)
+                transform.localScale = new Vector3(1, 1, 1);
+            else
+                transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else 
+        {
+            animator.SetBool("isMoving", false);
+        }
         
     
         isGrounded = Physics2D.OverlapCircle(groundCheck. position, groundCheckRadius, groundLayer);
