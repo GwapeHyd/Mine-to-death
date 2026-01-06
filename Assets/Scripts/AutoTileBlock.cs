@@ -4,47 +4,44 @@ using UnityEngine.Events;
 
 public class AutoTileBlock : MonoBehaviour
 {
+    [Header("BlockType")]
+    [SerializeField] private bool isSpecialBlock = false;
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int damagePerHit = 50;
     private int currentHealth;
 
     [Header("Tile Sprites - Full Health")]
-    [SerializeField] private Sprite fullSprite;           // Entouré de tous côtés
-    [SerializeField] private Sprite topSprite;            // Vide en haut
-    [SerializeField] private Sprite bottomSprite;         // Vide en bas
-    [SerializeField] private Sprite leftSprite;           // Vide à gauche
-    [SerializeField] private Sprite rightSprite;          // Vide à droite
-    [SerializeField] private Sprite topLeftSprite;        // Coin haut-gauche
-    [SerializeField] private Sprite topRightSprite;       // Coin haut-droite
-    [SerializeField] private Sprite bottomLeftSprite;     // Coin bas-gauche
-    [SerializeField] private Sprite bottomRightSprite;    // Coin bas-droite
-    [SerializeField] private Sprite horizontalSprite;     // Vide haut et bas
-    [SerializeField] private Sprite verticalSprite;       // Vide gauche et droite
-    [SerializeField] private Sprite borderLeftSprite;     // Vide haut gauche bas
-    [SerializeField] private Sprite borderRightSprite;    // Vide haut droite bas
-    [SerializeField] private Sprite borderTopSprite;      // Vide gauche haut droite
-    [SerializeField] private Sprite borderBottomSprite;   // Vide gauche bas droite
-    [SerializeField] private Sprite isolatedSprite;       // Bloc isolé
+    [SerializeField] private Sprite fullSprite;           
+    [SerializeField] private Sprite topSprite;           
+    [SerializeField] private Sprite bottomSprite;         
+    [SerializeField] private Sprite leftSprite;           
+    [SerializeField] private Sprite rightSprite;          
+    [SerializeField] private Sprite topLeftSprite;        
+    [SerializeField] private Sprite topRightSprite;       
+    [SerializeField] private Sprite bottomLeftSprite;     
+    [SerializeField] private Sprite bottomRightSprite;    
+    [SerializeField] private Sprite horizontalSprite;     
+    [SerializeField] private Sprite verticalSprite;       
+    [SerializeField] private Sprite borderLeftSprite;     
+    [SerializeField] private Sprite borderRightSprite;    
+    [SerializeField] private Sprite borderTopSprite;      
+    [SerializeField] private Sprite borderBottomSprite;   
+    [SerializeField] private Sprite isolatedSprite;       
 
     [Header("Tile Sprites - Damaged")]
-    [SerializeField] private Sprite damagedSprite;        // Sprite endommagé (50% HP)
+    [SerializeField] private Sprite damagedSprite;     
 
     [Header("Visual Feedback")]
     [SerializeField] private SpriteRenderer blockSpriteRenderer;
     [SerializeField] private GameObject actionFeedback;
 
-    [Header("Interaction Settings")]
-    [SerializeField] private KeyCode interactionKey = KeyCode.Space;
-    [SerializeField] private string playerTag = "Player";
-    [SerializeField] private float tileSize = 1f; // Taille d'un bloc
+    [SerializeField] private float tileSize = 1f; 
 
     [Header("Events")]
     [SerializeField] private UnityEvent onBlockDestroyed;
     [SerializeField] private UnityEvent onBlockHit;
 
-    private bool playerInRange = false;
-    private static AutoTileBlock[,] blockGrid; // Grille globale pour optimisation (optionnel)
+    
 
     private void Start()
     {
@@ -56,7 +53,10 @@ public class AutoTileBlock : MonoBehaviour
         if (blockSpriteRenderer == null)
             blockSpriteRenderer = GetComponent<SpriteRenderer>();
 
-        Invoke(nameof(InitialUpdate), 0.2f);
+        if(!isSpecialBlock)
+        {
+            Invoke(nameof(InitialUpdate), 0.2f);
+        }
     }
 
     private void InitialUpdate()
@@ -65,26 +65,28 @@ public class AutoTileBlock : MonoBehaviour
         UpdateNeighbors();
     }
 
-    private void Update()
-    {
-        if (playerInRange && Input.GetKeyDown(interactionKey))
-        {
-            TakeDamage(damagePerHit);
-        }
-    }
-
     public void OnPlayerEnterRange()
     {
-        playerInRange = true;
         if (actionFeedback != null)
             actionFeedback.SetActive(true);
+
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+        if (player != null)
+        {
+            player.AddBlockInRange(this);
+        }
     }
 
     public void OnPlayerExitRange()
     {
-        playerInRange = false;
         if (actionFeedback != null)
-            actionFeedback. SetActive(false);
+            actionFeedback.SetActive(false);
+
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+        if (player != null)
+        {
+            player.ClearCurrentBlock(this);
+        }
     }
 
     public void TakeDamage(int damage)

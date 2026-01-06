@@ -21,19 +21,23 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 5041435132520531250, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
+      value: {fileID: -2304168255599891827, guid: e120346e6f998f746b4bd1e549203717, type: 3}
     - time: 0.083333336
-      value: {fileID: 1312623327191774145, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
+      value: {fileID: -4556730138945543401, guid: e120346e6f998f746b4bd1e549203717, type: 3}
     - time: 0.16666667
-      value: {fileID: 8047174283674963503, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
+      value: {fileID: 246250433944974308, guid: e120346e6f998f746b4bd1e549203717, type: 3}
     - time: 0.25
-      value: {fileID: 3170264767199863588, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
+      value: {fileID: 6745681034035639941, guid: e120346e6f998f746b4bd1e549203717, type: 3}
     - time: 0.33333334
-      value: {fileID: 1475011795811307319, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
+      value: {fileID: 4990824129302179219, guid: e120346e6f998f746b4bd1e549203717, type: 3}
     - time: 0.41666666
-      value: {fileID: -1176885810938936516, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
+      value: {fileID: -5797315772444115838, guid: e120346e6f998f746b4bd1e549203717, type: 3}
     - time: 0.5
-      value: {fileID: -933974221, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
+      value: {fileID: 198123697279907534, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - time: 0.5833333
+      value: {fileID: -1001154983, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - time: 0.6666667
+      value: {fileID: -4556730138945543401, guid: e120346e6f998f746b4bd1e549203717, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -56,24 +60,26 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 5041435132520531250, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
-    - {fileID: 1312623327191774145, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
-    - {fileID: 8047174283674963503, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
-    - {fileID: 3170264767199863588, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
-    - {fileID: 1475011795811307319, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
-    - {fileID: -1176885810938936516, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
-    - {fileID: -933974221, guid: 88efa8ea5ebbb18478066ca8faaec03f, type: 3}
+    - {fileID: -2304168255599891827, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - {fileID: -4556730138945543401, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - {fileID: 246250433944974308, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - {fileID: 6745681034035639941, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - {fileID: 4990824129302179219, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - {fileID: -5797315772444115838, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - {fileID: 198123697279907534, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - {fileID: -1001154983, guid: e120346e6f998f746b4bd1e549203717, type: 3}
+    - {fileID: -4556730138945543401, guid: e120346e6f998f746b4bd1e549203717, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5833333
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -87,4 +93,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5
+    functionName: DealDamage
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6666667
+    functionName: AttackFinished
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
