@@ -7,7 +7,9 @@ public class ShopItem : MonoBehaviour
     [Header("Item Info")]
     [SerializeField] private string itemName;
     [SerializeField] private string itemDescription;
-    [SerializeField] private int itemCost;
+    [SerializeField] private int baseCost;
+    [SerializeField] private int costMultiplier = 1;
+    public int ItemCost => baseCost * costMultiplier;
     [SerializeField] private Image itemIcon;
 
     [Header("Item Effects")]
@@ -47,7 +49,7 @@ public class ShopItem : MonoBehaviour
             descriptionText.text = itemDescription;
 
         if (costText != null)
-            costText.text = $"{itemCost} Coins";
+            costText.text = $"{ItemCost} Coins";
 
         if (iconImage != null)
             iconImage.sprite = itemIcon.sprite;
@@ -59,7 +61,7 @@ public class ShopItem : MonoBehaviour
     {
         if (purchaseButton != null && CoinManager.Instance != null)
         {
-            bool canAfford = CoinManager.Instance.TotalCoins >= itemCost;
+            bool canAfford = CoinManager.Instance.TotalCoins >= ItemCost;
             purchaseButton.interactable = canAfford;
         }
     }
@@ -72,10 +74,12 @@ public class ShopItem : MonoBehaviour
             return;
         }
 
-        if (CoinManager.Instance.SpendCoins(itemCost))
+        if (CoinManager.Instance.SpendCoins(ItemCost))
         {
             ApplyItemEffect();
-            Debug.Log($"Purchased {itemName} for {itemCost} coins.");
+            Debug.Log($"Purchased {itemName} for {ItemCost} coins.");
+            costMultiplier *= 2;
+            UpdateCostText();
             UpdatePurchaseButton();
         }
         else
@@ -135,8 +139,8 @@ public class ShopItem : MonoBehaviour
                     
                     if (field != null)
                     {
-                        int currentDamage = (int)field.GetValue(playerController);
-                        field.SetValue(playerController, currentDamage + effectValue);
+                        float moveSpeed = (float)field.GetValue(playerController);
+                        field.SetValue(playerController, moveSpeed + effectValue);
                     }
                 }
                 break;
@@ -166,5 +170,13 @@ public class ShopItem : MonoBehaviour
     private void OnCoinsChanged(int totalCoins)
     {
         UpdatePurchaseButton();
+    }
+
+    private void UpdateCostText()
+    {
+        if (costText != null)
+        {
+            costText.text = $"{ItemCost} Coins";
+        }
     }
 }

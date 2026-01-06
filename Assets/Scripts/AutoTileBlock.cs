@@ -44,7 +44,6 @@ public class AutoTileBlock : MonoBehaviour
     [SerializeField] private UnityEvent onBlockHit;
 
     
-
     private void Start()
     {
         currentHealth = maxHealth;
