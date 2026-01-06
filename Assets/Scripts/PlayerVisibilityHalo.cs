@@ -1,23 +1,27 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-[DisallowMultipleComponent]
+[DisallowMultipleComponent] //empeche la creation du meme component plusieurs fois
 public class PlayerVisibilityHalo : MonoBehaviour
 {
+    //declare le rayon du halo
     [Header("Radius")]
     [SerializeField] private int blocksVisible = 4;
     [SerializeField] private float blockSizeInUnits = 1f;
     [SerializeField] private float innerRadius = 0f;
 
+    //declare la couleur de la lumiere + intensite
     [Header("Light")]
     [SerializeField] private Color lightColor = Color.white;
     [SerializeField] private float lightIntensity = 1f;
 
+    //declare la nuit autour du halo
     [Header("Darkness")]
     [SerializeField] private bool ensureGlobalDarkness = true;
     [SerializeField] private float globalIntensity = 0f;
 
     private const string HaloName = "VisibilityHalo";
+    //Light2D = type lumiere, couleur, intensite, rayon, layers affectés
     private Light2D haloLight;
 
     private void Awake()
@@ -33,11 +37,13 @@ public class PlayerVisibilityHalo : MonoBehaviour
 
     private void OnValidate()
     {
-        if (!Application.isPlaying)
+        if (Application.isPlaying)
         {
-            haloLight = GetOrCreateHaloLight();
-            ApplyHaloSettings();
+            return;
         }
+
+        haloLight = TryGetExistingHaloLight();
+        ApplyHaloSettings();
     }
 
     private Light2D GetOrCreateHaloLight()
@@ -57,6 +63,17 @@ public class PlayerVisibilityHalo : MonoBehaviour
         }
 
         return light;
+    }
+
+    private Light2D TryGetExistingHaloLight()
+    {
+        Transform existing = transform.Find(HaloName);
+        if (existing == null)
+        {
+            return null;
+        }
+
+        return existing.GetComponent<Light2D>();
     }
 
     private void ApplyHaloSettings()
