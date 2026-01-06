@@ -224,6 +224,8 @@ public class AutoTileBlock : MonoBehaviour
         
             if (neighborBlock != null && neighborBlock != this)
             {
+                if (neighborBlock.isSpecialBlock) continue;
+                
                 float neighborHealth = (float)neighborBlock.currentHealth / neighborBlock.maxHealth;
                 return neighborHealth > 0.5f;
             }
