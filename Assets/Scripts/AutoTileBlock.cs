@@ -34,6 +34,9 @@ public class AutoTileBlock : MonoBehaviour
     [SerializeField] private SpriteRenderer blockSpriteRenderer;
     [SerializeField] private GameObject actionFeedback;
 
+    [SerializeField] private AudioClip hintSound;
+
+
     [Header("BonusBlock")]
     [SerializeField] private GameObject collectilePrefab;
 
@@ -246,6 +249,9 @@ public class AutoTileBlock : MonoBehaviour
         {
             player.ClearCurrentBlock(this);
         }
+
+        if (actionFeedback != null)
+            AudioManager.Instance.PlaySound(hintSound, 0.7f);
 
         UpdateNeighbors();
         
