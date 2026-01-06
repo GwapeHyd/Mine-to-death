@@ -55,15 +55,11 @@ public class PlayerController : MonoBehaviour
         
         if (moveInput != 0 && !isAttacking)
         {
-            animator.SetBool("isMoving", true);
+            animator.SetFloat("MoveX", Mathf.Abs(moveInput));
             if (moveInput > 0)
                 transform.localScale = new Vector3(1, 1, 1);
             else
                 transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else 
-        {
-            animator.SetBool("isMoving", false);
         }
         
         isGrounded = Physics2D.OverlapCircle(groundCheck. position, groundCheckRadius, groundLayer);
@@ -96,6 +92,8 @@ public class PlayerController : MonoBehaviour
         {
             Attack();
         }
+
+        animator.SetBool("isJumping", !isGrounded);
     }
 
     private void FixedUpdate()
@@ -113,12 +111,16 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed);
         }
+        animator.SetFloat("MoveX", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat("MoveY", rb.linearVelocity.y);
     }
     
     private void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        animator.SetBool("isJumping", true);
+
     }
     
     private void OnDrawGizmosSelected()
