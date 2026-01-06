@@ -365,10 +365,10 @@ MonoBehaviour:
   bottomRightSprite: {fileID: -4269807479533203371, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   horizontalSprite: {fileID: 553650228, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   verticalSprite: {fileID: -1195160916, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderLeftSprite: {fileID: 187558713, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderRightSprite: {fileID: -1352787879, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderTopSprite: {fileID: -473639462, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderBottomSprite: {fileID: 1480051826, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderLeftSprite: {fileID: -102717338, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderRightSprite: {fileID: 1018244135, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderTopSprite: {fileID: 708769874, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderBottomSprite: {fileID: 801973281, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   isolatedSprite: {fileID: -1166954311, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   damagedSprite: {fileID: 2059792854, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
