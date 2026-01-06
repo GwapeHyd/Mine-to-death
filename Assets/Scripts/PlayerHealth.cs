@@ -3,91 +3,128 @@ using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("Health Settings")]
-    [SerializeField] private int maxHealth = 5;
-    private int currentHealth;
+[Header("Health Settings")]
+[SerializeField] private int maxHealth = 5;
+[SerializeField] private Transform respawnPoint;
+[SerializeField] private float respawnDelay = 1f;
+private int currentHealth;
+private Vector3 spawnPosition;
+private bool isDead;
 
-    [Header("Damage Settings")]
-    [SerializeField] private int damagePerHit = 1;
-    [SerializeField] private float invincibilityDuration = 1f; 
-    private float invincibilityTimer = 0f;
-    private bool isInvincible = false;
+[Header("Damage Settings")]
+[SerializeField] private int damagePerHit = 1;
+[SerializeField] private float invincibilityDuration = 1f; 
+private float invincibilityTimer = 0f;
+private bool isInvincible = false;
 
-    [Header("Events")]
-    public UnityEvent<int> onHealthChanged; 
-    [SerializeField] private UnityEvent onDeath;
-    [SerializeField] private UnityEvent onTakeDamage;
+[Header("Events")]
+public UnityEvent<int> onHealthChanged; 
+[SerializeField] private UnityEvent onDeath;
+[SerializeField] private UnityEvent onTakeDamage;
 
-    private void Start()
-    {
-        currentHealth = maxHealth;
+private Rigidbody2D rb;
 
-        onHealthChanged?. Invoke(currentHealth);
-    }
+private void Start()
+{
+currentHealth = maxHealth;
+rb = GetComponent<Rigidbody2D>();
+spawnPosition = respawnPoint != null ? respawnPoint.position : transform.position;
 
-    private void Update()
-    {
-        if (isInvincible)
-        {
-            invincibilityTimer -= Time.deltaTime;
-            if (invincibilityTimer <= 0f)
-            {
-                isInvincible = false;
-            }
-        }
-    }
+onHealthChanged?. Invoke(currentHealth);
+}
 
-    public void TakeDamageFromMining()
-    {
-        TakeDamage(damagePerHit);
-    }
+private void Update()
+{
+if (isInvincible && !isDead)
+{
+invincibilityTimer -= Time.deltaTime;
+if (invincibilityTimer <= 0f)
+{
+isInvincible = false;
+}
+}
+}
 
-    public void TakeDamage(int amount)
-    {
-        if (isInvincible) return;
+public void TakeDamageFromMining()
+{
+TakeDamage(damagePerHit);
+}
 
-        currentHealth -= amount;
-        currentHealth = Mathf.Max(currentHealth, 0);
+public void TakeDamage(int amount)
+{
+if (isInvincible || isDead) return;
 
-        Debug.Log($"Player took {amount} damage.  Current health: {currentHealth}/{maxHealth}");
+currentHealth -= amount;
+currentHealth = Mathf.Max(currentHealth, 0);
 
-        onHealthChanged?.Invoke(currentHealth);
-        onTakeDamage?.Invoke();
+Debug.Log($"Player took {amount} damage. Current health: {currentHealth}/{maxHealth}");
 
-        isInvincible = true;
-        invincibilityTimer = invincibilityDuration;
+onHealthChanged?.Invoke(currentHealth);
+onTakeDamage?.Invoke();
 
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
+isInvincible = true;
+invincibilityTimer = invincibilityDuration;
 
-    public void Heal(int amount)
-    {
-        currentHealth += amount;
-        currentHealth = Mathf.Min(currentHealth, maxHealth);
-        
-        onHealthChanged?.Invoke(currentHealth);
-        Debug.Log($"Player healed {amount}. Current health: {currentHealth}/{maxHealth}");
-    }
+if (currentHealth <= 0)
+{
+Die();
+}
+}
 
-    private void Die()
-    {
-        Debug.Log("Player died!");
-        onDeath?.Invoke();
-        
-        PlayerController controller = GetComponent<PlayerController>();
-        if (controller != null)
-        {
-            controller.enabled = false;
-        }
+public void Heal(int amount)
+{
+currentHealth += amount;
+currentHealth = Mathf.Min(currentHealth, maxHealth);
+onHealthChanged?.Invoke(currentHealth);
+Debug.Log($"Player healed {amount}. Current health: {currentHealth}/{maxHealth}");
+}
 
-        
-    }
+private void Die()
+{
+if (isDead) return;
 
-    public int CurrentHealth => currentHealth;
-    public int MaxHealth => maxHealth;
-    public bool IsInvincible => isInvincible;
-    public float HealthPercentage => (float)currentHealth / maxHealth;
+Debug.Log("Player died!");
+isDead = true;
+onDeath?.Invoke();
+PlayerController controller = GetComponent<PlayerController>();
+if (controller != null)
+{
+controller.enabled = false;
+}
+
+StartCoroutine(RespawnRoutine());
+}
+
+private System.Collections.IEnumerator RespawnRoutine()
+{
+yield return new WaitForSeconds(respawnDelay);
+Respawn();
+}
+
+private void Respawn()
+{
+transform.position = spawnPosition;
+if (rb != null)
+{
+rb.linearVelocity = Vector2.zero;
+rb.angularVelocity = 0f;
+}
+
+currentHealth = maxHealth;
+invincibilityTimer = 0f;
+isInvincible = false;
+isDead = false;
+onHealthChanged?.Invoke(currentHealth);
+
+PlayerController controller = GetComponent<PlayerController>();
+if (controller != null)
+{
+controller.enabled = true;
+}
+}
+
+public int CurrentHealth => currentHealth;
+public int MaxHealth => maxHealth;
+public bool IsInvincible => isInvincible;
+public float HealthPercentage => (float)currentHealth / maxHealth;
 }
