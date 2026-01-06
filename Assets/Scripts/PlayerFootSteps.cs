@@ -19,7 +19,7 @@ public class PlayerFootSteps : MonoBehaviour
             if (playerController != null && Mathf.Abs(playerController.GetMoveInput()) > 0.1f && playerController.IsGrounded())
             {
                 AudioManager.Instance.PlaySound(footstepClip, 0.5f);
-                yield return new WaitForSeconds(0.4f); // Adjust delay between footsteps as needed
+                yield return new WaitForSeconds(0.35f); // Adjust delay between footsteps as needed
             }
             else
             {
