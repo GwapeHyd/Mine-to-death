@@ -256,7 +256,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 967032652, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  m_Sprite: {fileID: -1166954311, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -354,23 +354,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
   maxHealth: 100
   damagePerHit: 50
-  fullSprite: {fileID: 721628454, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  topSprite: {fileID: 1971162929, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  bottomSprite: {fileID: 1355150851, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  leftSprite: {fileID: 200418853, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  rightSprite: {fileID: 161692988, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  topLeftSprite: {fileID: -1908840221670958142, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  topRightSprite: {fileID: -787699132, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  bottomLeftSprite: {fileID: -1906816761, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  bottomRightSprite: {fileID: -440114153, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  horizontalSprite: {fileID: 868171458, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  verticalSprite: {fileID: 690793747, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  borderLeftSprite: {fileID: 408266284, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  borderRightSprite: {fileID: 1651402774, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  borderTopSprite: {fileID: -59850038, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  borderBottomSprite: {fileID: 1719016239, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  isolatedSprite: {fileID: 967032652, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
-  damagedSprite: {fileID: 1289679380, guid: 353ea390b485f0449b47bf658abb5693, type: 3}
+  fullSprite: {fileID: -1092630627, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  topSprite: {fileID: 1480051826, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  bottomSprite: {fileID: -473639462, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  leftSprite: {fileID: -1352787879, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  rightSprite: {fileID: 187558713, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  topLeftSprite: {fileID: 1519595696, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  topRightSprite: {fileID: -565746072, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  bottomLeftSprite: {fileID: 1873355254, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  bottomRightSprite: {fileID: -4269807479533203371, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  horizontalSprite: {fileID: 553650228, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  verticalSprite: {fileID: -1195160916, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderLeftSprite: {fileID: 187558713, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderRightSprite: {fileID: -1352787879, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderTopSprite: {fileID: -473639462, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderBottomSprite: {fileID: 1480051826, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  isolatedSprite: {fileID: -1166954311, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  damagedSprite: {fileID: 2059792854, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
   interactionKey: 101

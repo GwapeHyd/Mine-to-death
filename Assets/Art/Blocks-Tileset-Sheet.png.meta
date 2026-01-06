@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 353ea390b485f0449b47bf658abb5693
+guid: fe22f0ea7e4e67c4d893fcd5b37b9927
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1908840221670958142
-    second: Block01-Sheet_0
+      213: -4269807479533203371
+    second: Blocks-Tileset-Sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,11 +113,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Block01-Sheet_0
+      name: Blocks-Tileset-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 56
         width: 8
         height: 8
       alignment: 0
@@ -128,18 +128,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2cb135e8eef6285e0800000000000000
-      internalID: -1908840221670958142
+      spriteID: 5501e1348b89eb4c0800000000000000
+      internalID: -4269807479533203371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_1
+      name: Blocks-Tileset-Sheet_1
       rect:
         serializedVersion: 2
         x: 8
-        y: 0
+        y: 56
         width: 8
         height: 8
       alignment: 0
@@ -150,18 +150,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2586ff173ed8d8744a229c69e5f45513
-      internalID: 1355150851
+      spriteID: 3f33b22de4c68c04a966286c1af0f4c5
+      internalID: 1480051826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_2
+      name: Blocks-Tileset-Sheet_2
       rect:
         serializedVersion: 2
         x: 16
-        y: 0
+        y: 56
         width: 8
         height: 8
       alignment: 0
@@ -172,18 +172,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea7bcfc73d55e3444aeafdcc5e886ef4
-      internalID: -787699132
+      spriteID: 4397d98882c3290439a5805d53086b1e
+      internalID: 1873355254
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_3
+      name: Blocks-Tileset-Sheet_3
       rect:
         serializedVersion: 2
         x: 24
-        y: 0
+        y: 56
         width: 8
         height: 8
       alignment: 0
@@ -194,18 +194,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86ab3fa8ae7fab340ab1b69f7f453a75
-      internalID: 200418853
+      spriteID: 56a2cfb7c1ada644fa132f99f16a3296
+      internalID: 801973281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_4
+      name: Blocks-Tileset-Sheet_4
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
+        y: 56
         width: 8
         height: 8
       alignment: 0
@@ -216,18 +216,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7726bd7a00b3be741bf86e59133ada3f
-      internalID: -440114153
+      spriteID: 9e2126bd6cac9c24790810ae7c0378fc
+      internalID: 1018244135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_5
+      name: Blocks-Tileset-Sheet_5
       rect:
         serializedVersion: 2
         x: 40
-        y: 0
+        y: 56
         width: 8
         height: 8
       alignment: 0
@@ -238,18 +238,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8122bc271ce6a14c9b08de3813bdf92
-      internalID: 1971162929
+      spriteID: 368e2fed1dd139943b32cd91db1b579e
+      internalID: 553650228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_6
+      name: Blocks-Tileset-Sheet_6
       rect:
         serializedVersion: 2
         x: 48
-        y: 0
+        y: 56
         width: 8
         height: 8
       alignment: 0
@@ -260,18 +260,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6555f647d17456c408a4553acbc91d7b
-      internalID: -1906816761
+      spriteID: c4fc6ef29be911e4e901b1f35db5b73d
+      internalID: -102717338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_7
+      name: Blocks-Tileset-Sheet_7
       rect:
         serializedVersion: 2
-        x: 56
-        y: 0
+        x: 0
+        y: 48
         width: 8
         height: 8
       alignment: 0
@@ -282,18 +282,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e48a5a4cf1308d94897e2bbb5d57529d
-      internalID: 161692988
+      spriteID: a469f4f9ddc8c4f4c9646216a977ee2b
+      internalID: -1352787879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_8
+      name: Blocks-Tileset-Sheet_8
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 8
+        y: 48
         width: 8
         height: 8
       alignment: 0
@@ -304,18 +304,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c667711eb64c5c4e8589eea3ce3264a
-      internalID: 690793747
+      spriteID: 0a09a3fc5d140804ab849e202db883ac
+      internalID: -1092630627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_9
+      name: Blocks-Tileset-Sheet_9
       rect:
         serializedVersion: 2
-        x: 72
-        y: 0
+        x: 16
+        y: 48
         width: 8
         height: 8
       alignment: 0
@@ -326,18 +326,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b689ee6379499d4ba6faba147fb1b74
-      internalID: 868171458
+      spriteID: c209b06a09589254286d325af163e040
+      internalID: 187558713
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_10
+      name: Blocks-Tileset-Sheet_10
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
+        x: 24
+        y: 48
         width: 8
         height: 8
       alignment: 0
@@ -348,18 +348,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 233b915dee3359347bb604fa1dd69e0d
-      internalID: 1651402774
+      spriteID: 6ed1eab2ebc11b84b88840ef3bcd5c7c
+      internalID: -1195160916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_11
+      name: Blocks-Tileset-Sheet_11
       rect:
         serializedVersion: 2
-        x: 88
-        y: 0
+        x: 32
+        y: 48
         width: 8
         height: 8
       alignment: 0
@@ -370,18 +370,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d538319f21e77d4b89ed74de6facd4d
-      internalID: 408266284
+      spriteID: 887b519c2f1013041a7fa4e9e6fc4962
+      internalID: -1166954311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_12
+      name: Blocks-Tileset-Sheet_12
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
+        x: 0
+        y: 40
         width: 8
         height: 8
       alignment: 0
@@ -392,18 +392,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f684b2c27425e4b48af472853aa89780
-      internalID: 1719016239
+      spriteID: 40890a605ff65ed4e8966acbf0d3acee
+      internalID: -565746072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_13
+      name: Blocks-Tileset-Sheet_13
       rect:
         serializedVersion: 2
-        x: 104
-        y: 0
+        x: 8
+        y: 40
         width: 8
         height: 8
       alignment: 0
@@ -414,18 +414,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82a21526dee01d74aa737e0f54f8b566
-      internalID: -59850038
+      spriteID: dd8c8f5f937970d408342097addac153
+      internalID: -473639462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_14
+      name: Blocks-Tileset-Sheet_14
       rect:
         serializedVersion: 2
-        x: 112
-        y: 0
+        x: 16
+        y: 40
         width: 8
         height: 8
       alignment: 0
@@ -436,18 +436,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8305b7e5aae2e434ba3276c112aee2a9
-      internalID: 967032652
+      spriteID: 13616fbcad652184bbed996a0761407d
+      internalID: 1519595696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_15
+      name: Blocks-Tileset-Sheet_15
       rect:
         serializedVersion: 2
-        x: 120
-        y: 0
+        x: 24
+        y: 40
         width: 8
         height: 8
       alignment: 0
@@ -458,18 +458,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f40dc8b01140be499092b02ea0c4677
-      internalID: 721628454
+      spriteID: 895a8a9bebb63864f82ca454f11c2923
+      internalID: 708769874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Block01-Sheet_16
+      name: Blocks-Tileset-Sheet_16
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
+        x: 8
+        y: 32
         width: 8
         height: 8
       alignment: 0
@@ -480,8 +480,250 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ec9648e2f25ec04fa95ca62591a479b
-      internalID: 1289679380
+      spriteID: 5b259bc74d6189e4d99348fe895b7b9c
+      internalID: 722753428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 32
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0e9451a04c1701408cb52f9b1376973
+      internalID: 72513417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a897d3424b1c341a3b64390e9f93e9
+      internalID: -1368760608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 32
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa75e7b5020c2fd46b8218ac8823e8cf
+      internalID: -1893365739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72c1f8bbc24cde543a09e68b4946ab9b
+      internalID: -944390852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f1ac502a40b62b4d8642121d0738b07
+      internalID: -1446330222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d54d38b9f077d5d4393778f2dae798fb
+      internalID: -670505884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba1322b24732ba4ab913682f879e5aa
+      internalID: 840756040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208a4bf77cc9d0a42b6720d0d861d224
+      internalID: -1639871870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d749dbb659e944c4c9df557a699427c6
+      internalID: 2059792854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 16
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c0fb394633ed84489562b3212f3e90a
+      internalID: -1210047691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks-Tileset-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 16
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf30f618282d79143b63da0f3495a7f6
+      internalID: 221379041
       vertices: []
       indices: 
       edges: []
@@ -490,7 +732,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 831b4968e4bd47a48878f614c7461e75
+    spriteID: 85b6691f80884dd4f9b6dc9773cdd3e9
     internalID: 0
     vertices: []
     indices: 
@@ -502,23 +744,34 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":8.0,"y":8.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Block01-Sheet_0: -1908840221670958142
-      Block01-Sheet_1: 1355150851
-      Block01-Sheet_10: 1651402774
-      Block01-Sheet_11: 408266284
-      Block01-Sheet_12: 1719016239
-      Block01-Sheet_13: -59850038
-      Block01-Sheet_14: 967032652
-      Block01-Sheet_15: 721628454
-      Block01-Sheet_16: 1289679380
-      Block01-Sheet_2: -787699132
-      Block01-Sheet_3: 200418853
-      Block01-Sheet_4: -440114153
-      Block01-Sheet_5: 1971162929
-      Block01-Sheet_6: -1906816761
-      Block01-Sheet_7: 161692988
-      Block01-Sheet_8: 690793747
-      Block01-Sheet_9: 868171458
+      Blocks-Tileset-Sheet_0: -4269807479533203371
+      Blocks-Tileset-Sheet_1: 1480051826
+      Blocks-Tileset-Sheet_10: -1195160916
+      Blocks-Tileset-Sheet_11: -1166954311
+      Blocks-Tileset-Sheet_12: -565746072
+      Blocks-Tileset-Sheet_13: -473639462
+      Blocks-Tileset-Sheet_14: 1519595696
+      Blocks-Tileset-Sheet_15: 708769874
+      Blocks-Tileset-Sheet_16: 722753428
+      Blocks-Tileset-Sheet_17: 72513417
+      Blocks-Tileset-Sheet_18: -1368760608
+      Blocks-Tileset-Sheet_19: -1893365739
+      Blocks-Tileset-Sheet_2: 1873355254
+      Blocks-Tileset-Sheet_20: -944390852
+      Blocks-Tileset-Sheet_21: -1446330222
+      Blocks-Tileset-Sheet_22: -670505884
+      Blocks-Tileset-Sheet_23: 840756040
+      Blocks-Tileset-Sheet_24: -1639871870
+      Blocks-Tileset-Sheet_25: 2059792854
+      Blocks-Tileset-Sheet_26: -1210047691
+      Blocks-Tileset-Sheet_27: 221379041
+      Blocks-Tileset-Sheet_3: 801973281
+      Blocks-Tileset-Sheet_4: 1018244135
+      Blocks-Tileset-Sheet_5: 553650228
+      Blocks-Tileset-Sheet_6: -102717338
+      Blocks-Tileset-Sheet_7: -1352787879
+      Blocks-Tileset-Sheet_8: -1092630627
+      Blocks-Tileset-Sheet_9: 187558713
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

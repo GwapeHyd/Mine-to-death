@@ -1,43 +1,37 @@
 fileFormatVersion: 2
-guid: 88efa8ea5ebbb18478066ca8faaec03f
+guid: e120346e6f998f746b4bd1e549203717
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5303849771653958593
-    second: 1bit-CharWhite-Sheet_0
+      213: 3588233027594107378
+    second: 1bit-Char-Sheet_0
   - first:
-      213: -3366456074068098912
-    second: 1bit-CharWhite-Sheet_1
+      213: -6991059353883736237
+    second: 1bit-Char-Sheet_1
   - first:
-      213: 861948387568119661
-    second: 1bit-CharWhite-Sheet_2
+      213: -2304168255599891827
+    second: 1bit-Char-Sheet_2
   - first:
-      213: 8056160593430219716
-    second: 1bit-CharWhite-Sheet_3
+      213: 6108308913261428714
+    second: 1bit-Char-Sheet_3
   - first:
-      213: 5378555900556121089
-    second: 1bit-CharWhite-Sheet_4
+      213: -4556730138945543401
+    second: 1bit-Char-Sheet_4
   - first:
-      213: 5911313012668632005
-    second: 1bit-CharWhite-Sheet_5
+      213: 246250433944974308
+    second: 1bit-Char-Sheet_5
   - first:
-      213: 5041435132520531250
-    second: 1bit-CharWhite-Sheet_6
+      213: 6745681034035639941
+    second: 1bit-Char-Sheet_6
   - first:
-      213: 1312623327191774145
-    second: 1bit-CharWhite-Sheet_7
+      213: 4990824129302179219
+    second: 1bit-Char-Sheet_7
   - first:
-      213: 8047174283674963503
-    second: 1bit-CharWhite-Sheet_8
+      213: -5797315772444115838
+    second: 1bit-Char-Sheet_8
   - first:
-      213: 3170264767199863588
-    second: 1bit-CharWhite-Sheet_9
-  - first:
-      213: 1475011795811307319
-    second: 1bit-CharWhite-Sheet_10
-  - first:
-      213: -1176885810938936516
-    second: 1bit-CharWhite-Sheet_11
+      213: 198123697279907534
+    second: 1bit-Char-Sheet_9
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -107,7 +101,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 8192
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -146,7 +140,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_0
+      name: 1bit-Char-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -161,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f347782dbb0f466b0800000000000000
-      internalID: -5303849771653958593
+      spriteID: 2f932156de6fbc130800000000000000
+      internalID: 3588233027594107378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_1
+      name: 1bit-Char-Sheet_1
       rect:
         serializedVersion: 2
         x: 8
@@ -183,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a007317902f741d0800000000000000
-      internalID: -3366456074068098912
+      spriteID: 3578610de84cafe90800000000000000
+      internalID: -6991059353883736237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_2
+      name: 1bit-Char-Sheet_2
       rect:
         serializedVersion: 2
         x: 16
@@ -205,14 +199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d6fe7bfdd7146fb00800000000000000
-      internalID: 861948387568119661
+      spriteID: d8aac36fd23f500e0800000000000000
+      internalID: -2304168255599891827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_3
+      name: 1bit-Char-Sheet_3
       rect:
         serializedVersion: 2
         x: 24
@@ -227,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4cb88e8506b3dcf60800000000000000
-      internalID: 8056160593430219716
+      spriteID: aefbc49e79215c450800000000000000
+      internalID: 6108308913261428714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_4
+      name: 1bit-Char-Sheet_4
       rect:
         serializedVersion: 2
         x: 32
@@ -249,14 +243,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1049a31481874aa40800000000000000
-      internalID: 5378555900556121089
+      spriteID: 713a5dac41e33c0c0800000000000000
+      internalID: -4556730138945543401
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_5
+      name: 1bit-Char-Sheet_5
       rect:
         serializedVersion: 2
         x: 40
@@ -271,14 +265,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cb02449dd3390250800000000000000
-      internalID: 5911313012668632005
+      spriteID: 4e37319077bda6300800000000000000
+      internalID: 246250433944974308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_6
+      name: 1bit-Char-Sheet_6
       rect:
         serializedVersion: 2
         x: 48
@@ -293,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2358f08da86c6f540800000000000000
-      internalID: 5041435132520531250
+      spriteID: 586b8c909297d9d50800000000000000
+      internalID: 6745681034035639941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_7
+      name: 1bit-Char-Sheet_7
       rect:
         serializedVersion: 2
         x: 56
@@ -315,14 +309,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1c3382526ff573210800000000000000
-      internalID: 1312623327191774145
+      spriteID: 39d21836a18f24540800000000000000
+      internalID: 4990824129302179219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_8
+      name: 1bit-Char-Sheet_8
       rect:
         serializedVersion: 2
         x: 64
@@ -337,14 +331,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2eca10106e4daf60800000000000000
-      internalID: 8047174283674963503
+      spriteID: 28cf2bc350ccb8fa0800000000000000
+      internalID: -5797315772444115838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_9
+      name: 1bit-Char-Sheet_9
       rect:
         serializedVersion: 2
         x: 72
@@ -359,14 +353,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42362ec420b0ffb20800000000000000
-      internalID: 3170264767199863588
+      spriteID: ec6b4f5f370efb200800000000000000
+      internalID: 198123697279907534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_10
+      name: 1bit-Char-Sheet_10
       rect:
         serializedVersion: 2
         x: 80
@@ -379,54 +373,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73f08d0d96b487410800000000000000
-      internalID: 1475011795811307319
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_11
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3389c1279cdaafe0800000000000000
-      internalID: -1176885810938936516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1bit-CharWhite-Sheet_12
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 470e36acf45bdb7449a29ef2cc5fae1b
-      internalID: -933974221
+      spriteID: 88390ea646a7b2b4ca09e0b39a6e4f3f
+      internalID: -1001154983
       vertices: []
       indices: 
       edges: []
@@ -435,7 +385,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7caa542644704c840947b94ce1adf03b
+    spriteID: 2d133e4fae591044f99e60aa177d9fce
     internalID: 0
     vertices: []
     indices: 
@@ -447,19 +397,17 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":8.0,"y":8.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      1bit-CharWhite-Sheet_0: -5303849771653958593
-      1bit-CharWhite-Sheet_1: -3366456074068098912
-      1bit-CharWhite-Sheet_10: 1475011795811307319
-      1bit-CharWhite-Sheet_11: -1176885810938936516
-      1bit-CharWhite-Sheet_12: -933974221
-      1bit-CharWhite-Sheet_2: 861948387568119661
-      1bit-CharWhite-Sheet_3: 8056160593430219716
-      1bit-CharWhite-Sheet_4: 5378555900556121089
-      1bit-CharWhite-Sheet_5: 5911313012668632005
-      1bit-CharWhite-Sheet_6: 5041435132520531250
-      1bit-CharWhite-Sheet_7: 1312623327191774145
-      1bit-CharWhite-Sheet_8: 8047174283674963503
-      1bit-CharWhite-Sheet_9: 3170264767199863588
+      1bit-Char-Sheet_0: 3588233027594107378
+      1bit-Char-Sheet_1: -6991059353883736237
+      1bit-Char-Sheet_10: -1001154983
+      1bit-Char-Sheet_2: -2304168255599891827
+      1bit-Char-Sheet_3: 6108308913261428714
+      1bit-Char-Sheet_4: -4556730138945543401
+      1bit-Char-Sheet_5: 246250433944974308
+      1bit-Char-Sheet_6: 6745681034035639941
+      1bit-Char-Sheet_7: 4990824129302179219
+      1bit-Char-Sheet_8: -5797315772444115838
+      1bit-Char-Sheet_9: 198123697279907534
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

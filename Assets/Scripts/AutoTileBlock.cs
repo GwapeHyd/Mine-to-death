@@ -182,7 +182,7 @@ public class AutoTileBlock : MonoBehaviour
             return bottomLeftSprite != null ? bottomLeftSprite : fullSprite;
         if (hasTop && hasRight && !hasBottom && !hasLeft)
             return topRightSprite != null ? topRightSprite : fullSprite;
-        if (hasTop && hasLeft && ! hasBottom && !hasRight)
+        if (hasTop && hasLeft && !hasBottom && !hasRight)
             return topLeftSprite != null ? topLeftSprite :  fullSprite;
 
         // 1 voisin
