@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Tilemaps;
 
 public class CaveGenerator : MonoBehaviour
 {
@@ -44,6 +45,8 @@ public class CaveGenerator : MonoBehaviour
     public void GenerateCave()
     {
         ClearCave();
+        bonusBlockPlaced = false;
+        wallPositions.Clear();
 
         if (seed == 0)
             seed = Random.Range(int.MinValue, int.MaxValue);
@@ -67,7 +70,7 @@ public class CaveGenerator : MonoBehaviour
             {
                 if (x == 0 || x == caveWidth - 1 || y == 0 || y == caveHeight - 1)
                 {
-                    caveMap[x, y] = 1; // Mur
+                    caveMap[x, y] = 1; 
                 }
                 else
                 {
@@ -80,6 +83,8 @@ public class CaveGenerator : MonoBehaviour
         {
             SmoothMap();
         }
+
+        wallPositions.Clear();
 
         for (int x = 0; x < caveWidth; x++)
         {
@@ -95,8 +100,8 @@ public class CaveGenerator : MonoBehaviour
 
     private void PlaceBonusBlock()
     {
-        int minY = Mathf.RoundToInt(caveWidth * bonusZoneMinPercent);
-        int maxY = Mathf.RoundToInt(caveWidth * bonusZoneMaxPercent);
+        int minY = Mathf.RoundToInt(caveHeight * bonusZoneMinPercent);
+        int maxY = Mathf.RoundToInt(caveHeight * bonusZoneMaxPercent);
 
         List<Vector2Int> validPositions = wallPositions.Where(pos => pos.y > minY && pos.y <= maxY).ToList();
 
@@ -116,6 +121,12 @@ public class CaveGenerator : MonoBehaviour
 
     private void PlaceHintBlocks()
     {
+        if (!bonusBlockPlaced)
+        {
+            Debug.LogWarning("Bonus block not placed. Cannot place hint blocks.");
+            return;
+        }
+
         PlaceHintBlocksAtDistance(hintBlockFarCount, farHintMinDistance, float.MaxValue, 3);
 
         PlaceHintBlocksAtDistance(hintBlockNearCount, 0, nearHintMinDistance, 4);
@@ -222,12 +233,26 @@ public class CaveGenerator : MonoBehaviour
             for (int y = 0; y < caveHeight; y++)
             {
                 int blocktype = caveMap[x, y];
-                if (caveMap[x, y] == 1)
+                if (blocktype > 0)
                 {
                     Vector3 position = new Vector3(x * tileSize, y * tileSize, 0);
                     GameObject prefabToSpawn = GetPrefabForBlockType(caveMap[x, y]);
                     GameObject block = Instantiate(prefabToSpawn, position, Quaternion.identity, blocksParent);
                     block.name = $"{GetBlockTypeName(blocktype)}_{x}_{y}";
+
+                    if (blocktype == 2)
+                    {
+                        AutoTileBlock atb = block.GetComponent<AutoTileBlock>();
+                        if (atb != null)
+                        {
+                            var field = atb.GetType().GetField("isSpecialBlock", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                            if (field != null)
+                            {
+                                field.SetValue(atb, true);
+                            }
+                        }
+                    }
                     spawnedBlocks.Add(block);
                 }
             }
@@ -271,6 +296,8 @@ public class CaveGenerator : MonoBehaviour
         }
 
         spawnedBlocks.Clear();
+        wallPositions.Clear();
+        bonusBlockPlaced = false;
     }
     
     [ContextMenu("SmoothMap")]
@@ -322,7 +349,7 @@ public class CaveGenerator : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Vector3 center = new Vector3(caveWidth * tileSize / 2f, caveHeight * tileSize /2f, 0);
+        Vector3 center = new Vector3(caveWidth * tileSize / 2f, caveHeight * tileSize / 2f, 0);
         Vector3 size = new Vector3(caveWidth * tileSize, caveHeight * tileSize, 0.1f);
         Gizmos.DrawWireCube(center, size);
 
