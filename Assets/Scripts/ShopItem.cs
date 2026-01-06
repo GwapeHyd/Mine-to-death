@@ -156,8 +156,12 @@ public class ShopItem : MonoBehaviour
         if (CoinManager.Instance != null)
         {
             CoinManager.Instance.onCoinCountChanged.AddListener(OnCoinsChanged);
+            UpdatePurchaseButton();
+            Debug.Log("<color=red>ShopItem registered to CoinManager's onCoinCountChanged event.</color>");
+            
         }
     }
+
 
     private void OnDisable()
     {
@@ -169,7 +173,9 @@ public class ShopItem : MonoBehaviour
 
     private void OnCoinsChanged(int totalCoins)
     {
+        Debug.Log("ShopItem detected coin count changing...");
         UpdatePurchaseButton();
+        Debug.Log("ShopItem updated purchase button state.");
     }
 
     private void UpdateCostText()
