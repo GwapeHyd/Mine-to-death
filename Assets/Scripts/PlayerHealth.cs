@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
 
-        onHealthChanged?. Invoke(currentHealth);
+        onHealthChanged?.Invoke(currentHealth);
     }
 
     private void Update()
@@ -49,8 +49,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
 
-        Debug.Log($"Player took {amount} damage.  Current health: {currentHealth}/{maxHealth}");
-
         onHealthChanged?.Invoke(currentHealth);
         onTakeDamage?.Invoke();
 
@@ -69,12 +67,10 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth, maxHealth);
         
         onHealthChanged?.Invoke(currentHealth);
-        Debug.Log($"Player healed {amount}. Current health: {currentHealth}/{maxHealth}");
     }
 
     private void Die()
     {
-        Debug.Log("Player died!");
         onDeath?.Invoke();
         
         PlayerController controller = GetComponent<PlayerController>();

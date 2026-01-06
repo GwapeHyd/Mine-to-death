@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(attackKey) && !isAttacking)
+        if (Input.GetKeyDown(attackKey) && !isAttacking && isGrounded)
         {
             Attack();
         }
