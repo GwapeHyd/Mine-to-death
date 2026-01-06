@@ -153,6 +153,12 @@ public class PlayerController : MonoBehaviour
             {
                 block.TakeDamage(damagePerHit);
             }
+
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamageFromMining();
+            }
         }
     }
 
