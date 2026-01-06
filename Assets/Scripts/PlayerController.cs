@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -136,12 +135,9 @@ public class PlayerController : MonoBehaviour
         if (blocksInRange.Count > 0)
         {
             isAttacking = true;
-            animator.SetTrigger("Hit");
+            animator.SetTrigger("Hit");    
         }
-        else
-        {
-            Debug.Log("No block in range to attack.");
-        }
+        
     }
 
     public void DealDamage()
@@ -155,7 +151,8 @@ public class PlayerController : MonoBehaviour
             }
 
             PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            PlayerStateManager playerStateManager = GetComponent<PlayerStateManager>();
+            if (playerHealth != null && playerStateManager != null && playerStateManager.ShouldTakeMiningDamage())
             {
                 playerHealth.TakeDamageFromMining();
             }

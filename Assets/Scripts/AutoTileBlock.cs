@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.Events;
 
 public class AutoTileBlock : MonoBehaviour
@@ -34,6 +33,9 @@ public class AutoTileBlock : MonoBehaviour
     [Header("Visual Feedback")]
     [SerializeField] private SpriteRenderer blockSpriteRenderer;
     [SerializeField] private GameObject actionFeedback;
+
+    [Header("BonusBlock")]
+    [SerializeField] private GameObject collectilePrefab;
 
     [SerializeField] private float tileSize = 1f; 
 
@@ -225,7 +227,7 @@ public class AutoTileBlock : MonoBehaviour
             if (neighborBlock != null && neighborBlock != this)
             {
                 if (neighborBlock.isSpecialBlock) continue;
-                
+
                 float neighborHealth = (float)neighborBlock.currentHealth / neighborBlock.maxHealth;
                 return neighborHealth > 0.5f;
             }
@@ -243,7 +245,22 @@ public class AutoTileBlock : MonoBehaviour
 
         currentHealth = 0;
 
-        // ⚠️ IMPORTANT :  Met à jour les voisins AVANT de détruire
+        if (isSpecialBlock && collectilePrefab != null)
+        {
+            Instantiate(collectilePrefab, transform.position, Quaternion.identity);
+        }
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.AddForce(Vector2.up * 2f, ForceMode2D.Impulse);
+        }
+
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+        if (player != null)
+        {
+            player.ClearCurrentBlock(this);
+        }
+
         UpdateNeighbors();
         
         Destroy(gameObject);
