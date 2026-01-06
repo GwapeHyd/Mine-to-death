@@ -40,7 +40,7 @@ public class CoinBlock : MonoBehaviour
 
         float currentY = transform.position.y;
         int depth = Mathf.Max(0, Mathf.FloorToInt(surfaceLevel - currentY));
-        
+
         int depthMultiplier = 1 + (depth / depthMultiplierInterval);
 
         int coinsToSpawn = coinsToDrop * depthMultiplier;
@@ -65,7 +65,7 @@ public class CoinBlock : MonoBehaviour
             float randomForce = Random.Range(dropForce * 0.8f, dropForce * 1.2f);
             rb.AddForce(direction * randomForce, ForceMode2D.Impulse);
 
-            rb.angularVelocity = Random.Range(-180f, 180f);
+            rb.angularVelocity = Random.Range(-360f, 360f);
         }
     }
 
