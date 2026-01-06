@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float moveInput;
     private bool isGrounded;
+    public bool IsGrounded() => isGrounded;
     private bool isAttacking;
 
     private List<AutoTileBlock> blocksInRange = new List<AutoTileBlock>();
@@ -175,5 +176,10 @@ public class PlayerController : MonoBehaviour
         {
             blocksInRange.Remove(block);
         }
+    }
+
+    public float GetMoveInput()
+    {
+        return moveInput;
     }
 }
