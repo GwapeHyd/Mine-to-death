@@ -104,6 +104,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
         }
+        else
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
         
         if (rb. linearVelocity.y < -maxFallSpeed)
         {
