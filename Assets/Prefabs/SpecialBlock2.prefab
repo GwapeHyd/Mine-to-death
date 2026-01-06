@@ -256,7 +256,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 611886145, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  m_Sprite: {fileID: -1258645972, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
   isSpecialBlock: 1
   maxHealth: 50
-  fullSprite: {fileID: 611886145, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  fullSprite: {fileID: -1258645972, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   topSprite: {fileID: 0}
   bottomSprite: {fileID: 0}
   leftSprite: {fileID: 0}
@@ -369,10 +369,11 @@ MonoBehaviour:
   borderRightSprite: {fileID: 0}
   borderTopSprite: {fileID: 0}
   borderBottomSprite: {fileID: 0}
-  isolatedSprite: {fileID: 611886145, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
-  damagedSprite: {fileID: 611886145, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  isolatedSprite: {fileID: -1258645972, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  damagedSprite: {fileID: -1258645972, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
+  collectilePrefab: {fileID: 0}
   tileSize: 1
   onBlockDestroyed:
     m_PersistentCalls:

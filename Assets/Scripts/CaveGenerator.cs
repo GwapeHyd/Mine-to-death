@@ -21,6 +21,7 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private GameObject bonusBlockPrefab;
     [SerializeField] private GameObject hintBlockFarPrefab;
     [SerializeField] private GameObject hintBlockNearPrefab;
+    [SerializeField] private GameObject coinBlockPrefab;
     [SerializeField] private Transform blocksParent;
 
     [Header("Bonus Block Settings")]
@@ -32,6 +33,11 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private int hintBlockNearCount = 3;
     [SerializeField] private float farHintMinDistance = 30f;
     [SerializeField] private float nearHintMinDistance = 15f;
+
+    [Header("Coin Block Settings")]
+    [SerializeField] private float coinBlockSpawnChance = .05f;
+    [SerializeField] private float surfaceLevel = 200f;
+    [SerializeField] private int minDepthForCoinBlocks = 20;
 
     private System.Random random;
     private int[,] caveMap;
@@ -227,19 +233,48 @@ public class CaveGenerator : MonoBehaviour
             blocksParent = blocksParentGO.transform;
         }
 
+        System.Random coinRandom = new System.Random(seed + 1000);
+
         for (int x = 0; x < caveWidth; x++)
         {
             for (int y = 0; y < caveHeight; y++)
             {
-                int blocktype = caveMap[x, y];
-                if (blocktype > 0)
+                int blockType = caveMap[x, y];
+                if (blockType > 0)
                 {
                     Vector3 position = new Vector3(x * tileSize, y * tileSize, 0);
-                    GameObject prefabToSpawn = GetPrefabForBlockType(caveMap[x, y]);
-                    GameObject block = Instantiate(prefabToSpawn, position, Quaternion.identity, blocksParent);
-                    block.name = $"{GetBlockTypeName(blocktype)}_{x}_{y}";
+                    GameObject prefabToSpawn = GetPrefabForBlockType(blockType);
+                    
+                    float blockDepth = surfaceLevel - position.y;
 
-                    if (blocktype == 2)
+                    if (blockType == 1 && coinBlockPrefab != null && blockDepth >= minDepthForCoinBlocks)
+                    {
+                        if (coinRandom.NextDouble() < coinBlockSpawnChance)
+                        {
+                            prefabToSpawn = coinBlockPrefab;
+                            blockType = 5;
+                        }
+                    }
+
+                    GameObject block = Instantiate(prefabToSpawn, position, Quaternion.identity, blocksParent);
+                    block.name = $"{GetBlockTypeName(blockType)}_{x}_{y}";
+
+                    if (blockType == 5)
+                    {
+                        CoinBlock coinBlock = block.GetComponent<CoinBlock>();
+                        if (coinBlock != null)
+                        {
+                            var field = coinBlock.GetType().GetField("surfaceLevel", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                            if (field != null)
+                            {
+                                field.SetValue(coinBlock, surfaceLevel);
+                            }
+                        }
+                    }
+
+
+                    if (blockType >= 2)
                     {
                         AutoTileBlock atb = block.GetComponent<AutoTileBlock>();
                         if (atb != null)
@@ -278,6 +313,7 @@ public class CaveGenerator : MonoBehaviour
             case 2 : return "BonusBlock";
             case 3 : return "HintBlockFar";
             case 4 : return "HintBlockNear";
+            case 5 : return "CoinBlock";
             default: return "UnknownBlock";
         }
     }

@@ -182,9 +182,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2605942854334387821}
   - component: {fileID: 2485203748950899332}
+  - component: {fileID: 8932938868985848385}
   - component: {fileID: 1128553039576084580}
   - component: {fileID: 5878733071178256376}
-  - component: {fileID: 2233694190847935868}
+  - component: {fileID: 6900517917370004871}
   m_Layer: 8
   m_Name: BonusBlock
   m_TagString: Untagged
@@ -256,7 +257,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1007243744, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  m_Sprite: {fileID: 464968729, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -267,6 +268,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8932938868985848385
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151982795548472252}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55287a9c6c8c2d442b4c07d6fc9da5f4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &1128553039576084580
 Rigidbody2D:
   serializedVersion: 5
@@ -340,7 +363,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2233694190847935868
+--- !u!114 &6900517917370004871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,7 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
   isSpecialBlock: 1
   maxHealth: 50
-  fullSprite: {fileID: 1007243744, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  fullSprite: {fileID: 464968729, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   topSprite: {fileID: 0}
   bottomSprite: {fileID: 0}
   leftSprite: {fileID: 0}
@@ -369,8 +392,8 @@ MonoBehaviour:
   borderRightSprite: {fileID: 0}
   borderTopSprite: {fileID: 0}
   borderBottomSprite: {fileID: 0}
-  isolatedSprite: {fileID: 1007243744, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
-  damagedSprite: {fileID: 1007243744, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  isolatedSprite: {fileID: 464968729, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  damagedSprite: {fileID: -3493244654930374391, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
   collectilePrefab: {fileID: 2371372518722143769, guid: ab4246fcbbe8e834f82626f423c391a5, type: 3}

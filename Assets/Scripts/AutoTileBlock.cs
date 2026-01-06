@@ -40,7 +40,7 @@ public class AutoTileBlock : MonoBehaviour
     [SerializeField] private float tileSize = 1f; 
 
     [Header("Events")]
-    [SerializeField] private UnityEvent onBlockDestroyed;
+    public UnityEvent onBlockDestroyed;
     [SerializeField] private UnityEvent onBlockHit;
 
     
@@ -115,8 +115,6 @@ public class AutoTileBlock : MonoBehaviour
 
         float healthPercentage = (float)currentHealth / maxHealth;
 
-        Debug.Log($"Updating visuals for {gameObject.name} ({healthPercentage * 100}%)");
-
         // État endommagé (50% ou moins)
         if (healthPercentage <= 0.5f && healthPercentage > 0f)
         {
@@ -132,15 +130,9 @@ public class AutoTileBlock : MonoBehaviour
             bool hasLeft = HasNeighbor(Vector2.left);
             bool hasRight = HasNeighbor(Vector2.right);
 
-            Debug.Log($"Neighbors for {gameObject.name} - Top: {hasTop}, Bottom: {hasBottom}, Left: {hasLeft}, Right: {hasRight}");
-
             Sprite selectedSprite = GetAutoTileSprite();
 
-            Debug.Log($"Selected sprite for {gameObject.name}: {selectedSprite.name}");
-
             blockSpriteRenderer.sprite = selectedSprite;
-
-            Debug.Log($"{name}: Applied sprite = {(blockSpriteRenderer.sprite != null ? blockSpriteRenderer.sprite.name : "NULL")}");
         }
     }
 
@@ -206,21 +198,16 @@ public class AutoTileBlock : MonoBehaviour
     {
         Vector2 checkPosition = (Vector2)transform.position + direction * tileSize;
     
-        // Utilise OverlapCircle pour plus de tolérance
         Collider2D[] hits = Physics2D.OverlapCircleAll(checkPosition, 0.1f);
     
         foreach (Collider2D hit in hits)
         {
-            // Ignore les triggers (TriggerZone)
             if (hit.isTrigger) continue;
         
-            // Ignore soi-même
             if (hit.transform == transform) continue;
         
-            // 🔧 FIX : Utilise GetComponentInParent au lieu de GetComponent
             AutoTileBlock neighborBlock = hit.GetComponentInParent<AutoTileBlock>();
         
-            // Si pas trouvé sur le parent, essaye sur l'objet lui-même
             if (neighborBlock == null)
                 neighborBlock = hit.GetComponent<AutoTileBlock>();
         
@@ -266,7 +253,6 @@ public class AutoTileBlock : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Met à jour les sprites des blocs voisins
     private void UpdateNeighbors()
     {
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
@@ -302,35 +288,9 @@ public class AutoTileBlock : MonoBehaviour
         }
     }
 
-    // Méthode publique pour forcer la mise à jour (appelée par les voisins)
     public void ForceUpdateVisuals()
     {
         UpdateVisuals();
     }
 
-    [ContextMenu("Debug Neighbors")]
-public void DebugNeighbors()
-{
-    Debug.Log($"=== {gameObject.name} at {transform.position} ===");
-    Debug.Log($"Has TOP (0,1): {HasNeighbor(Vector2.up)}");
-    Debug.Log($"Has BOTTOM (0,-1): {HasNeighbor(Vector2.down)}");
-    Debug.Log($"Has LEFT (-1,0): {HasNeighbor(Vector2.left)}");
-    Debug.Log($"Has RIGHT (1,0): {HasNeighbor(Vector2.right)}");
-    
-    // Vérifie manuellement
-    Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-    string[] names = { "TOP", "BOTTOM", "LEFT", "RIGHT" };
-    
-    for (int i = 0; i < directions.Length; i++)
-    {
-        Vector2 checkPos = (Vector2)transform.position + directions[i] * tileSize;
-        Collider2D[] hits = Physics2D.OverlapCircleAll(checkPos, 0.2f);
-        
-        Debug. Log($"  {names[i]} ({checkPos}): Found {hits.Length} colliders");
-        foreach (var hit in hits)
-        {
-            Debug.Log($"    - {hit.gameObject.name} (Trigger: {hit.isTrigger})");
-        }
-    }
-}
 }
