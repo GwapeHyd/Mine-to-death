@@ -158,7 +158,6 @@ public class ShopItem : MonoBehaviour
             CoinManager.Instance.onCoinCountChanged.AddListener(OnCoinsChanged);
             UpdatePurchaseButton();
             Debug.Log("<color=red>ShopItem registered to CoinManager's onCoinCountChanged event.</color>");
-            
         }
     }
 

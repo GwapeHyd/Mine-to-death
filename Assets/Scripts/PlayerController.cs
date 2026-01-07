@@ -250,6 +250,10 @@ public class PlayerController : MonoBehaviour
             blocksInRange.Remove(block);
         }
     }
+    public void EnableHeadThrowing()
+    {
+        canThrowHead = true;
+    }
 
     public float GetMoveInput()
     {

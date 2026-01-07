@@ -17,8 +17,9 @@ public class PlayerHealth : MonoBehaviour
     private bool isInvincible = false;
     [Header("Events")]
     public UnityEvent<int> onHealthChanged; 
-    [SerializeField] private UnityEvent onDeath;
-    [SerializeField] private UnityEvent onTakeDamage;
+    public UnityEvent onDeath;
+    public UnityEvent<int> onDeathCountChanged;
+    public UnityEvent onTakeDamage;
 
     private Rigidbody2D rb;
     private Transform respawnPoint;
@@ -83,6 +84,7 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log("Player died!");
         numberOfDeaths++;
+        onDeathCountChanged?.Invoke(numberOfDeaths);
         isDead = true;
         onDeath?.Invoke();
         PlayerController controller = GetComponent<PlayerController>();
@@ -119,6 +121,18 @@ public class PlayerHealth : MonoBehaviour
             controller.enabled = true;
         }
     }
+
+    public bool SpendDeaths(int amount)
+    {
+        if (numberOfDeaths >= amount)
+        {
+            numberOfDeaths -= amount;
+            onDeath?.Invoke();
+            return true;
+        }
+        return false;
+    }
+
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
     public int NumberOfDeaths => numberOfDeaths;
