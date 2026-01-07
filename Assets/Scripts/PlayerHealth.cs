@@ -40,6 +40,11 @@ public class PlayerHealth : MonoBehaviour
                 isInvincible = false;
             }
         }
+
+        if (transform.position.y < -10f)
+        {
+            Die();
+        }
     }
     public void TakeDamageFromMining()
     {

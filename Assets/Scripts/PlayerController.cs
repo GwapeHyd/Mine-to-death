@@ -23,8 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int damagePerHit = 50;
     [SerializeField] private KeyCode attackKey = KeyCode.E;
 
-    [SerializeField] private Animator animator;
-    
+    private Animator animator; 
     private Rigidbody2D rb;
     private float moveInput;
     private bool isGrounded;
