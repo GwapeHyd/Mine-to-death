@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 
@@ -23,12 +24,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int damagePerHit = 50;
     [SerializeField] private KeyCode attackKey = KeyCode.E;
 
+    [Header("Head Projectile")]
+    [SerializeField] private HeadProjectile headProjectilePrefab;
+    [SerializeField] private Vector3 headProjectileSpawnOffset = new Vector3(0, 0.5f, 0);
+    [SerializeField] private KeyCode throwKey = KeyCode.R;
+    [SerializeField] private float throwCooldown = 1f;
+
     private Animator animator; 
     private Rigidbody2D rb;
     private float moveInput;
+    private float lastThrowTime = 0f;
+    private bool hasActiveProjetile = false;
     private bool isGrounded;
     public bool IsGrounded() => isGrounded;
     private bool isAttacking;
+    private bool canThrowHead = false;
 
     private List<AutoTileBlock> blocksInRange = new List<AutoTileBlock>();
 
@@ -93,6 +103,11 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetBool("isJumping", !isGrounded);
+
+        if (!hasActiveProjetile && canThrowHead)
+        {
+            HandleHeadThrow();
+        }
     }
 
     private void FixedUpdate()
@@ -113,7 +128,61 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("MoveX", Mathf.Abs(rb.linearVelocity.x));
         animator.SetFloat("MoveY", rb.linearVelocity.y);
     }
+
+    private void HandleHeadThrow()
+    {
+        if (Input.GetKeyDown(throwKey) && Time.time - lastThrowTime >= throwCooldown)
+        {
+            ThrowHead();
+        }
+    }  
+
+    private void ThrowHead()
+    {
+        if (headProjectilePrefab == null)
+        {
+            Debug.LogWarning("HeadProjectile prefab is not assigned.");
+            return;
+        }
+
+        Vector3 spawnPosition = transform.position + headProjectileSpawnOffset;
+        GameObject projectileObj = Instantiate(headProjectilePrefab.gameObject, spawnPosition, Quaternion.identity);
+
+        HeadProjectile headProjectile = projectileObj.GetComponent<HeadProjectile>();
+        if (headProjectile != null)
+        {
+            Vector2 throwDirection = GetThrowDirection();
+            headProjectile.SetDamage(damagePerHit);
+            headProjectile.Initialize(transform, throwDirection, headProjectileSpawnOffset);
+            headProjectile.Launch(throwDirection);
+            hasActiveProjetile = true;
+            lastThrowTime = Time.time;
+
+            StartCoroutine(WaitForProjectileDestruction(headProjectile));
+        }
+        else
+        {
+            Debug.LogWarning("The instantiated object does not have a HeadProjectile component.");
+            Destroy(projectileObj);
+        }
+    }
+
+    private Vector2 GetThrowDirection()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (mousePosition - transform.position).normalized;
+        return direction;
+    }
     
+    private IEnumerator WaitForProjectileDestruction(HeadProjectile projectile)
+    {
+        while (projectile != null)
+        {
+            yield return null;
+        }
+        hasActiveProjetile = false;
+    }
+
     private void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);

@@ -51149,7 +51149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SanityManager
   maxSanity: 100
   sanityDecreaseRate: 1
-  bonusBlock: {fileID: 0}
+  bonusBlock: {fileID: 828325681}
   hintFarFeedbackGO: {fileID: 525109881}
   hintCloseFeedbackGO: {fileID: 1350051747}
   maxHintBlocks: 20
@@ -408649,7 +408649,7 @@ GameObject:
   - component: {fileID: 1262690776}
   - component: {fileID: 1262690777}
   - component: {fileID: 1262690778}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -408781,6 +408781,10 @@ MonoBehaviour:
     m_Bits: 256
   damagePerHit: 1
   attackKey: 101
+  headProjectilePrefab: {fileID: 4208916689717055873, guid: b13ff51cc20194446ad7ce5cb093fc5b, type: 3}
+  headProjectileSpawnOffset: {x: 0, y: 0.5, z: 0}
+  throwKey: 114
+  throwCooldown: 0.5
 --- !u!58 &1262690774
 CircleCollider2D:
   m_ObjectHideFlags: 0
