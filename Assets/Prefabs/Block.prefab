@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 1128553039576084580}
   - component: {fileID: 5878733071178256376}
   - component: {fileID: 8062261621511561501}
+  - component: {fileID: -2810706940642724794}
   m_Layer: 8
   m_Name: Block
   m_TagString: Untagged
@@ -382,3 +383,23 @@ MonoBehaviour:
   onBlockHit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-2810706940642724794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151982795548472252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5483b9d1ad1f984dac930121a55d159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwappableSprite
+  spriteMappings:
+  - spriteName: Isolated_Block
+    spriteSetA: {fileID: -1166954311, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+    spriteSetB: {fileID: 225890582, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  - spriteName: Full_Block
+    spriteSetA: {fileID: -1092630627, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+    spriteSetB: {fileID: -868606721, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  spriteName: Block
