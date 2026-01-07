@@ -184,8 +184,8 @@ GameObject:
   - component: {fileID: 2485203748950899332}
   - component: {fileID: 1128553039576084580}
   - component: {fileID: 5878733071178256376}
-  - component: {fileID: 1399822345252665382}
   - component: {fileID: -1417438134488383355}
+  - component: {fileID: 9204801180662146264}
   m_Layer: 8
   m_Name: SpecialBlock2
   m_TagString: Untagged
@@ -341,48 +341,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1399822345252665382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5151982795548472252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b8adc1dee4f6f4e9d7f35cc50c0146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
-  isSpecialBlock: 1
-  maxHealth: 2
-  fullSprite: {fileID: -1066512984, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
-  topSprite: {fileID: 0}
-  bottomSprite: {fileID: 0}
-  leftSprite: {fileID: 0}
-  rightSprite: {fileID: 0}
-  topLeftSprite: {fileID: 0}
-  topRightSprite: {fileID: 0}
-  bottomLeftSprite: {fileID: 0}
-  bottomRightSprite: {fileID: 0}
-  horizontalSprite: {fileID: 0}
-  verticalSprite: {fileID: 0}
-  borderLeftSprite: {fileID: 0}
-  borderRightSprite: {fileID: 0}
-  borderTopSprite: {fileID: 0}
-  borderBottomSprite: {fileID: 0}
-  isolatedSprite: {fileID: -1066512984, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
-  damagedSprite: {fileID: -432719638, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
-  blockSpriteRenderer: {fileID: 2485203748950899332}
-  actionFeedback: {fileID: 420959365672535837}
-  hintSound: {fileID: 8300000, guid: 0dcc73a1e8f96cd45953a0073f6eb0fa, type: 3}
-  collectilePrefab: {fileID: 0}
-  tileSize: 1
-  onBlockDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
-  onBlockHit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &-1417438134488383355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,3 +354,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HintBlock
   blockType: 1
+--- !u!114 &9204801180662146264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151982795548472252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1266b15efe984347b642250531debb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpecialBlock
+  isSpecialBlock: 1
+  maxHealth: 1
+  spriteSet: {fileID: 0}
+  blockSpriteRenderer: {fileID: 2485203748950899332}
+  actionFeedback: {fileID: 420959365672535837}
+  tileSize: 1
+  onBlockDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  onBlockHit:
+    m_PersistentCalls:
+      m_Calls: []
+  hintSound: {fileID: 8300000, guid: 0dcc73a1e8f96cd45953a0073f6eb0fa, type: 3}

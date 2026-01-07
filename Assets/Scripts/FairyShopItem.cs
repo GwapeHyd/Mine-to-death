@@ -107,6 +107,11 @@ public class FairyShopItem : MonoBehaviour
             case PsychosisType.Insanity:
                 if (playerController != null)
                     playerController.EnableHeadThrowing();
+                    GlobalSpriteSwitcher globalSwitcher = FindFirstObjectByType<GlobalSpriteSwitcher>();
+                    if (globalSwitcher != null)
+                    {
+                        globalSwitcher.SwapAllSprites();
+                    }
                 break;
             case PsychosisType.Madness:
                 if (SanityManager.Instance != null)

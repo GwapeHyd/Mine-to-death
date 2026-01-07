@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 8932938868985848385}
   - component: {fileID: 1128553039576084580}
   - component: {fileID: 5878733071178256376}
-  - component: {fileID: 6900517917370004871}
+  - component: {fileID: 602962483082979886}
   m_Layer: 8
   m_Name: BonusBlock
   m_TagString: Untagged
@@ -363,7 +363,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6900517917370004871
+--- !u!114 &602962483082979886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,32 +372,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5151982795548472252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b8adc1dee4f6f4e9d7f35cc50c0146, type: 3}
+  m_Script: {fileID: 11500000, guid: a1266b15efe984347b642250531debb3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
+  m_EditorClassIdentifier: Assembly-CSharp::SpecialBlock
   isSpecialBlock: 1
-  maxHealth: 10
-  fullSprite: {fileID: 1707478942, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
-  topSprite: {fileID: 0}
-  bottomSprite: {fileID: 0}
-  leftSprite: {fileID: 0}
-  rightSprite: {fileID: 0}
-  topLeftSprite: {fileID: 0}
-  topRightSprite: {fileID: 0}
-  bottomLeftSprite: {fileID: 0}
-  bottomRightSprite: {fileID: 0}
-  horizontalSprite: {fileID: 0}
-  verticalSprite: {fileID: 0}
-  borderLeftSprite: {fileID: 0}
-  borderRightSprite: {fileID: 0}
-  borderTopSprite: {fileID: 0}
-  borderBottomSprite: {fileID: 0}
-  isolatedSprite: {fileID: 1707478942, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
-  damagedSprite: {fileID: -3493244654930374391, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  maxHealth: 100
+  spriteSet: {fileID: 0}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
-  hintSound: {fileID: 0}
-  collectilePrefab: {fileID: 2371372518722143769, guid: ab4246fcbbe8e834f82626f423c391a5, type: 3}
   tileSize: 1
   onBlockDestroyed:
     m_PersistentCalls:
@@ -405,3 +387,4 @@ MonoBehaviour:
   onBlockHit:
     m_PersistentCalls:
       m_Calls: []
+  hintSound: {fileID: 0}

@@ -4,28 +4,25 @@ using UnityEngine.Events;
 public class AutoTileBlock : MonoBehaviour
 {
     [Header("BlockType")]
-    [SerializeField] private bool isSpecialBlock = false;
+    [SerializeField] protected bool isSpecialBlock = false;
+
     [Header("Health Settings")]
-    [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] protected int maxHealth = 100;
+    protected int currentHealth;
 
     [Header("AutoTile Sprites")]
     [SerializeField] private AutoTileSpriteSet spriteSet;
 
     [Header("Feedback")]
-    [SerializeField] private SpriteRenderer blockSpriteRenderer;
-    [SerializeField] private GameObject actionFeedback;
-    [SerializeField] private AudioClip hintSound;
+    [SerializeField] protected SpriteRenderer blockSpriteRenderer;
+    [SerializeField] protected GameObject actionFeedback;
 
-
-    [Header("BonusBlock")]
-    [SerializeField] private GameObject collectiblePrefab;
-    [SerializeField] private float tileSize = 1f; 
+    [Header("Settings")]
+    [SerializeField] protected float tileSize = 1f;
 
     [Header("Events")]
     public UnityEvent onBlockDestroyed;
-    [SerializeField] private UnityEvent onBlockHit;
-
+    [SerializeField] protected UnityEvent onBlockHit;
     
     private void Start()
     {
@@ -37,7 +34,7 @@ public class AutoTileBlock : MonoBehaviour
         if (blockSpriteRenderer == null)
             blockSpriteRenderer = GetComponent<SpriteRenderer>();
 
-        if(!isSpecialBlock)
+        if (!isSpecialBlock)
         {
             Invoke(nameof(InitialUpdate), 0.2f);
         }
@@ -45,6 +42,8 @@ public class AutoTileBlock : MonoBehaviour
 
     public void SetSpriteSet(AutoTileSpriteSet newSpriteSet)
     {
+        if (isSpecialBlock) return;
+
         spriteSet = newSpriteSet;
         UpdateVisuals();
         UpdateNeighbors();
@@ -94,7 +93,7 @@ public class AutoTileBlock : MonoBehaviour
         }
     }
 
-    private void UpdateVisuals()
+    protected virtual void UpdateVisuals()
     {
         if (blockSpriteRenderer == null) 
         {
@@ -102,6 +101,11 @@ public class AutoTileBlock : MonoBehaviour
             return;
         }
 
+        if(isSpecialBlock && spriteSet == null)
+        {
+            Debug.LogWarning("Sprite set is not assigned for AutoTileBlock!");
+            return;
+        }
         float healthPercentage = (float)currentHealth / maxHealth;
 
         // État endommagé (50% ou moins)
@@ -199,8 +203,6 @@ public class AutoTileBlock : MonoBehaviour
         
             if (neighborBlock != null && neighborBlock != this)
             {
-                if (neighborBlock.isSpecialBlock) continue;
-
                 float neighborHealth = (float)neighborBlock.currentHealth / neighborBlock.maxHealth;
                 return neighborHealth > 0.5f;
             }
@@ -209,7 +211,7 @@ public class AutoTileBlock : MonoBehaviour
         return false;
     }
 
-    private void DestroyBlock()
+    protected virtual void DestroyBlock()
     {
         onBlockDestroyed?.Invoke();
         
@@ -218,25 +220,10 @@ public class AutoTileBlock : MonoBehaviour
 
         currentHealth = 0;
 
-        if (isSpecialBlock && collectiblePrefab != null)
-        {
-            Instantiate(collectiblePrefab, transform.position, Quaternion.identity);
-        }
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.AddForce(Vector2.up * 2f, ForceMode2D.Impulse);
-        }
-
         PlayerController player = FindFirstObjectByType<PlayerController>();
         if (player != null)
         {
             player.ClearCurrentBlock(this);
-        }
-
-        if (hintSound != null)
-        {
-            AudioManager.Instance.PlaySound(hintSound, 0.1f);
         }
 
         UpdateNeighbors();

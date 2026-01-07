@@ -170,8 +170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Coin
   playerTag: Player
   coinValue: 1
-  attractSpeed: 8
-  attractRange: 4
+  attractSpeed: 12
+  attractRange: 15
   autoAtract: 1
   bobSpeed: 2
   bobHeight: 0.25

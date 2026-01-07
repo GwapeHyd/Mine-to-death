@@ -150,6 +150,11 @@ public class PlayerController : MonoBehaviour
 
         Vector3 spawnPosition = transform.position + headProjectileSpawnOffset;
         GameObject projectileObj = Instantiate(headProjectilePrefab.gameObject, spawnPosition, Quaternion.identity);
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(3); // 3hp perdu par lancer
+        }
 
         HeadProjectile headProjectile = projectileObj.GetComponent<HeadProjectile>();
         if (headProjectile != null)

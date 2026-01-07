@@ -23,8 +23,8 @@ MonoBehaviour:
   bottomRightSprite: {fileID: -4269807479533203371, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   horizontalSprite: {fileID: 553650228, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   verticalSprite: {fileID: -1195160916, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderLeftSprite: {fileID: 1018244135, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderRightSprite: {fileID: -102717338, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderLeftSprite: {fileID: -102717338, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  borderRightSprite: {fileID: 1018244135, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   borderTopSprite: {fileID: 708769874, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   borderBottomSprite: {fileID: 801973281, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   isolatedSprite: {fileID: -1166954311, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
