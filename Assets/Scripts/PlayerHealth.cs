@@ -77,7 +77,7 @@ public class PlayerHealth : MonoBehaviour
         onHealthChanged?.Invoke(currentHealth);
         Debug.Log($"Player healed {amount}. Current health: {currentHealth}/{maxHealth}");
     }
-    private void Die()
+    public void Die()
     {
         if (isDead) return;
 
