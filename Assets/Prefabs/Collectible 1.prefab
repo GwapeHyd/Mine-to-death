@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5550810394477615323}
   - component: {fileID: 7188834779914571475}
   - component: {fileID: -6223640124538449073}
+  - component: {fileID: -8773724067996476595}
   m_Layer: 0
   m_Name: Collectible 1
   m_TagString: Untagged
@@ -178,3 +179,16 @@ MonoBehaviour:
   rotationSpeed: 180
   collectEffect: {fileID: 0}
   collectSound: {fileID: 8300000, guid: ca4c55815adb6d54ca9ad587c01442ac, type: 3}
+--- !u!114 &-8773724067996476595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371372518722143769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2cb02ac45df814894fcaf70c9d70e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinAppearance
+  spriteKey: coin

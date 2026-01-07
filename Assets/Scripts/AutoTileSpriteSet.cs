@@ -7,6 +7,8 @@ public class AutoTileSpriteSet : ScriptableObject
     public Sprite hintFarSprite;
     public Sprite hintNearSprite;
     public Sprite coinBlockSprite;
+    
+    public Sprite actionFeedbackSprite;
 
     [Header("Full Health Sprites")]
     public Sprite fullSprite;

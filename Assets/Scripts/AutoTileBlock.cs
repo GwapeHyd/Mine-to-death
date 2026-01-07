@@ -143,6 +143,33 @@ public class AutoTileBlock : MonoBehaviour
             Sprite selectedSprite = GetAutoTileSprite();
             blockSpriteRenderer.sprite = selectedSprite;
         }
+        Sprite interactionSprite = GetComponentInChildren<SpriteRenderer>()?.sprite;
+        if (interactionSprite == null || interactionSprite != GetFeedbackSprite())
+        {
+            UpdateInteractionFeedback();
+        }
+    }
+
+    private void UpdateInteractionFeedback()
+    {
+        if (actionFeedback == null) return;
+
+        SpriteRenderer feedbackSpriteRenderer = actionFeedback.GetComponent<SpriteRenderer>();
+        if (feedbackSpriteRenderer != null)
+        {
+            feedbackSpriteRenderer.sprite = GetFeedbackSprite();
+        }
+    }
+
+    private Sprite GetFeedbackSprite()
+    {
+        if (spriteSet == null)
+        {
+            Debug.LogWarning("Sprite set is not assigned!");
+            return null;
+        }
+
+        return spriteSet.actionFeedbackSprite;
     }
 
     private Sprite GetAutoTileSprite()

@@ -133,6 +133,12 @@ public class PlayerHealth : MonoBehaviour
         return false;
     }
 
+    public void AddDeaths(int amount)
+    {
+        numberOfDeaths += amount;
+        onDeathCountChanged?.Invoke(numberOfDeaths);
+    }
+
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
     public int NumberOfDeaths => numberOfDeaths;

@@ -35,37 +35,49 @@ public class GlobalSpriteSwitcher : MonoBehaviour
             swappable.SwapSpriteSet();
         }
         
-        UpdateAllAnimators();
-        
         currentIndex = 1 - currentIndex; 
         UpdateAllAnimators();
         UpdateAllAutoTileBlocks();
         UpdateAllSpecialBlocks();
         UpdateAllUIColorSets();
+
+        if (ThemeManager.Instance != null)
+        {
+            ThemeManager.Instance.SetIndex(currentIndex);
+        }
         
     }
 
     private void UpdateAllAnimators()
     {
         Fairy fairy = FindFirstObjectByType<Fairy>();
-        Animator fairyAnim = fairy.GetComponent<Animator>();
-        if (fairyAnim != null)
+        if (fairy != null)
         {
-            fairyAnim.runtimeAnimatorController = currentIndex == 0 ? fairyAnimatorSetA : fairyAnimatorSetB;
+            Animator fairyAnim = fairy.GetComponent<Animator>();
+            if (fairyAnim != null)
+            {
+                fairyAnim.runtimeAnimatorController = currentIndex == 0 ? fairyAnimatorSetA : fairyAnimatorSetB;
+            }
         }
-
+        
         PlayerController player = FindFirstObjectByType<PlayerController>();
-        Animator playerAnim = player.GetComponent<Animator>();
-        if (playerAnim != null)
+        if (player != null)
         {
-            playerAnim.runtimeAnimatorController = currentIndex == 0 ? playerAnimatorSetA : playerAnimatorSetB;
+            Animator playerAnim = player.GetComponent<Animator>();
+            if (playerAnim != null)
+            {
+                playerAnim.runtimeAnimatorController = currentIndex == 0 ? playerAnimatorSetA : playerAnimatorSetB;
+            }
         }
 
         FairyShop fairyShop = FindFirstObjectByType<FairyShop>();
-        Animator shopAnim = fairyShop.GetComponent<Animator>();
-        if (shopAnim != null)
+        if (fairyShop != null)
         {
-            shopAnim.runtimeAnimatorController = currentIndex == 0 ? fairyShopAnimatorSetA : fairyShopAnimatorSetB;
+            Animator shopAnim = fairyShop.GetComponent<Animator>();
+            if (shopAnim != null)
+            {
+                shopAnim.runtimeAnimatorController = currentIndex == 0 ? fairyShopAnimatorSetA : fairyShopAnimatorSetB;
+            }
         }
     }
 

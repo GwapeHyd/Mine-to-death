@@ -121,7 +121,7 @@ public class Shop : MonoBehaviour
     {
         if (shopUI != null)
         {
-            UnityEngine.UI.Image[] images = shopUI.GetComponentsInChildren<UnityEngine.UI.Image>();
+            Image[] images = shopUI.GetComponentsInChildren<Image>();
             foreach (var img in images)
             {
                 img.color = newColor2;

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29109ec114ef717439266fbd202cb0d5, type: 3}
   m_Name: TileSet_V1
   m_EditorClassIdentifier: Assembly-CSharp::AutoTileSpriteSet
+  hintFarSprite: {fileID: 0}
+  hintNearSprite: {fileID: 0}
+  coinBlockSprite: {fileID: 0}
+  actionFeedbackSprite: {fileID: 21300000, guid: 73671b8f797fb1346b902c21cd0cfc4a, type: 3}
   fullSprite: {fileID: -1092630627, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   topSprite: {fileID: 1480051826, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   bottomSprite: {fileID: -473639462, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
