@@ -31,4 +31,12 @@ public class ShopDeathsDisplay : MonoBehaviour
             deathsText.text = $"Your Deaths: {totalDeaths}";
         }
     }
+
+    public void SetUIColor(Color newColor)
+    {
+        if (deathsText != null)
+        {
+            deathsText.color = newColor;
+        }
+    }
 }

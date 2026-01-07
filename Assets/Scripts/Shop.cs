@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Shop : MonoBehaviour
     [Header("Events")]
     [SerializeField] private UnityEvent onShopOpened;
     [SerializeField] private UnityEvent onShopClosed;
+    
+    [SerializeField] private Image[] iconImages;
 
     private bool isPlayerInRange = false;
     private bool isShopOpen = false;
@@ -114,14 +117,21 @@ public class Shop : MonoBehaviour
         CloseShop();
     }
 
-    public void SetUIColor(Color newColor)
+    public void SetUIColor(Color newColor, Color newColor2)
     {
         if (shopUI != null)
         {
             UnityEngine.UI.Image[] images = shopUI.GetComponentsInChildren<UnityEngine.UI.Image>();
             foreach (var img in images)
             {
-                img.color = newColor;
+                img.color = newColor2;
+            }
+            foreach (var icon in iconImages)
+            {
+                if (icon != null)
+                {
+                    icon.color = newColor;
+                }
             }
 
             TMPro.TextMeshProUGUI[] texts = shopUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();

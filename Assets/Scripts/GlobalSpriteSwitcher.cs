@@ -113,7 +113,17 @@ public class GlobalSpriteSwitcher : MonoBehaviour
         Shop shop = FindFirstObjectByType<Shop>();
         if (shop != null)
         {
-            shop.SetUIColor(selectedColor);
+            shop.SetUIColor(selectedColor, selectedColor2);
+        }
+        ShopCoinDisplay shopCoinDisplay = FindFirstObjectByType<ShopCoinDisplay>();
+        if (shopCoinDisplay != null)
+        {
+            shopCoinDisplay.SetUIColor(selectedColor);
+        }
+        ShopDeathsDisplay shopDeathsDisplay = FindFirstObjectByType<ShopDeathsDisplay>();
+        if (shopDeathsDisplay != null)
+        {
+            shopDeathsDisplay.SetUIColor(selectedColor);
         }
         SanityUI sanityUI = FindFirstObjectByType<SanityUI>();
         if (sanityUI != null)
@@ -121,6 +131,5 @@ public class GlobalSpriteSwitcher : MonoBehaviour
             sanityUI.SetUIColor(selectedColor, selectedColor2);
         }
     }
-    
 
 }

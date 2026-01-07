@@ -29,4 +29,12 @@ public class ShopCoinDisplay : MonoBehaviour
             coinText.text = $"Your Coins: {totalCoins}";
         }
     }
+
+    public void SetUIColor(Color newColor)
+    {
+        if (coinText != null)
+        {
+            coinText.color = newColor;
+        }
+    }
 }
