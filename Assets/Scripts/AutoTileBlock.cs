@@ -9,37 +9,17 @@ public class AutoTileBlock : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
 
-    [Header("Tile Sprites - Full Health")]
-    [SerializeField] private Sprite fullSprite;           
-    [SerializeField] private Sprite topSprite;           
-    [SerializeField] private Sprite bottomSprite;         
-    [SerializeField] private Sprite leftSprite;           
-    [SerializeField] private Sprite rightSprite;          
-    [SerializeField] private Sprite topLeftSprite;        
-    [SerializeField] private Sprite topRightSprite;       
-    [SerializeField] private Sprite bottomLeftSprite;     
-    [SerializeField] private Sprite bottomRightSprite;    
-    [SerializeField] private Sprite horizontalSprite;     
-    [SerializeField] private Sprite verticalSprite;       
-    [SerializeField] private Sprite borderLeftSprite;     
-    [SerializeField] private Sprite borderRightSprite;    
-    [SerializeField] private Sprite borderTopSprite;      
-    [SerializeField] private Sprite borderBottomSprite;   
-    [SerializeField] private Sprite isolatedSprite;       
+    [Header("AutoTile Sprites")]
+    [SerializeField] private AutoTileSpriteSet spriteSet;
 
-    [Header("Tile Sprites - Damaged")]
-    [SerializeField] private Sprite damagedSprite;     
-
-    [Header("Visual Feedback")]
+    [Header("Feedback")]
     [SerializeField] private SpriteRenderer blockSpriteRenderer;
     [SerializeField] private GameObject actionFeedback;
-
     [SerializeField] private AudioClip hintSound;
 
 
     [Header("BonusBlock")]
-    [SerializeField] private GameObject collectilePrefab;
-
+    [SerializeField] private GameObject collectiblePrefab;
     [SerializeField] private float tileSize = 1f; 
 
     [Header("Events")]
@@ -61,6 +41,13 @@ public class AutoTileBlock : MonoBehaviour
         {
             Invoke(nameof(InitialUpdate), 0.2f);
         }
+    }
+
+    public void SetSpriteSet(AutoTileSpriteSet newSpriteSet)
+    {
+        spriteSet = newSpriteSet;
+        UpdateVisuals();
+        UpdateNeighbors();
     }
 
     private void InitialUpdate()
@@ -120,80 +107,77 @@ public class AutoTileBlock : MonoBehaviour
         // État endommagé (50% ou moins)
         if (healthPercentage <= 0.5f && healthPercentage > 0f)
         {
-            blockSpriteRenderer.sprite = damagedSprite;
+            blockSpriteRenderer.sprite = spriteSet.damagedSprite;
             Debug.Log($"Set to damaged sprite for {gameObject.name}");
             return;
         }
 
         if (healthPercentage > 0.5f)
         {
-            bool hasTop = HasNeighbor(Vector2.up);
-            bool hasBottom = HasNeighbor(Vector2.down);
-            bool hasLeft = HasNeighbor(Vector2.left);
-            bool hasRight = HasNeighbor(Vector2.right);
-
             Sprite selectedSprite = GetAutoTileSprite();
-
             blockSpriteRenderer.sprite = selectedSprite;
         }
     }
 
     private Sprite GetAutoTileSprite()
     {
-        // Vérifie les 4 directions
+        if (spriteSet == null)
+        {
+            Debug.LogWarning("Sprite set is not assigned!");
+            return null;
+        }
+
         bool hasTop = HasNeighbor(Vector2.up);
         bool hasBottom = HasNeighbor(Vector2.down);
         bool hasLeft = HasNeighbor(Vector2.left);
         bool hasRight = HasNeighbor(Vector2.right);
 
-        // Détermine le sprite selon les voisins
         int neighborCount = (hasTop ? 1 : 0) + (hasBottom ? 1 : 0) + (hasLeft ? 1 : 0) + (hasRight ? 1 : 0);
 
         // Isolé (aucun voisin)
         if (neighborCount == 0)
-            return isolatedSprite != null ? isolatedSprite : fullSprite;
+            return spriteSet.isolatedSprite != null ? spriteSet.isolatedSprite : spriteSet.fullSprite;
 
         // 4 voisins (entouré)
         if (hasTop && hasBottom && hasLeft && hasRight)
-            return fullSprite;
-
+            return spriteSet.fullSprite;
         // 3 voisins
         if (!hasTop && hasBottom && hasLeft && hasRight)
-            return topSprite != null ? topSprite : fullSprite;
+            return spriteSet.topSprite != null ? spriteSet.topSprite : spriteSet.fullSprite;
         if (hasTop && !hasBottom && hasLeft && hasRight)
-            return bottomSprite != null ? bottomSprite : fullSprite;
+            return spriteSet.bottomSprite != null ? spriteSet.bottomSprite : spriteSet.fullSprite;
         if (hasTop && hasBottom && !hasLeft && hasRight)
-            return leftSprite != null ? leftSprite : fullSprite;
+            return spriteSet.leftSprite != null ? spriteSet.leftSprite : spriteSet.fullSprite;
         if (hasTop && hasBottom && hasLeft && !hasRight)
-            return rightSprite != null ? rightSprite : fullSprite;
+            return spriteSet.rightSprite != null ? spriteSet.rightSprite : spriteSet.fullSprite;
 
         // 2 voisins opposés
         if (hasTop && hasBottom && !hasLeft && !hasRight)
-            return verticalSprite != null ? verticalSprite : fullSprite;
+            return spriteSet.verticalSprite != null ? spriteSet.verticalSprite : spriteSet.fullSprite;
         if (!hasTop && !hasBottom && hasLeft && hasRight)
-            return horizontalSprite != null ? horizontalSprite :  fullSprite;
+            return spriteSet.horizontalSprite != null ? spriteSet.horizontalSprite :  spriteSet.fullSprite;
 
         // 2 voisins adjacents (coins)
         if (hasBottom && hasRight && !hasTop && !hasLeft)
-            return bottomRightSprite != null ? bottomRightSprite : fullSprite;
+            return spriteSet.bottomRightSprite != null ? spriteSet.bottomRightSprite : spriteSet.fullSprite;
         if (hasBottom && hasLeft && !hasTop && !hasRight)
-            return bottomLeftSprite != null ? bottomLeftSprite : fullSprite;
+            return spriteSet.bottomLeftSprite != null ? spriteSet.bottomLeftSprite : spriteSet.fullSprite;
         if (hasTop && hasRight && !hasBottom && !hasLeft)
-            return topRightSprite != null ? topRightSprite : fullSprite;
+            return spriteSet.topRightSprite != null ? spriteSet.topRightSprite : spriteSet.fullSprite;
         if (hasTop && hasLeft && !hasBottom && !hasRight)
-            return topLeftSprite != null ? topLeftSprite :  fullSprite;
+            return spriteSet.topLeftSprite != null ? spriteSet.topLeftSprite :  spriteSet.fullSprite;
 
         // 1 voisin
         if (hasTop && !hasBottom && !hasLeft && !hasRight)
-            return borderTopSprite != null ? borderTopSprite : fullSprite;
+            return spriteSet.borderTopSprite != null ? spriteSet.borderTopSprite : spriteSet.fullSprite;
         if (hasBottom && !hasTop && !hasLeft && !hasRight)
-            return borderBottomSprite != null ?  borderBottomSprite : fullSprite;
+            return spriteSet.borderBottomSprite != null ?  spriteSet.borderBottomSprite : spriteSet.fullSprite;
         if (hasLeft && !hasTop && !hasBottom && !hasRight)
-            return borderLeftSprite != null ? borderLeftSprite : fullSprite;
+            return spriteSet.borderLeftSprite != null ? spriteSet.borderLeftSprite : spriteSet.fullSprite;
         if (hasRight && !hasTop && !hasBottom && !hasLeft)
-            return borderRightSprite != null ? borderRightSprite : fullSprite;
+            return spriteSet.borderRightSprite != null ? spriteSet.borderRightSprite : spriteSet.fullSprite;
 
-        return fullSprite;
+        return spriteSet.fullSprite;
     }
 
     private bool HasNeighbor(Vector2 direction)
@@ -234,9 +218,9 @@ public class AutoTileBlock : MonoBehaviour
 
         currentHealth = 0;
 
-        if (isSpecialBlock && collectilePrefab != null)
+        if (isSpecialBlock && collectiblePrefab != null)
         {
-            Instantiate(collectilePrefab, transform.position, Quaternion.identity);
+            Instantiate(collectiblePrefab, transform.position, Quaternion.identity);
         }
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)

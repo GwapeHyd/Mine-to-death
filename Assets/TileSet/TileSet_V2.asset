@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29109ec114ef717439266fbd202cb0d5, type: 3}
+  m_Name: TileSet_V2
+  m_EditorClassIdentifier: Assembly-CSharp::AutoTileSpriteSet
+  fullSprite: {fileID: -868606721, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  topSprite: {fileID: -544660146, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  bottomSprite: {fileID: 524234062, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  leftSprite: {fileID: -1282699055, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  rightSprite: {fileID: 1809172696, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  topLeftSprite: {fileID: 2127312969, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  topRightSprite: {fileID: -1017370511, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  bottomLeftSprite: {fileID: 2124515896, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  bottomRightSprite: {fileID: -8324131955233407758, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  horizontalSprite: {fileID: 1383661292, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  verticalSprite: {fileID: 195629856, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  borderLeftSprite: {fileID: -1469309406, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  borderRightSprite: {fileID: -1063108841, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  borderTopSprite: {fileID: 2036565375, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  borderBottomSprite: {fileID: 2010747883, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  isolatedSprite: {fileID: 225890582, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
+  damagedSprite: {fileID: 128944312, guid: 44913b5d0b5ecad458435b15733cf6a6, type: 3}
