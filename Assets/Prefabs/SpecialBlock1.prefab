@@ -368,7 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpecialBlock
   isSpecialBlock: 1
   maxHealth: 1
-  spriteSet: {fileID: 0}
+  spriteSet: {fileID: 11400000, guid: 504b53074a40adf43bf454c0fb6bd7cb, type: 2}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
   tileSize: 1

@@ -3,6 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New AutoTile Sprite Set", menuName = "AutoTile/Sprite Set")]
 public class AutoTileSpriteSet : ScriptableObject
 {
+    [Header("Sprite for special blocks")]
+    public Sprite hintFarSprite;
+    public Sprite hintNearSprite;
+    public Sprite coinBlockSprite;
+
     [Header("Full Health Sprites")]
     public Sprite fullSprite;
     public Sprite topSprite;
@@ -23,4 +28,6 @@ public class AutoTileSpriteSet : ScriptableObject
 
     [Header("Damaged Sprites")]
     public Sprite damagedSprite;
+    
+    
 }

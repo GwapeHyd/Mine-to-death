@@ -1,10 +1,19 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public enum SpecialType
+{
+    HintFar,
+    HintNear,
+    CoinBlock
+}
 public class AutoTileBlock : MonoBehaviour
 {
     [Header("BlockType")]
     [SerializeField] protected bool isSpecialBlock = false;
+    [SerializeField] protected SpecialType SpecialType;
 
     [Header("Health Settings")]
     [SerializeField] protected int maxHealth = 100;
@@ -97,13 +106,28 @@ public class AutoTileBlock : MonoBehaviour
     {
         if (blockSpriteRenderer == null) 
         {
-            Debug.LogWarning("Block SpriteRenderer is not assigned!");
             return;
         }
 
-        if(isSpecialBlock && spriteSet == null)
+        if(spriteSet == null)
         {
-            Debug.LogWarning("Sprite set is not assigned for AutoTileBlock!");
+            return;
+        }
+
+        if (isSpecialBlock)
+        {
+            switch (SpecialType)
+            {
+                case SpecialType.HintFar:
+                    blockSpriteRenderer.sprite = spriteSet.hintFarSprite;
+                    break;
+                case SpecialType.HintNear:
+                    blockSpriteRenderer.sprite = spriteSet.hintNearSprite;
+                    break;
+                case SpecialType.CoinBlock:
+                    blockSpriteRenderer.sprite = spriteSet.coinBlockSprite;
+                    break;
+            }
             return;
         }
         float healthPercentage = (float)currentHealth / maxHealth;
