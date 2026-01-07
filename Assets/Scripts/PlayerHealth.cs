@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -29,6 +30,8 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spawnPosition = respawnPoint != null ? respawnPoint.position : transform.position;
 
+        LoadMaxHealth();
+        Debug.Log($"PlayerHealth initialized. Current Health: {currentHealth}/{maxHealth}");    
         onHealthChanged?. Invoke(currentHealth);
     }
     private void Update()
@@ -137,6 +140,27 @@ public class PlayerHealth : MonoBehaviour
     {
         numberOfDeaths += amount;
         onDeathCountChanged?.Invoke(numberOfDeaths);
+    }
+
+    public void SaveMaxHealth()
+    {
+        PlayerPrefs.SetInt("MaxHealth", maxHealth);
+        PlayerPrefs.Save();
+        Debug.Log($"Max health {maxHealth} saved to PlayerPrefs.");
+    }
+
+    public void LoadMaxHealth()
+    {
+        if (PlayerPrefs.HasKey("MaxHealth"))
+        {
+            maxHealth = PlayerPrefs.GetInt("MaxHealth", 10);
+            Debug.Log($"Max health loaded from PlayerPrefs: {maxHealth}");
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            Debug.Log("No saved max health found in PlayerPrefs. Using default.");
+        }
     }
 
     public int CurrentHealth => currentHealth;

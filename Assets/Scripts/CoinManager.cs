@@ -32,6 +32,7 @@ public class CoinManager : MonoBehaviour
 
     private void Start()
     {
+        LoadGold();
         onCoinCountChanged?.Invoke(totalCoins);
     }
 
@@ -68,6 +69,28 @@ public class CoinManager : MonoBehaviour
             totalCoins = value;
             onCoinCountChanged?.Invoke(totalCoins);
         }
+    }
+
+    public void Savegold()
+    {
+        PlayerPrefs.SetInt("TotalCoins", totalCoins);
+        PlayerPrefs.Save();
+        Debug.Log($"Saved total coins: {totalCoins}");
+    }
+
+    public void LoadGold()
+    {
+        if (PlayerPrefs.HasKey("TotalCoins"))
+        {
+            totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
+            Debug.Log($"Loaded total coins: {totalCoins}");
+        }
+        else
+        {
+            totalCoins = 0;
+            Debug.Log("No saved coins found. Starting with 0 coins.");
+        }
+        onCoinCountChanged?.Invoke(totalCoins);
     }
 
     
