@@ -90,15 +90,6 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = gravityScale;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
-        {
-            PaletteSwitcher paletteSwitcher = FindFirstObjectByType<PaletteSwitcher>();
-            
-            if (paletteSwitcher != null)
-            {
-                paletteSwitcher.SwitchPalette();
-            }
-        }
 
         if (Input.GetKeyDown(attackKey) && !isAttacking && isGrounded)
         {
