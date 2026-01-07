@@ -51419,9 +51419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d381d6f8773ed24a9feadbe2d3fcd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SanityManager
-  maxSanity: 100
+  maxSanity: 10
   sanityDecreaseRate: 1
   bonusBlock: {fileID: 828325681}
+  fairyShopGO: {fileID: 225003866}
   hintFarFeedbackGO: {fileID: 525109881}
   hintCloseFeedbackGO: {fileID: 1350051747}
   maxHintBlocks: 20

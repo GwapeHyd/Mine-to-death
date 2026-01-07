@@ -13,6 +13,7 @@ public class SanityManager : MonoBehaviour
     [SerializeField] private int sanityDecreaseRate = 1;
 
     [SerializeField] private GameObject bonusBlock;
+    [SerializeField] private GameObject fairyShopGO;
     
 
     [Header("Hint Settings")]
@@ -92,6 +93,7 @@ public class SanityManager : MonoBehaviour
                 if (playerHealth != null)
                 {
                     playerHealth.Die();
+                    fairyShopGO.SetActive(true);
                     currentSanity = maxSanity;
                     onSanityChanged?.Invoke(currentSanity, maxSanity);
                     // lose game logic
