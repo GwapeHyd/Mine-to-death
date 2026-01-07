@@ -252,7 +252,7 @@ public class AutoTileBlock : MonoBehaviour
 
         if (hintSound != null)
         {
-            AudioManager.Instance.PlaySound(hintSound, 0.3f);
+            AudioManager.Instance.PlaySound(hintSound, 0.1f);
         }
 
         UpdateNeighbors();

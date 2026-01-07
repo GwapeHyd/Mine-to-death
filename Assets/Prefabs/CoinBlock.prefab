@@ -398,6 +398,6 @@ MonoBehaviour:
   coinPrefab: {fileID: 2371372518722143769, guid: 062a86ac46098e844a71ebcb94dec88c, type: 3}
   coinsToDrop: 1
   depthMultiplierInterval: 50
-  surfaceLevel: 400
+  surfaceLevel: 200
   dropForce: 5
   spreadAngle: 30

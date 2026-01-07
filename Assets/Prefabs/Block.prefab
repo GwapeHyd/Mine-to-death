@@ -373,6 +373,7 @@ MonoBehaviour:
   damagedSprite: {fileID: 2059792854, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
+  hintSound: {fileID: 0}
   collectilePrefab: {fileID: 0}
   tileSize: 1
   onBlockDestroyed:

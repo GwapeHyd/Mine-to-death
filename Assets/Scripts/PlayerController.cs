@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode throwKey = KeyCode.R;
     [SerializeField] private float throwCooldown = 1f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip hitSound;
+
     private Animator animator; 
     private Rigidbody2D rb;
     private float moveInput;
@@ -225,6 +228,11 @@ public class PlayerController : MonoBehaviour
             if (playerHealth != null && playerStateManager != null && playerStateManager.ShouldTakeMiningDamage())
             {
                 playerHealth.TakeDamageFromMining();
+            }
+
+            if (hitSound != null)
+            {
+                AudioManager.Instance.PlaySound(hitSound, 0.05f);
             }
         }
     }

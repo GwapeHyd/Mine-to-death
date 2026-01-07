@@ -9,6 +9,7 @@ public class FairyShopItem : MonoBehaviour
     [SerializeField] private string itemDescription;
     [SerializeField] private int cost;
     [SerializeField] private Image itemIcon;
+    [SerializeField] private PsychosisType psychosisType;
 
 
     [Header("UI Elements")]
@@ -23,7 +24,9 @@ public class FairyShopItem : MonoBehaviour
 
     public enum PsychosisType
     {
-        HeadThrow
+        Insanity,
+        Madness
+
     }
 
     private void Start()
@@ -76,9 +79,18 @@ public class FairyShopItem : MonoBehaviour
         {
             ApplyItemEffect();
             Debug.Log($"Purchased {itemName} for {cost} deaths.");
+            if (psychosisType == PsychosisType.Insanity)
+            {
+                isPurchased = true;
+            }
+            else if (psychosisType == PsychosisType.Madness)
+            {
+                cost++;
+
+            }
+
             UpdateCostText();
             UpdatePurchaseButton();
-            isPurchased = true;
         }
         else
         {
@@ -90,6 +102,21 @@ public class FairyShopItem : MonoBehaviour
     {
         PlayerController playerController = FindFirstObjectByType<PlayerController>();
 
+        switch (psychosisType)
+        {
+            case PsychosisType.Insanity:
+                if (playerController != null)
+                    playerController.EnableHeadThrowing();
+                break;
+            case PsychosisType.Madness:
+                if (SanityManager.Instance != null)
+                    SanityManager.Instance.AddMadnessPsychosis();
+                
+                break;
+            default:
+                Debug.LogWarning("Unknown item effect.");
+                break;
+        }
         playerController.EnableHeadThrowing();
     }
 

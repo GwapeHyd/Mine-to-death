@@ -74,16 +74,34 @@ public class SanityManager : MonoBehaviour
         {
             bonusBlock.SetActive(true);
         }
-
-        if (player.transform.position.y < 350)
+        if (player.transform.position.y < 50f)
         {
-            sanityDecreaseTimer -= Time.deltaTime;
+            sanityDecreaseTimer -= Time.deltaTime * 3f;
             if (sanityDecreaseTimer <= 0f)
             {
                 DecreaseSanity(sanityDecreaseRate);
                 sanityDecreaseTimer = 1f;
             }
         }
+        else if (player.transform.position.y < 100f)
+        {
+            sanityDecreaseTimer -= Time.deltaTime * 2f;
+            if (sanityDecreaseTimer <= 0f)
+            {
+                DecreaseSanity(sanityDecreaseRate);
+                sanityDecreaseTimer = 1f;
+            }
+        }
+        else if (player.transform.position.y < 150f)
+        {
+            sanityDecreaseTimer -= Time.deltaTime * 1f;
+            if (sanityDecreaseTimer <= 0f)
+            {
+                DecreaseSanity(sanityDecreaseRate);
+                sanityDecreaseTimer = 1f;
+            }
+        }
+    
 
         if (currentSanity <= 0)
         {
@@ -96,7 +114,6 @@ public class SanityManager : MonoBehaviour
                     fairyShopGO.SetActive(true);
                     currentSanity = maxSanity;
                     onSanityChanged?.Invoke(currentSanity, maxSanity);
-                    // lose game logic
                 }
             }
         }
@@ -180,6 +197,18 @@ public class SanityManager : MonoBehaviour
         {
             hintCloseBlocksDestroyed++;
         }
+    }
+
+    public void AddMadnessPsychosis()
+    {
+        SetMaxSanity(maxSanity + 5);
+    }
+
+    public void SetMaxSanity(int newMaxSanity)
+    {
+        maxSanity = newMaxSanity;
+        currentSanity = Mathf.Min(currentSanity, maxSanity);
+        onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
 
     public int CurrentSanity => currentSanity;
