@@ -250,7 +250,7 @@ public class AutoTileBlock : MonoBehaviour
             player.ClearCurrentBlock(this);
         }
 
-        if (actionFeedback != null)
+        if (hintSound != null)
         {
             AudioManager.Instance.PlaySound(hintSound, 0.3f);
         }

@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 
@@ -11,15 +13,21 @@ public class SanityManager : MonoBehaviour
     [SerializeField] private int sanityDecreaseRate = 1;
     [Header("Hint Block Settings")]
     [SerializeField] private int maxCave = 4;
-    [SerializeField] private GameObject bonusBlockPrefab;
+    [SerializeField] private GameObject bonusBlock;
     
 
     [Header("Hint Settings")]
     [SerializeField] private GameObject hintFarFeedbackGO;
     [SerializeField] private GameObject hintCloseFeedbackGO;
-    [SerializeField] private int currentHintBlocks = 0;
+
+    public int maxHintBlocks;
+    private int currentHintBlocks = 0;
     public int hintFarBlocksDestroyed;
     public int hintCloseBlocksDestroyed;
+    private int hintBlocksDestroyed => hintFarBlocksDestroyed + hintCloseBlocksDestroyed;
+
+    private TextMeshPro hintFarText;
+    private TextMeshPro hintCloseText;
 
 
     private int currentSanity;
@@ -49,10 +57,14 @@ public class SanityManager : MonoBehaviour
 
     private void Start()
     {
-        bonusBlockPrefab.SetActive(false);
+        bonusBlock.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
         hintCloseFeedbackGO.SetActive(false);
         hintFarFeedbackGO.SetActive(false);
+        hintFarText = hintFarFeedbackGO.GetComponentInChildren<TextMeshPro>();
+        hintCloseText = hintCloseFeedbackGO.GetComponentInChildren<TextMeshPro>();
+
+        currentHintBlocks = maxHintBlocks;
 
         onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
@@ -61,7 +73,7 @@ public class SanityManager : MonoBehaviour
     {
         if (currentHintBlocks <= 0)
         {
-            bonusBlockPrefab.SetActive(true);
+            bonusBlock.SetActive(true);
         }
 
         if (player.transform.position.y < 350)
@@ -86,25 +98,57 @@ public class SanityManager : MonoBehaviour
             }
         }
 
-        if (hintFarBlocksDestroyed >= 1)
+        if (hintBlocksDestroyed < maxHintBlocks)
         {
-            hintFarFeedbackGO.SetActive(true);
+            bonusBlock.SetActive(false);
         }
         else
         {
-            hintFarFeedbackGO.SetActive(false);
+            bonusBlock.SetActive(true);
         }
 
-        if (hintCloseBlocksDestroyed >= 1)
-        {
-            hintCloseFeedbackGO.SetActive(true);
-        }
-        else
-        {
-            hintCloseFeedbackGO.SetActive(false);
-        }
+
+        UpdateHintFeedback();
     }
 
+    private void UpdateHintFeedback()
+    {
+        if (hintFarBlocksDestroyed > 0)
+        {
+            if (!hintFarFeedbackGO.activeSelf)
+            {
+                hintFarFeedbackGO.SetActive(true);
+            }
+
+            if (hintFarText != null)
+            {
+                hintFarText.text = "x" + hintFarBlocksDestroyed.ToString();
+            }
+        }
+        else 
+        {
+            if (hintFarFeedbackGO.activeSelf)
+                hintFarFeedbackGO.SetActive(false);
+        }
+
+        if (hintCloseBlocksDestroyed > 0)
+        {
+            if (!hintCloseFeedbackGO.activeSelf)
+            {
+                hintCloseFeedbackGO.SetActive(true);
+            }
+
+            if (hintCloseText != null)
+            {
+                hintCloseText.text = "x" + hintCloseBlocksDestroyed.ToString();
+            }
+        }
+        else 
+        {
+            if (hintCloseFeedbackGO.activeSelf)
+                hintCloseFeedbackGO.SetActive(false);
+        }
+    }
     public void DecreaseSanity(int amount)
     {
         currentSanity -= amount;
@@ -123,7 +167,20 @@ public class SanityManager : MonoBehaviour
         onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
 
+    public void IncrementHintBlocksDestroyed(bool isFarBlock)
+    {
+        if (isFarBlock)
+        {
+            hintFarBlocksDestroyed++;
+        }
+        else
+        {
+            hintCloseBlocksDestroyed++;
+        }
+    }
+
     public int CurrentSanity => currentSanity;
     public int MaxSanity => maxSanity;
+    public int CurrentHintBlocks => currentHintBlocks;
 
 }
