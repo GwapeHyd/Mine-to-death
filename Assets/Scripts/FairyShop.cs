@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class FairyShop : MonoBehaviour
 {
@@ -112,5 +113,50 @@ public class FairyShop : MonoBehaviour
     public void OnCloseButtonClicked()
     {
         CloseShop();
+    }
+
+    public void SetUIColor(Color newColor, Color newColor2)
+    {
+        Debug.Log("Setting Fairy Shop UI colors.");
+        if (fairyShopUI != null)
+        {
+            Image[] images = fairyShopUI.GetComponentsInChildren<Image>();
+            Image backgroundImage = fairyShopUI.GetComponent<Image>(); 
+            Debug.Log($"Found {images.Length} images in Fairy Shop UI.");   
+            foreach (var img in images)
+            {
+                img.color = newColor2;
+            }
+            foreach (var icon in images)
+            {
+                if (icon != null)
+                {
+                    icon.color = newColor;
+                }
+            }
+            backgroundImage.color = newColor2;
+
+            TMPro.TextMeshProUGUI[] texts = fairyShopUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+            foreach (var txt in texts)
+            {
+                txt.color = newColor;
+            }
+
+            TMPro.TextMeshPro[] tmpTexts = interactionFeedback.GetComponentsInChildren<TMPro.TextMeshPro>();
+            foreach (var tmp in tmpTexts)
+            {
+                tmp.color = newColor2;
+            }
+
+            GameObject interactTextObj = interactionFeedback.transform.Find("InteractText")?.gameObject;
+            if (interactTextObj != null)
+            {
+                TMPro.TextMeshProUGUI interactText = interactTextObj.GetComponent<TMPro.TextMeshProUGUI>();
+                if (interactText != null)
+                {
+                    interactText.color = newColor;
+                }
+            }
+        }
     }
 }

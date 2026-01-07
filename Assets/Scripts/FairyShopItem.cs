@@ -167,4 +167,6 @@ public class FairyShopItem : MonoBehaviour
                 costText.text = $"{cost} Deaths";
         }
     }
+
+    
 }

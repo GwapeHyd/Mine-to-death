@@ -107,6 +107,7 @@ public class GlobalSpriteSwitcher : MonoBehaviour
     {
         Color selectedColor = currentIndex == 0 ? uiColorSetA[0] : uiColorSetB[0];
         Color selectedColor2 = currentIndex == 0 ? uiColorSetA[1] : uiColorSetB[1];
+
         HealthUI healthUI = FindFirstObjectByType<HealthUI>();
         if (healthUI != null)
         {
@@ -140,7 +141,20 @@ public class GlobalSpriteSwitcher : MonoBehaviour
         SanityUI sanityUI = FindFirstObjectByType<SanityUI>();
         if (sanityUI != null)
         {
+            Debug.Log("Updating Sanity UI colors.");
             sanityUI.SetUIColor(selectedColor, selectedColor2);
+            Debug.Log("Sanity UI colors updated.");
+        }
+        FairyShop fairyShop = FindFirstObjectByType<FairyShop>();
+        Debug.Log("Updating Fairy Shop UI colors.");
+        if (fairyShop != null)
+        {
+            fairyShop.SetUIColor(selectedColor, selectedColor2);
+            Debug.Log("Fairy Shop UI colors updated.");
+        }
+        else
+        {
+            Debug.LogWarning("FairyShop instance not found while updating UI colors.");
         }
     }
 
