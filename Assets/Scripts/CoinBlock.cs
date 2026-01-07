@@ -14,8 +14,6 @@ public class CoinBlock : MonoBehaviour
     [SerializeField] private float dropForce = 5f;
     [SerializeField] private float spreadAngle = 30f;
 
-    [Header("Special Block")]
-    [SerializeField] private bool isSpecialBlock = false;
 
     private AutoTileBlock autoTileBlock;
 

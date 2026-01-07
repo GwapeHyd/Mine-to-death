@@ -11,15 +11,13 @@ public class SanityManager : MonoBehaviour
     [Header("Sanity Settings")]
     [SerializeField] private int maxSanity = 100;
     [SerializeField] private int sanityDecreaseRate = 1;
-    [Header("Hint Block Settings")]
-    [SerializeField] private int maxCave = 4;
+
     [SerializeField] private GameObject bonusBlock;
     
 
     [Header("Hint Settings")]
     [SerializeField] private GameObject hintFarFeedbackGO;
     [SerializeField] private GameObject hintCloseFeedbackGO;
-
     public int maxHintBlocks;
     private int currentHintBlocks = 0;
     public int hintFarBlocksDestroyed;
@@ -94,6 +92,9 @@ public class SanityManager : MonoBehaviour
                 if (playerHealth != null)
                 {
                     playerHealth.Die();
+                    currentSanity = maxSanity;
+                    onSanityChanged?.Invoke(currentSanity, maxSanity);
+                    // lose game logic
                 }
             }
         }

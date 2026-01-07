@@ -257,7 +257,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2052037215, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  m_Sprite: {fileID: 1528252750, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
   isSpecialBlock: 1
   maxHealth: 1
-  fullSprite: {fileID: 2052037215, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  fullSprite: {fileID: 1528252750, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   topSprite: {fileID: 0}
   bottomSprite: {fileID: 0}
   leftSprite: {fileID: 0}
@@ -370,8 +370,8 @@ MonoBehaviour:
   borderRightSprite: {fileID: 0}
   borderTopSprite: {fileID: 0}
   borderBottomSprite: {fileID: 0}
-  isolatedSprite: {fileID: 2052037215, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
-  damagedSprite: {fileID: 2052037215, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  isolatedSprite: {fileID: 1528252750, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  damagedSprite: {fileID: 1528252750, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
   hintSound: {fileID: 0}
@@ -401,4 +401,3 @@ MonoBehaviour:
   surfaceLevel: 400
   dropForce: 5
   spreadAngle: 30
-  isSpecialBlock: 0
