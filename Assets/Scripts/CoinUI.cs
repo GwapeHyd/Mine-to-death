@@ -70,6 +70,18 @@ public class CoinUI : MonoBehaviour
         coinIcon.transform.localScale = originalScale;
     }
 
+    public void SetUIColor(Color newColor)
+    {
+        if (coinText != null)
+        {
+            coinText.color = newColor;
+        }
+        if (coinIcon != null)
+        {
+            coinIcon.color = newColor;
+        }
+    }
+
     private void OnDestroy()
     {
         if (CoinManager.Instance != null)

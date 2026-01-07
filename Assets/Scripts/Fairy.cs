@@ -54,4 +54,13 @@ public class Fairy : MonoBehaviour
             promptText = newText;
         }
     }
+
+    public void SetUIColor(Color newColor)
+    {
+        TextMeshPro tmp = interactionEffect.GetComponent<TextMeshPro>();
+        if (tmp != null)
+        {
+            tmp.color = newColor;
+        }
+    }
 }

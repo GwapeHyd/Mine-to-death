@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GlobalSpriteSwitcher : MonoBehaviour
@@ -10,12 +11,19 @@ public class GlobalSpriteSwitcher : MonoBehaviour
     [SerializeField] private RuntimeAnimatorController fairyAnimatorSetB;
     [SerializeField] private RuntimeAnimatorController playerAnimatorSetA;
     [SerializeField] private RuntimeAnimatorController playerAnimatorSetB;
+    [SerializeField] private RuntimeAnimatorController fairyShopAnimatorSetA;
+    [SerializeField] private RuntimeAnimatorController fairyShopAnimatorSetB;
 
     [Header("TileSets")]
     [SerializeField] private AutoTileSpriteSet tileSetA;
     [SerializeField] private AutoTileSpriteSet tileSetB;
     [SerializeField] private AutoTileSpriteSet specialTileSetA;
     [SerializeField] private AutoTileSpriteSet specialTileSetB;
+
+    [Header("Colors for UI")]
+    [SerializeField] private Color[] uiColorSetA;
+    [SerializeField] private Color[] uiColorSetB;
+    
 
     private int currentIndex = 0;
 
@@ -33,6 +41,7 @@ public class GlobalSpriteSwitcher : MonoBehaviour
         UpdateAllAnimators();
         UpdateAllAutoTileBlocks();
         UpdateAllSpecialBlocks();
+        UpdateAllUIColorSets();
         
     }
 
@@ -50,6 +59,13 @@ public class GlobalSpriteSwitcher : MonoBehaviour
         if (playerAnim != null)
         {
             playerAnim.runtimeAnimatorController = currentIndex == 0 ? playerAnimatorSetA : playerAnimatorSetB;
+        }
+
+        FairyShop fairyShop = FindFirstObjectByType<FairyShop>();
+        Animator shopAnim = fairyShop.GetComponent<Animator>();
+        if (shopAnim != null)
+        {
+            shopAnim.runtimeAnimatorController = currentIndex == 0 ? fairyShopAnimatorSetA : fairyShopAnimatorSetB;
         }
     }
 
@@ -74,4 +90,37 @@ public class GlobalSpriteSwitcher : MonoBehaviour
             block.SetSpriteSet(selectedTileSet);
         }
     }
+
+    private void UpdateAllUIColorSets()
+    {
+        Color selectedColor = currentIndex == 0 ? uiColorSetA[0] : uiColorSetB[0];
+        Color selectedColor2 = currentIndex == 0 ? uiColorSetA[1] : uiColorSetB[1];
+        HealthUI healthUI = FindFirstObjectByType<HealthUI>();
+        if (healthUI != null)
+        {
+            healthUI.SetUIColor(selectedColor);
+        }
+        CoinUI coinUI = FindFirstObjectByType<CoinUI>();
+        if (coinUI != null)
+        {
+            coinUI.SetUIColor(selectedColor);
+        }
+        Fairy fairy = FindFirstObjectByType<Fairy>();
+        if (fairy != null)
+        {
+            fairy.SetUIColor(selectedColor);
+        }
+        Shop shop = FindFirstObjectByType<Shop>();
+        if (shop != null)
+        {
+            shop.SetUIColor(selectedColor);
+        }
+        SanityUI sanityUI = FindFirstObjectByType<SanityUI>();
+        if (sanityUI != null)
+        {
+            sanityUI.SetUIColor(selectedColor, selectedColor2);
+        }
+    }
+    
+
 }

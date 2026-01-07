@@ -51,8 +51,6 @@ public class AutoTileBlock : MonoBehaviour
 
     public void SetSpriteSet(AutoTileSpriteSet newSpriteSet)
     {
-        if (isSpecialBlock) return;
-
         spriteSet = newSpriteSet;
         UpdateVisuals();
         UpdateNeighbors();

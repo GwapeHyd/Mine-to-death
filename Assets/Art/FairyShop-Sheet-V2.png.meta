@@ -1,0 +1,588 @@
+fileFormatVersion: 2
+guid: c6ef7b668a76ccb4f95a8b2f7985efeb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1943942664297049518
+    second: FairyShop-Sheet-V2_0
+  - first:
+      213: 5614962730450497531
+    second: FairyShop-Sheet-V2_1
+  - first:
+      213: -6582156662163195716
+    second: FairyShop-Sheet-V2_2
+  - first:
+      213: 6626675928899171121
+    second: FairyShop-Sheet-V2_3
+  - first:
+      213: -3363133748534516565
+    second: FairyShop-Sheet-V2_4
+  - first:
+      213: -3161319919338161066
+    second: FairyShop-Sheet-V2_5
+  - first:
+      213: 6651223906203663027
+    second: FairyShop-Sheet-V2_6
+  - first:
+      213: 2962051421087203765
+    second: FairyShop-Sheet-V2_7
+  - first:
+      213: 8421009274616246827
+    second: FairyShop-Sheet-V2_8
+  - first:
+      213: 2754097453064288935
+    second: FairyShop-Sheet-V2_9
+  - first:
+      213: -4555013661245054578
+    second: FairyShop-Sheet-V2_10
+  - first:
+      213: 5170955208769178745
+    second: FairyShop-Sheet-V2_11
+  - first:
+      213: -1469331565350476874
+    second: FairyShop-Sheet-V2_12
+  - first:
+      213: 6141948873093299701
+    second: FairyShop-Sheet-V2_13
+  - first:
+      213: 7391441117605801006
+    second: FairyShop-Sheet-V2_14
+  - first:
+      213: 6216349910971955220
+    second: FairyShop-Sheet-V2_15
+  - first:
+      213: -2138205912375582168
+    second: FairyShop-Sheet-V2_16
+  - first:
+      213: 386119522814413257
+    second: FairyShop-Sheet-V2_17
+  - first:
+      213: 6908775249566026469
+    second: FairyShop-Sheet-V2_18
+  - first:
+      213: 2154246535661033831
+    second: FairyShop-Sheet-V2_19
+  - first:
+      213: -3917488139755090734
+    second: FairyShop-Sheet-V2_20
+  - first:
+      213: -3940731019336151044
+    second: FairyShop-Sheet-V2_21
+  - first:
+      213: -2147929576614941113
+    second: FairyShop-Sheet-V2_22
+  - first:
+      213: 1438189052481189086
+    second: FairyShop-Sheet-V2_23
+  - first:
+      213: -7412668539255688445
+    second: FairyShop-Sheet-V2_24
+  - first:
+      213: 1027643998920079175
+    second: FairyShop-Sheet-V2_25
+  - first:
+      213: 9157072307653250444
+    second: FairyShop-Sheet-V2_26
+  - first:
+      213: -190100884375979990
+    second: FairyShop-Sheet-V2_27
+  - first:
+      213: 8724390727001529563
+    second: FairyShop-Sheet-V2_28
+  - first:
+      213: -9175737975563333057
+    second: FairyShop-Sheet-V2_29
+  - first:
+      213: -1874151475560089903
+    second: FairyShop-Sheet-V2_30
+  - first:
+      213: -607785044808475935
+    second: FairyShop-Sheet-V2_31
+  - first:
+      213: 3750890734454052203
+    second: FairyShop-Sheet-V2_32
+  - first:
+      213: -8593114666350786391
+    second: FairyShop-Sheet-V2_33
+  - first:
+      213: 7106984978866537637
+    second: FairyShop-Sheet-V2_34
+  - first:
+      213: -7196408676957270534
+    second: FairyShop-Sheet-V2_35
+  - first:
+      213: -2219858125665273075
+    second: FairyShop-Sheet-V2_36
+  - first:
+      213: 5354467581204431683
+    second: FairyShop-Sheet-V2_37
+  - first:
+      213: -4932004422752629683
+    second: FairyShop-Sheet-V2_38
+  - first:
+      213: 7778873351699898842
+    second: FairyShop-Sheet-V2_39
+  - first:
+      213: -8301930827622597161
+    second: FairyShop-Sheet-V2_40
+  - first:
+      213: 4685065571741562007
+    second: FairyShop-Sheet-V2_41
+  - first:
+      213: -6575221824252467651
+    second: FairyShop-Sheet-V2_42
+  - first:
+      213: -5012782432388560250
+    second: FairyShop-Sheet-V2_43
+  - first:
+      213: 1755956798219984502
+    second: FairyShop-Sheet-V2_44
+  - first:
+      213: 276036818726938662
+    second: FairyShop-Sheet-V2_45
+  - first:
+      213: -5866456600896365776
+    second: FairyShop-Sheet-V2_46
+  - first:
+      213: -5946820848909952800
+    second: FairyShop-Sheet-V2_47
+  - first:
+      213: -2271469113437028953
+    second: FairyShop-Sheet-V2_48
+  - first:
+      213: -5966044713356767289
+    second: FairyShop-Sheet-V2_49
+  - first:
+      213: 4106062144609316210
+    second: FairyShop-Sheet-V2_50
+  - first:
+      213: -3282874992191116687
+    second: FairyShop-Sheet-V2_51
+  - first:
+      213: -8538462357394333385
+    second: FairyShop-Sheet-V2_52
+  - first:
+      213: 7912084299539047796
+    second: FairyShop-Sheet-V2_53
+  - first:
+      213: -6020834849929904709
+    second: FairyShop-Sheet-V2_54
+  - first:
+      213: 6365591872952406422
+    second: FairyShop-Sheet-V2_55
+  - first:
+      213: 4650418752580523760
+    second: FairyShop-Sheet-V2_56
+  - first:
+      213: 8394570172747118155
+    second: FairyShop-Sheet-V2_57
+  - first:
+      213: 1545626995445572875
+    second: FairyShop-Sheet-V2_58
+  - first:
+      213: -7001951044907752062
+    second: FairyShop-Sheet-V2_59
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eade621cd854afa10800000000000000
+      internalID: 1943942664297049518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bff2f8f9ada5ced40800000000000000
+      internalID: 5614962730450497531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb8bac7b36b77a4a0800000000000000
+      internalID: -6582156662163195716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 133baafc5aea6fb50800000000000000
+      internalID: 6626675928899171121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba4e872acafb351d0800000000000000
+      internalID: -3363133748534516565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65c7b72684cb024d0800000000000000
+      internalID: -3161319919338161066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bafada27e4ed4c50800000000000000
+      internalID: 6651223906203663027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b10858e2125b1920800000000000000
+      internalID: 2962051421087203765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2275cf915f6dd470800000000000000
+      internalID: 8421009274616246827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aa74beaa05883620800000000000000
+      internalID: 2754097453064288935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e81ef66653759c0c0800000000000000
+      internalID: -4555013661245054578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FairyShop-Sheet-V2_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97c84209d5ce2c740800000000000000
+      internalID: 5170955208769178745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 999f7265edba3a440ba582c5a854971a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      FairyShop-Sheet-V2_0: 1943942664297049518
+      FairyShop-Sheet-V2_1: 5614962730450497531
+      FairyShop-Sheet-V2_10: -4555013661245054578
+      FairyShop-Sheet-V2_11: 5170955208769178745
+      FairyShop-Sheet-V2_2: -6582156662163195716
+      FairyShop-Sheet-V2_3: 6626675928899171121
+      FairyShop-Sheet-V2_4: -3363133748534516565
+      FairyShop-Sheet-V2_5: -3161319919338161066
+      FairyShop-Sheet-V2_6: 6651223906203663027
+      FairyShop-Sheet-V2_7: 2962051421087203765
+      FairyShop-Sheet-V2_8: 8421009274616246827
+      FairyShop-Sheet-V2_9: 2754097453064288935
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -113,4 +113,28 @@ public class Shop : MonoBehaviour
     {
         CloseShop();
     }
+
+    public void SetUIColor(Color newColor)
+    {
+        if (shopUI != null)
+        {
+            UnityEngine.UI.Image[] images = shopUI.GetComponentsInChildren<UnityEngine.UI.Image>();
+            foreach (var img in images)
+            {
+                img.color = newColor;
+            }
+
+            TMPro.TextMeshProUGUI[] texts = shopUI.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+            foreach (var txt in texts)
+            {
+                txt.color = newColor;
+            }
+
+            TMPro.TextMeshPro[] tmpTexts = interactionFeedback.GetComponentsInChildren<TMPro.TextMeshPro>();
+            foreach (var tmp in tmpTexts)
+            {
+                tmp.color = newColor;
+            }
+        }
+    }
 }

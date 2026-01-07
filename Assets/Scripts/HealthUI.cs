@@ -1,10 +1,12 @@
 using UnityEngine;  
 using TMPro;
+using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private Image healthIcon;
 
     [Header("Player Reference")]
     [SerializeField] private PlayerHealth playerHealth;
@@ -38,5 +40,18 @@ public class HealthUI : MonoBehaviour
         {
             playerHealth.onHealthChanged.RemoveListener(UpdateHealthDisplay);
         }
+    }
+    
+    public void SetUIColor(Color newColor)
+    {
+        if (healthText != null)
+        {
+            healthText.color = newColor;
+        }
+        if (healthIcon != null)
+        {
+            healthIcon.color = newColor;
+        }
+        
     }
 }

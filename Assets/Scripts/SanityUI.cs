@@ -58,4 +58,16 @@ public class SanityUI : MonoBehaviour
 
         Debug.Log($"Sanity UI updated: {currentSanity}/{maxSanity}");
     }
+
+    public void SetUIColor(Color newColor, Color newColor2)
+    {
+        if (fill != null)
+        {
+            fill.color = newColor;
+        }
+        if (sanityText != null)
+        {
+            sanityText.color = newColor2;
+        }
+    }
 }
