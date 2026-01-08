@@ -297,19 +297,26 @@ public class AutoTileBlock : MonoBehaviour
         // 2 voisins adjacents (coins)
         if (hasBottom && hasRight && !hasTop &&!hasLeft)
         {
+            if (!hasBottomRight)
+                return spriteSet.interInnerTopLeftSprite != null ? spriteSet.interInnerTopLeftSprite : spriteSet.fullSprite;
             return spriteSet.topLeftSprite != null ? spriteSet.topLeftSprite : spriteSet.fullSprite;
         }
         if (hasBottom && hasLeft && !hasTop && !hasRight)
         {
+            if (!hasBottomLeft)
+                return spriteSet.interInnerTopRightSprite != null ? spriteSet.interInnerTopRightSprite : spriteSet.fullSprite;
             return spriteSet.topRightSprite != null ? spriteSet.topRightSprite : spriteSet.fullSprite;
-            
         }
         if (hasTop && hasRight && !hasBottom && !hasLeft)
         {
+            if (!hasTopRight)
+                return spriteSet.interInnerBottomLeftSprite != null ? spriteSet.interInnerBottomLeftSprite : spriteSet.fullSprite;
             return spriteSet.bottomLeftSprite != null ? spriteSet.bottomLeftSprite : spriteSet.fullSprite;
         }
         if (hasTop && hasLeft && !hasBottom && !hasRight)
         {
+            if (!hasTopLeft)
+                return spriteSet.interInnerBottomRightSprite != null ? spriteSet.interInnerBottomRightSprite : spriteSet.fullSprite;
             return spriteSet.bottomRightSprite != null ? spriteSet.bottomRightSprite : spriteSet.fullSprite;
         }
 

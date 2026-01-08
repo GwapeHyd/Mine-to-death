@@ -257,7 +257,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1166954311, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  m_Sprite: {fileID: -1513864205, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -365,7 +365,19 @@ MonoBehaviour:
       m_Calls: []
   onBlockHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -416228574242181793}
+        m_TargetAssemblyTypeName: FlashSprite, Assembly-CSharp
+        m_MethodName: Flash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-416228574242181793
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,10 +51,10 @@ MonoBehaviour:
   interTopRightSprite: {fileID: -953826206, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   interBottomLeftSprite: {fileID: 1811504997, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   interBottomRightSprite: {fileID: 244766389, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
-  interInnerTopLeftSprite: {fileID: 0}
-  interInnerTopRightSprite: {fileID: 0}
-  interInnerBottomLeftSprite: {fileID: 0}
-  interInnerBottomRightSprite: {fileID: 0}
+  interInnerTopLeftSprite: {fileID: -1819777880, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  interInnerTopRightSprite: {fileID: 1019603301, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  interInnerBottomLeftSprite: {fileID: -1689314929, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  interInnerBottomRightSprite: {fileID: 2053477418, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   interInnerTopLeftSprite2: {fileID: 0}
   interInnerTopRightSprite2: {fileID: 0}
   interInnerBottomLeftSprite2: {fileID: 0}
@@ -66,4 +66,4 @@ MonoBehaviour:
   borderTopSprite: {fileID: 1844198004, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   borderBottomSprite: {fileID: 1170882436, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   isolatedSprite: {fileID: -1513864205, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
-  damagedSprite: {fileID: 0}
+  damagedSprite: {fileID: -1618469401, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}

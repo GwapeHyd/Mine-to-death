@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.Tilemaps;
 
 public class CaveGenerator : MonoBehaviour
 {
@@ -23,6 +22,7 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private GameObject hintBlockFarPrefab;
     [SerializeField] private GameObject hintBlockNearPrefab;
     [SerializeField] private GameObject coinBlockPrefab;
+    [SerializeField] private GameObject mineralBlockPrefab;
     [SerializeField] private Transform blocksParent;
 
     [Header("Bonus Block Settings")]
@@ -39,6 +39,10 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private float coinBlockSpawnChance = .05f;
     [SerializeField] private float surfaceLevel = 200f;
     [SerializeField] private int minDepthForCoinBlocks = 20;
+
+    [Header("Minerals Settings")]
+    [SerializeField, Range(0f, 1f)] private float mineralSpawnChance = 0.05f;
+    [SerializeField] private int minNeighborsForMineral = 8;
 
     private System.Random random;
     private int[,] caveMap;
@@ -63,6 +67,7 @@ public class CaveGenerator : MonoBehaviour
         GenerateCaveMap();
         PlaceBonusBlock();
         PlaceHintBlocks();
+        PlaceMineralBlocks();
         SpawnBlocks();
     }
 
@@ -125,6 +130,55 @@ public class CaveGenerator : MonoBehaviour
         Debug.Log($"Placed bonus block at {bonusBlockPosition}");
     }
 
+    private void PlaceMineralBlocks()
+    {
+        if (mineralBlockPrefab == null) return;
+
+        List<Vector2Int> candidates = new List<Vector2Int>();
+
+        foreach (Vector2Int wallPos in wallPositions)
+        {
+            if (IsEdgePosition(wallPos)) continue;
+
+            if (caveMap[wallPos.x, wallPos.y] != 1) continue;
+
+            int neighborWalls = GetSurroundingWallCount(wallPos.x, wallPos.y);
+            if (neighborWalls >= minNeighborsForMineral)
+            {
+                candidates.Add(wallPos);
+            }
+        }
+
+        if (candidates.Count == 0)
+            {
+                Debug.LogWarning("No valid positions found for mineral blocks.");
+                return;
+            }
+
+        int targetCount = Mathf.FloorToInt(candidates.Count * mineralSpawnChance);
+        targetCount = Mathf.Clamp(targetCount, 0, candidates.Count);
+        if (mineralSpawnChance > 0f && targetCount == 0)
+            targetCount = 1; // Ensure at least one if percentage > 0
+        
+        HashSet<int> chosenIndices = new HashSet<int>();
+        int attempts = 0;
+        while (chosenIndices.Count < targetCount && attempts < candidates.Count * 3)
+        {
+            int randomIndex = random.Next(candidates.Count);
+            chosenIndices.Add(randomIndex);
+            attempts++;
+        }
+
+        foreach (int index in chosenIndices)
+        {
+            Vector2Int pos = candidates[index];
+            if (!IsEdgePosition(pos))
+                caveMap[pos.x, pos.y] = 6; 
+        }
+
+        Debug.Log($"Placed {chosenIndices.Count} mineral blocks.");
+    
+    }
     private void PlaceHintBlocks()
     {
         if (!bonusBlockPlaced)
@@ -145,6 +199,8 @@ public class CaveGenerator : MonoBehaviour
         foreach (Vector2Int wallPos in wallPositions)
         {
             if (wallPos == bonusBlockPosition) continue;
+
+            if (IsEdgePosition(wallPos)) continue;
 
             if (caveMap[wallPos.x, wallPos.y] != 1) continue;
 
@@ -248,7 +304,7 @@ public class CaveGenerator : MonoBehaviour
                     
                     float blockDepth = surfaceLevel - position.y;
 
-                    if (blockType == 1 && coinBlockPrefab != null && blockDepth >= minDepthForCoinBlocks)
+                    if (blockType == 1 && !IsEdgePosition(new Vector2Int(x,y)) && coinBlockPrefab != null && blockDepth >= minDepthForCoinBlocks)
                     {
                         if (coinRandom.NextDouble() < coinBlockSpawnChance)
                         {
@@ -281,7 +337,7 @@ public class CaveGenerator : MonoBehaviour
                     }
 
 
-                    if (blockType >= 2)
+                    if (blockType >= 2 && blockType != 6)
                     {
                         if (atb != null)
                         {
@@ -307,6 +363,8 @@ public class CaveGenerator : MonoBehaviour
             case 2 : return bonusBlockPrefab;
             case 3 : return hintBlockFarPrefab;
             case 4 : return hintBlockNearPrefab;
+            case 5 : return coinBlockPrefab;
+            case 6 : return mineralBlockPrefab;
             default: return defaultBlockPrefab;
         }
     }
@@ -320,6 +378,7 @@ public class CaveGenerator : MonoBehaviour
             case 3 : return "HintBlockFar";
             case 4 : return "HintBlockNear";
             case 5 : return "CoinBlock";
+            case 6 : return "MineralBlock";
             default: return "UnknownBlock";
         }
     }
@@ -433,9 +492,9 @@ public class CaveGenerator : MonoBehaviour
         }
     }
 
-
-
-
-    
+    private bool IsEdgePosition(Vector2Int pos)
+    {
+        return pos.x == 0 || pos.x == caveWidth || pos.y == 0 || pos.y == caveHeight;
+    }
 
 }
