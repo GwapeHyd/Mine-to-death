@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioClip hitSound;
+    [SerializeField] private GameObject hitEffectPrefab;
 
     private Animator animator; 
     private Rigidbody2D rb;
@@ -228,7 +229,15 @@ public class PlayerController : MonoBehaviour
 
             if (hitSound != null)
             {
-                AudioManager.Instance.PlaySound(hitSound, 0.05f);
+                AudioManager.Instance.PlaySound(hitSound, 0.15f);
+            }
+
+            if (hitEffectPrefab != null)
+            {
+                foreach (AutoTileBlock block in blocksToHit)
+                {
+                    Instantiate(hitEffectPrefab, block.transform.position, Quaternion.identity);
+                }
             }
         }
     }

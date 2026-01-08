@@ -128,10 +128,10 @@ public class GlobalSpriteSwitcher : MonoBehaviour
         {
             shop.SetUIColor(selectedColor, selectedColor2);
         }
-        ShopCoinDisplay shopCoinDisplay = FindFirstObjectByType<ShopCoinDisplay>();
-        if (shopCoinDisplay != null)
+        ShopMineralDisplay shopMineralDisplay = FindFirstObjectByType<ShopMineralDisplay>();
+        if (shopMineralDisplay != null)
         {
-            shopCoinDisplay.SetUIColor(selectedColor);
+            shopMineralDisplay.SetUIColor(selectedColor);
         }
         ShopDeathsDisplay shopDeathsDisplay = FindFirstObjectByType<ShopDeathsDisplay>();
         if (shopDeathsDisplay != null)

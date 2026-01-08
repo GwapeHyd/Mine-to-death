@@ -49,7 +49,7 @@ public class ShopItem : MonoBehaviour
             descriptionText.text = itemDescription;
 
         if (costText != null)
-            costText.text = $"{ItemCost} Coins";
+            costText.text = $"{ItemCost} Minerals";
 
         if (iconImage != null)
             iconImage.sprite = itemIcon.sprite;
@@ -59,32 +59,32 @@ public class ShopItem : MonoBehaviour
 
     private void UpdatePurchaseButton()
     {
-        if (purchaseButton != null && CoinManager.Instance != null)
+        if (purchaseButton != null && MineralManager.Instance != null)
         {
-            bool canAfford = CoinManager.Instance.TotalCoins >= ItemCost;
+            bool canAfford = MineralManager.Instance.TotalMinerals >= ItemCost;
             purchaseButton.interactable = canAfford;
         }
     }
 
     private void OnPurchaseClicked()
     {
-        if (CoinManager.Instance == null)
+        if (MineralManager.Instance == null)
         {
-            Debug.LogWarning("CoinManager instance not found!");
+            Debug.LogWarning("MineralManager instance not found!");
             return;
         }
 
-        if (CoinManager.Instance.SpendCoins(ItemCost))
+        if (MineralManager.Instance.SpendMinerals(ItemCost))
         {
             ApplyItemEffect();
-            Debug.Log($"Purchased {itemName} for {ItemCost} coins.");
+            Debug.Log($"Purchased {itemName} for {ItemCost} minerals.");
             costMultiplier *= 2;
             UpdateCostText();
             UpdatePurchaseButton();
         }
         else
         {
-            Debug.Log("Not enough coins to purchase this item.");
+            Debug.Log("Not enough minerals to purchase this item.");
         }
     }
 
@@ -153,26 +153,26 @@ public class ShopItem : MonoBehaviour
 
     private void OnEnable()
     {
-        if (CoinManager.Instance != null)
+        if (MineralManager.Instance != null)
         {
-            CoinManager.Instance.onCoinCountChanged.AddListener(OnCoinsChanged);
+            MineralManager.Instance.onMineralCountChanged.AddListener(OnMineralsChanged);
             UpdatePurchaseButton();
-            Debug.Log("<color=red>ShopItem registered to CoinManager's onCoinCountChanged event.</color>");
+            Debug.Log("<color=red>ShopItem registered to MineralManager's onMineralCountChanged event.</color>");
         }
     }
 
 
     private void OnDisable()
     {
-        if (CoinManager.Instance != null)
+        if (MineralManager.Instance != null)
         {
-            CoinManager.Instance.onCoinCountChanged.RemoveListener(OnCoinsChanged);
+            MineralManager.Instance.onMineralCountChanged.RemoveListener(OnMineralsChanged);
         }
     }
 
-    private void OnCoinsChanged(int totalCoins)
+    private void OnMineralsChanged(int totalMinerals)
     {
-        Debug.Log("ShopItem detected coin count changing...");
+        Debug.Log("ShopItem detected mineral count changing...");
         UpdatePurchaseButton();
         Debug.Log("ShopItem updated purchase button state.");
     }
@@ -181,7 +181,7 @@ public class ShopItem : MonoBehaviour
     {
         if (costText != null)
         {
-            costText.text = $"{ItemCost} Coins";
+            costText.text = $"{ItemCost} Minerals";
         }
     }
 }
