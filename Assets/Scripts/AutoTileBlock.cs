@@ -10,7 +10,8 @@ public enum SpecialType
 {
     HintFar,
     HintNear,
-    CoinBlock
+    CoinBlock,
+    MineralBlock
 }
 public class AutoTileBlock : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class AutoTileBlock : MonoBehaviour
 
     [Header("AutoTile Sprites")]
     [SerializeField] private AutoTileSpriteSet spriteSet;
+    [SerializeField] private bool forceOwnSprite = false;
+    [SerializeField] private Sprite ownSprite = null;
 
     [Header("Feedback")]
     [SerializeField] protected SpriteRenderer blockSpriteRenderer;
@@ -149,6 +152,10 @@ public class AutoTileBlock : MonoBehaviour
         {
             Sprite selectedSprite = GetAutoTileSprite();
             blockSpriteRenderer.sprite = selectedSprite;
+        }
+        if (forceOwnSprite && ownSprite != null)
+        {
+            blockSpriteRenderer.sprite = ownSprite;
         }
         Sprite interactionSprite = GetComponentInChildren<SpriteRenderer>()?.sprite;
         if (interactionSprite == null || interactionSprite != GetFeedbackSprite())

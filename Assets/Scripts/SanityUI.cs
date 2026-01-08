@@ -6,7 +6,6 @@ public class SanityUI : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private Image fill;
-    [SerializeField] private TextMeshProUGUI sanityText;
 
     
 
@@ -40,21 +39,14 @@ public class SanityUI : MonoBehaviour
             return;
         }
 
-        if (sanityText == null)
-        {
-            Debug.LogError("Sanity Text reference is missing.");
-            return;
-        }
         if (maxSanity <= 0)
         {
             Debug.LogWarning("Max sanity is zero, cannot update UI.");
             fill.fillAmount = 0;
-            sanityText.text = "Sanity: 0/0";
             return;
         }
 
         fill.fillAmount = (float)currentSanity / maxSanity;
-        sanityText.text = $"Sanity: {currentSanity}/{maxSanity}";
 
         Debug.Log($"Sanity UI updated: {currentSanity}/{maxSanity}");
     }
@@ -64,10 +56,6 @@ public class SanityUI : MonoBehaviour
         if (fill != null)
         {
             fill.color = newColor;
-        }
-        if (sanityText != null)
-        {
-            sanityText.color = newColor2;
         }
     }
 }

@@ -5,7 +5,7 @@ public class FlashSprite : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     private bool isFlashing = false;
-    private float flashDuration = 0.3f;
+    private float flashDuration = 0.1f;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class FlashSprite : MonoBehaviour
         isFlashing = true;
         // reduce alpha to 10%
         Color flashColor = originalColor;
-        flashColor.a = 0.1f;
+        flashColor.a = 0.3f;
         spriteRenderer.color = flashColor;
         yield return new WaitForSeconds(flashDuration);
         spriteRenderer.color = originalColor;

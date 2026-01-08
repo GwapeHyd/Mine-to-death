@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 5878733071178256376}
   - component: {fileID: 8062261621511561501}
   - component: {fileID: -416228574242181793}
+  - component: {fileID: -5563985856789411398}
   m_Layer: 8
   m_Name: MineralBlock
   m_TagString: Untagged
@@ -257,7 +258,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1415257749, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  m_Sprite: {fileID: 1124594303, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -353,10 +354,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b8adc1dee4f6f4e9d7f35cc50c0146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
-  isSpecialBlock: 1
+  isSpecialBlock: 0
   SpecialType: 0
   maxHealth: 10
-  spriteSet: {fileID: 11400000, guid: 64fc0fb4f56ad0544805fbdf571d57ac, type: 2}
+  spriteSet: {fileID: 11400000, guid: e9c67be03fca2b64e994007be581000a, type: 2}
+  forceOwnSprite: 1
+  ownSprite: {fileID: 1124594303, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
   tileSize: 1
@@ -390,3 +393,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e40a3a33e7c8aa4fa41a1843c592ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashSprite
+--- !u!114 &-5563985856789411398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151982795548472252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751e00b7cc51e984ea66646e5f8d036a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MineralBlocks
+  mineralPrefab: {fileID: 2371372518722143769, guid: 6749c06d74c04ca49aed027e05a64a64, type: 3}
+  mineralsToDrop: 1
+  depthMultiplierInterval: 50
+  surfaceLevel: 200
+  dropForce: 8
+  spreadAngle: 45

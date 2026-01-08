@@ -15,7 +15,8 @@ MonoBehaviour:
   hintFarSprite: {fileID: 0}
   hintNearSprite: {fileID: 0}
   coinBlockSprite: {fileID: 0}
-  actionFeedbackSprite: {fileID: 0}
+  mineralBlockSprite: {fileID: -1415257749, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  actionFeedbackSprite: {fileID: 21300000, guid: 73671b8f797fb1346b902c21cd0cfc4a, type: 3}
   fullSprite: {fileID: 1910372905, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   topSprite: {fileID: 2016839057, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   topInnerLeftSprite: {fileID: -226794906, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Mono.Cecil.Cil;
 
 public class CaveGenerator : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class CaveGenerator : MonoBehaviour
     [Header("Minerals Settings")]
     [SerializeField, Range(0f, 1f)] private float mineralSpawnChance = 0.05f;
     [SerializeField] private int minNeighborsForMineral = 8;
+
+    [SerializeField] private AutoTileSpriteSet mineralSpriteSet;
 
     private System.Random random;
     private int[,] caveMap;
@@ -320,6 +323,24 @@ public class CaveGenerator : MonoBehaviour
                     if (atb != null)
                     {
                         atb.RegisterGridPosition(new Vector2Int(x, y));
+
+                        if (blockType == 6 && mineralSpriteSet != null)
+                        {
+                        atb.SetSpriteSet(mineralSpriteSet);
+                        }
+
+                        if (blockType == 2 || blockType == 3 || blockType == 4 || blockType == 5) 
+                        {
+                        if (atb != null)
+                        {
+                            var field = atb.GetType().GetField("isSpecialBlock", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                            if (field != null)
+                            {
+                                field.SetValue(atb, true);
+                            }
+                        }
+                        }
                     }
 
                     if (blockType == 5)
@@ -333,26 +354,20 @@ public class CaveGenerator : MonoBehaviour
                             {
                                 field.SetValue(coinBlock, surfaceLevel);
                             }
-                        }
+                        } 
                     }
-
-
-                    if (blockType >= 2 && blockType != 6)
-                    {
-                        if (atb != null)
-                        {
-                            var field = atb.GetType().GetField("isSpecialBlock", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-                            if (field != null)
-                            {
-                                field.SetValue(atb, true);
-                            }
-                        }
-                    }
-                    spawnedBlocks.Add(block);
                 }
             }
         }
+
+        foreach (var go in spawnedBlocks)
+        {
+            if (go != null)
+            {
+                DestroyImmediate(go);
+            }
+        }
+        spawnedBlocks.Clear();
     }
 
     private GameObject GetPrefabForBlockType(int blockType)
@@ -494,7 +509,7 @@ public class CaveGenerator : MonoBehaviour
 
     private bool IsEdgePosition(Vector2Int pos)
     {
-        return pos.x == 0 || pos.x == caveWidth || pos.y == 0 || pos.y == caveHeight;
+        return pos.x == 0 || pos.x == caveWidth-1 || pos.y == 0 || pos.y == caveHeight-1;
     }
 
 }
