@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEditor.EditorTools;
-using Unity.VisualScripting;
-using System.ComponentModel;
 
 [RequireComponent(typeof(Collider2D))]
 public class Mineral : MonoBehaviour
