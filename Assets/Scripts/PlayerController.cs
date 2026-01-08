@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Mining")]
     [SerializeField] private int damagePerHit = 50;
+    public int DamagePerHit => damagePerHit;   
     [SerializeField] private KeyCode attackKey = KeyCode.E;
 
     [Header("Head Projectile")]

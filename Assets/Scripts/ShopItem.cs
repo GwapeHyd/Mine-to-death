@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class ShopItem : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class ShopItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private Image iconImage;
     [SerializeField] private Button purchaseButton;
+    [SerializeField] private TextMeshProUGUI totalStatsText;
 
     public enum ItemType
     {
@@ -33,6 +35,7 @@ public class ShopItem : MonoBehaviour
     private void Start()
     {
         UpdateUI();
+        UpdateTotalStatsText();
 
         if (purchaseButton != null)
         {
@@ -49,12 +52,13 @@ public class ShopItem : MonoBehaviour
             descriptionText.text = itemDescription;
 
         if (costText != null)
-            costText.text = $"{ItemCost} Minerals";
+            costText.text = $"{ItemCost}";
 
         if (iconImage != null)
             iconImage.sprite = itemIcon.sprite;
         
         UpdatePurchaseButton();
+
     }
 
     private void UpdatePurchaseButton()
@@ -108,6 +112,7 @@ public class ShopItem : MonoBehaviour
                         field.SetValue(playerHealth, currentMax + effectValue);
                         playerHealth.Heal(effectValue);
                         Debug.Log($"Increased max health by {effectValue}.");
+                        totalStatsText.text = $"{currentMax + effectValue}";
                     }
                 }
                 break;
@@ -123,6 +128,7 @@ public class ShopItem : MonoBehaviour
                     {
                         int currentDamage = (int)field.GetValue(playerController);
                         field.SetValue(playerController, currentDamage + effectValue);
+                        totalStatsText.text = $"{currentDamage + effectValue}";
                     }
 
                     
@@ -141,6 +147,8 @@ public class ShopItem : MonoBehaviour
                     {
                         float moveSpeed = (float)field.GetValue(playerController);
                         field.SetValue(playerController, moveSpeed + effectValue);
+                        totalStatsText.text = $"{moveSpeed + effectValue}";
+
                     }
                 }
                 break;
@@ -181,7 +189,25 @@ public class ShopItem : MonoBehaviour
     {
         if (costText != null)
         {
-            costText.text = $"{ItemCost} Minerals";
+            costText.text = $"{ItemCost}";
         }
+    }
+
+    private void UpdateTotalStatsText()
+    {
+        if (itemType == ItemType.HealthUpgrade)
+        {
+            PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                totalStatsText.text = playerHealth.MaxHealth.ToString();
+            }
+            return;
+        }
+        else if (itemType == ItemType.DamageUpgrade)
+        {
+            PlayerController playerController = FindFirstObjectByType<PlayerController>();
+            totalStatsText.text = playerController.DamagePerHit.ToString();
+        } 
     }
 }
