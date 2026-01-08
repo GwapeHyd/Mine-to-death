@@ -73,7 +73,7 @@ public class SanityManager : MonoBehaviour
         {
             bonusBlock.SetActive(true);
         }
-        if (player.transform.position.y < 50f)
+        if (player.transform.position.y < 0f)
         {
             sanityDecreaseTimer -= Time.deltaTime * 3f;
             if (sanityDecreaseTimer <= 0f)
@@ -82,7 +82,7 @@ public class SanityManager : MonoBehaviour
                 sanityDecreaseTimer = 1f;
             }
         }
-        else if (player.transform.position.y < 100f)
+        else if (player.transform.position.y < 60f)
         {
             sanityDecreaseTimer -= Time.deltaTime * 2f;
             if (sanityDecreaseTimer <= 0f)
@@ -91,7 +91,7 @@ public class SanityManager : MonoBehaviour
                 sanityDecreaseTimer = 1f;
             }
         }
-        else if (player.transform.position.y < 150f)
+        else if (player.transform.position.y < 120f)
         {
             sanityDecreaseTimer -= Time.deltaTime * 1f;
             if (sanityDecreaseTimer <= 0f)
@@ -201,6 +201,7 @@ public class SanityManager : MonoBehaviour
     public void AddMadnessPsychosis()
     {
         SetMaxSanity(maxSanity + 5);
+        IncreaseSanity(5);
     }
 
     public void SetMaxSanity(int newMaxSanity)
