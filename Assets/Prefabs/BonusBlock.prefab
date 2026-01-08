@@ -182,7 +182,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2605942854334387821}
   - component: {fileID: 2485203748950899332}
-  - component: {fileID: 8932938868985848385}
   - component: {fileID: 1128553039576084580}
   - component: {fileID: 5878733071178256376}
   - component: {fileID: 602962483082979886}
@@ -257,7 +256,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1707478942, guid: 2134efaaf5e4ee746a98d4b90d647737, type: 3}
+  m_Sprite: {fileID: -1971752718, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -268,28 +267,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8932938868985848385
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5151982795548472252}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 55287a9c6c8c2d442b4c07d6fc9da5f4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &1128553039576084580
 Rigidbody2D:
   serializedVersion: 5
@@ -377,10 +354,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpecialBlock
   isSpecialBlock: 1
   SpecialType: 0
-  maxHealth: 100
-  spriteSet: {fileID: 0}
-  forceOwnSprite: 0
-  ownSprite: {fileID: 0}
+  maxHealth: 500
+  spriteSet: {fileID: 11400000, guid: 78d1c3da968ef794b98626e1e3028287, type: 2}
+  forceOwnSprite: 1
+  ownSprite: {fileID: -1971752718, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
   tileSize: 1

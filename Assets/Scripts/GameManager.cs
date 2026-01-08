@@ -1,8 +1,26 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    [Header("EndGame Settings")]
+    [SerializeField] private GameObject theExit;
+    [SerializeField] private GameObject bonusBlock;
+
+    [Header("Hint Settings")]
+    [SerializeField] private GameObject hintFarFeedbackGO;
+    [SerializeField] private GameObject hintCloseFeedbackGO;
+    public int maxHintBlocks;
+    private int currentHintBlocks = 0;
+    public int hintFarBlocksDestroyed;
+    public int hintCloseBlocksDestroyed;
+    private int hintBlocksDestroyed => hintFarBlocksDestroyed + hintCloseBlocksDestroyed;
+
+    private TextMeshPro hintFarText;
+    private TextMeshPro hintCloseText;
+
 
     private void Awake()
     {
@@ -16,10 +34,92 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        hintCloseFeedbackGO.SetActive(false);
+        hintFarFeedbackGO.SetActive(false);
+        hintFarText = hintFarFeedbackGO.GetComponentInChildren<TextMeshPro>();
+        hintCloseText = hintCloseFeedbackGO.GetComponentInChildren<TextMeshPro>();
+
+        currentHintBlocks = maxHintBlocks;
+    }
+
+    private void Update()
+    {
+        if (hintBlocksDestroyed < maxHintBlocks && bonusBlock.activeSelf)
+        {
+            bonusBlock.SetActive(false);
+        }
+        else
+        {
+            bonusBlock.SetActive(true);
+        }
+
+        UpdateHintFeedback();
+    }
+
+    private void UpdateHintFeedback()
+    {
+        if (hintFarBlocksDestroyed > 0)
+        {
+            if (!hintFarFeedbackGO.activeSelf)
+            {
+                hintFarFeedbackGO.SetActive(true);
+            }
+
+            if (hintFarText != null)
+            {
+                hintFarText.text = "x" + hintFarBlocksDestroyed.ToString();
+            }
+        }
+        else 
+        {
+            if (hintFarFeedbackGO.activeSelf)
+                hintFarFeedbackGO.SetActive(false);
+        }
+
+        if (hintCloseBlocksDestroyed > 0)
+        {
+            if (!hintCloseFeedbackGO.activeSelf)
+            {
+                hintCloseFeedbackGO.SetActive(true);
+            }
+
+            if (hintCloseText != null)
+            {
+                hintCloseText.text = "x" + hintCloseBlocksDestroyed.ToString();
+            }
+        }
+        else 
+        {
+            if (hintCloseFeedbackGO.activeSelf)
+                hintCloseFeedbackGO.SetActive(false);
+        }
+    }
+    
+    public void IncrementHintBlocksDestroyed(bool isFarBlock)
+    {
+        if (isFarBlock)
+        {
+            hintFarBlocksDestroyed++;
+        }
+        else
+        {
+            hintCloseBlocksDestroyed++;
+        }
+    }
+
+
     [ContextMenu("Delete All PlayerPrefs")]
     public void DeleteAllPlayersPrefs()
     {
         PlayerPrefs.DeleteAll();
         Debug.Log("All PlayerPrefs have been deleted.");
+    }
+
+    public void WinGame()
+    {
+        
     }
 }

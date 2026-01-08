@@ -11,23 +11,8 @@ public class SanityManager : MonoBehaviour
     [SerializeField] private int maxSanity = 100;
     [SerializeField] private int sanityDecreaseRate = 1;
 
-    [SerializeField] private GameObject bonusBlock;
     [SerializeField] private GameObject fairyShopGO;
     
-
-    [Header("Hint Settings")]
-    [SerializeField] private GameObject hintFarFeedbackGO;
-    [SerializeField] private GameObject hintCloseFeedbackGO;
-    public int maxHintBlocks;
-    private int currentHintBlocks = 0;
-    public int hintFarBlocksDestroyed;
-    public int hintCloseBlocksDestroyed;
-    private int hintBlocksDestroyed => hintFarBlocksDestroyed + hintCloseBlocksDestroyed;
-
-    private TextMeshPro hintFarText;
-    private TextMeshPro hintCloseText;
-
-
     private int currentSanity;
     private float sanityDecreaseTimer = 1f;
     private GameObject player;
@@ -55,24 +40,14 @@ public class SanityManager : MonoBehaviour
 
     private void Start()
     {
-        bonusBlock.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
-        hintCloseFeedbackGO.SetActive(false);
-        hintFarFeedbackGO.SetActive(false);
-        hintFarText = hintFarFeedbackGO.GetComponentInChildren<TextMeshPro>();
-        hintCloseText = hintCloseFeedbackGO.GetComponentInChildren<TextMeshPro>();
-
-        currentHintBlocks = maxHintBlocks;
 
         onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
 
     private void Update()
     {
-        if (currentHintBlocks <= 0)
-        {
-            bonusBlock.SetActive(true);
-        }
+
         if (player.transform.position.y < 0f)
         {
             sanityDecreaseTimer -= Time.deltaTime * 3f;
@@ -117,57 +92,8 @@ public class SanityManager : MonoBehaviour
             }
         }
 
-        if (hintBlocksDestroyed < maxHintBlocks)
-        {
-            bonusBlock.SetActive(false);
-        }
-        else
-        {
-            bonusBlock.SetActive(true);
-        }
-
-
-        UpdateHintFeedback();
     }
 
-    private void UpdateHintFeedback()
-    {
-        if (hintFarBlocksDestroyed > 0)
-        {
-            if (!hintFarFeedbackGO.activeSelf)
-            {
-                hintFarFeedbackGO.SetActive(true);
-            }
-
-            if (hintFarText != null)
-            {
-                hintFarText.text = "x" + hintFarBlocksDestroyed.ToString();
-            }
-        }
-        else 
-        {
-            if (hintFarFeedbackGO.activeSelf)
-                hintFarFeedbackGO.SetActive(false);
-        }
-
-        if (hintCloseBlocksDestroyed > 0)
-        {
-            if (!hintCloseFeedbackGO.activeSelf)
-            {
-                hintCloseFeedbackGO.SetActive(true);
-            }
-
-            if (hintCloseText != null)
-            {
-                hintCloseText.text = "x" + hintCloseBlocksDestroyed.ToString();
-            }
-        }
-        else 
-        {
-            if (hintCloseFeedbackGO.activeSelf)
-                hintCloseFeedbackGO.SetActive(false);
-        }
-    }
     public void DecreaseSanity(int amount)
     {
         currentSanity -= amount;
@@ -186,17 +112,6 @@ public class SanityManager : MonoBehaviour
         onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
 
-    public void IncrementHintBlocksDestroyed(bool isFarBlock)
-    {
-        if (isFarBlock)
-        {
-            hintFarBlocksDestroyed++;
-        }
-        else
-        {
-            hintCloseBlocksDestroyed++;
-        }
-    }
 
     public void AddMadnessPsychosis()
     {
@@ -213,6 +128,5 @@ public class SanityManager : MonoBehaviour
 
     public int CurrentSanity => currentSanity;
     public int MaxSanity => maxSanity;
-    public int CurrentHintBlocks => currentHintBlocks;
 
 }

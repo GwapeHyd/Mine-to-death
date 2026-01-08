@@ -368,8 +368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpecialBlock
   isSpecialBlock: 1
   SpecialType: 1
-  maxHealth: 1
-  spriteSet: {fileID: 11400000, guid: 504b53074a40adf43bf454c0fb6bd7cb, type: 2}
+  maxHealth: 150
+  spriteSet: {fileID: 0}
   forceOwnSprite: 0
   ownSprite: {fileID: 0}
   blockSpriteRenderer: {fileID: 2485203748950899332}

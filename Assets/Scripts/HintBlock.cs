@@ -34,13 +34,13 @@ public class HintBlock : MonoBehaviour
             switch (blockType)
             {
                 case HintBlockType.Far:
-                    SanityManager.Instance.hintFarBlocksDestroyed++;
-                    Debug.Log($"Hint Far Block destroyed. Total: {SanityManager.Instance.hintFarBlocksDestroyed}");
+                    GameManager.Instance.hintFarBlocksDestroyed++;
+                    Debug.Log($"Hint Far Block destroyed. Total: {GameManager.Instance.hintFarBlocksDestroyed}");
                     break;
 
                 case HintBlockType.Near:
-                    SanityManager.Instance.hintCloseBlocksDestroyed++;
-                    Debug.Log($"Hint Near Block destroyed. Total: {SanityManager.Instance.hintCloseBlocksDestroyed}");
+                    GameManager.Instance.hintCloseBlocksDestroyed++;
+                    Debug.Log($"Hint Near Block destroyed. Total: {GameManager.Instance.hintCloseBlocksDestroyed}");
                     break;
             }
         }
