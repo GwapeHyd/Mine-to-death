@@ -1,4 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,6 +35,10 @@ public class AutoTileBlock : MonoBehaviour
     [Header("Events")]
     public UnityEvent onBlockDestroyed;
     [SerializeField] protected UnityEvent onBlockHit;
+
+    private static Dictionary<Vector2, AutoTileBlock> allBlocks = new Dictionary<Vector2, AutoTileBlock>();
+    private bool registeredInGrid = false;
+    public Vector2Int GridPosition { get; private set; }
     
     private void Start()
     {
@@ -92,7 +99,7 @@ public class AutoTileBlock : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth, 0);
 
         UpdateVisuals();
-        onBlockHit?. Invoke();
+        onBlockHit?.Invoke();
 
         if (currentHealth <= 0)
         {
@@ -185,6 +192,11 @@ public class AutoTileBlock : MonoBehaviour
         bool hasLeft = HasNeighbor(Vector2.left);
         bool hasRight = HasNeighbor(Vector2.right);
 
+        bool hasTopLeft = HasNeighbor(new Vector2(-1, 1));
+        bool hasTopRight = HasNeighbor(new Vector2(1, 1));
+        bool hasBottomLeft = HasNeighbor(new Vector2(-1, -1));
+        bool hasBottomRight = HasNeighbor(new Vector2(1, -1));
+
         int neighborCount = (hasTop ? 1 : 0) + (hasBottom ? 1 : 0) + (hasLeft ? 1 : 0) + (hasRight ? 1 : 0);
 
         // Isolé (aucun voisin)
@@ -193,16 +205,88 @@ public class AutoTileBlock : MonoBehaviour
 
         // 4 voisins (entouré)
         if (hasTop && hasBottom && hasLeft && hasRight)
+        {
+            // 4 diags
+            if (hasTopLeft && hasTopRight && hasBottomLeft && hasBottomRight)
+                return spriteSet.fullSprite;
+            
+            // 3 diag
+            if (!hasTopLeft && hasTopRight && hasBottomLeft && hasBottomRight)
+                return spriteSet.innerTopLeftSprite != null ? spriteSet.innerTopLeftSprite : spriteSet.fullSprite;
+            if (!hasTopRight && hasTopLeft && hasBottomLeft && hasBottomRight)
+                return spriteSet.innerTopRightSprite != null ? spriteSet.innerTopRightSprite : spriteSet.fullSprite;
+            if (!hasBottomLeft && hasTopLeft && hasTopRight && hasBottomRight)
+                return spriteSet.innerBottomLeftSprite != null ? spriteSet.innerBottomLeftSprite : spriteSet.fullSprite;
+            if (!hasBottomRight && hasTopLeft && hasTopRight && hasBottomLeft)
+                return spriteSet.innerBottomRightSprite != null ? spriteSet.innerBottomRightSprite : spriteSet.fullSprite;
+
+            // 2 diag opposés
+            if (!hasTopLeft && !hasBottomRight && hasTopRight && hasBottomLeft)
+                return spriteSet.innerDiagTopLeftSprite != null ? spriteSet.innerDiagTopLeftSprite : spriteSet.fullSprite;
+            if (!hasTopRight && !hasBottomLeft && hasTopLeft && hasBottomRight)
+                return spriteSet.innerDiagTopRightSprite != null ? spriteSet.innerDiagTopRightSprite : spriteSet.fullSprite;
+            
+            // 2 diag adjacents
+            if (!hasTopLeft && !hasTopRight && hasBottomLeft && hasBottomRight)
+                return spriteSet.innerTopSprite != null ? spriteSet.innerTopSprite : spriteSet.fullSprite;
+            if (!hasTopLeft && hasTopRight && !hasBottomLeft && hasBottomRight)
+                return spriteSet.innerLeftSprite != null ? spriteSet.innerLeftSprite : spriteSet.fullSprite;
+            if (hasTopLeft && !hasTopRight && hasBottomLeft && !hasBottomRight)
+                return spriteSet.innerRightSprite != null ? spriteSet.innerRightSprite : spriteSet.fullSprite;
+            if (hasTopLeft && hasTopRight && !hasBottomLeft && !hasBottomRight)
+                return spriteSet.innerBottomSprite != null ? spriteSet.innerBottomSprite : spriteSet.fullSprite;
+           
+            // 1 diag
+            if (!hasTopLeft && !hasTopRight && !hasBottomLeft && hasBottomRight)
+                return spriteSet.diagBottomLeftSprite != null ? spriteSet.diagBottomLeftSprite : spriteSet.fullSprite;
+            if (!hasTopLeft && !hasTopRight && hasBottomLeft && !hasBottomRight)
+                return spriteSet.diagBottomRightSprite != null ? spriteSet.diagBottomRightSprite : spriteSet.fullSprite;
+            if (!hasTopLeft && hasTopRight && !hasTopLeft && !hasTopRight)
+                return spriteSet.diagTopLeftSprite != null ? spriteSet.diagTopLeftSprite : spriteSet.fullSprite;
+            if (hasTopLeft && !hasTopRight && !hasBottomLeft && !hasBottomRight)
+                return spriteSet.diagTopRightSprite != null ? spriteSet.diagTopRightSprite : spriteSet.fullSprite;
+
             return spriteSet.fullSprite;
-        // 3 voisins
+        }
+
+        // 3 voisins sans le haut
         if (!hasTop && hasBottom && hasLeft && hasRight)
+        {
+            if (!hasBottomLeft)
+                return spriteSet.topInnerLeftSprite != null ? spriteSet.topInnerLeftSprite : spriteSet.fullSprite;    
+            if (!hasBottomRight)
+                return spriteSet.topInnerRightSprite != null ? spriteSet.topInnerRightSprite : spriteSet.fullSprite;
+
             return spriteSet.topSprite != null ? spriteSet.topSprite : spriteSet.fullSprite;
+            
+        }
         if (hasTop && !hasBottom && hasLeft && hasRight)
+        {
+            if (!hasTopLeft)
+                return spriteSet.bottomInnerLeftSprite != null ? spriteSet.bottomInnerLeftSprite : spriteSet.fullSprite;   
+            if (!hasTopRight)
+                return spriteSet.bottomInnerRightSprite != null ? spriteSet.bottomInnerRightSprite : spriteSet.fullSprite;
+
             return spriteSet.bottomSprite != null ? spriteSet.bottomSprite : spriteSet.fullSprite;
+        }
         if (hasTop && hasBottom && !hasLeft && hasRight)
+        {
+            if (!hasTopRight)
+                return spriteSet.leftInnerTopSprite != null ? spriteSet.leftInnerTopSprite : spriteSet.fullSprite;
+            if (!hasBottomRight)
+                return spriteSet.leftInnerBottomSprite != null ? spriteSet.leftInnerBottomSprite : spriteSet.fullSprite;
+            
             return spriteSet.leftSprite != null ? spriteSet.leftSprite : spriteSet.fullSprite;
+        }
         if (hasTop && hasBottom && hasLeft && !hasRight)
+        {
+            if (!hasTopLeft)
+                return spriteSet.rightInnerTopSprite != null ? spriteSet.rightInnerTopSprite : spriteSet.fullSprite;
+            if (!hasBottomLeft)
+                return spriteSet.rightInnerBottomSprite != null ? spriteSet.rightInnerBottomSprite : spriteSet.fullSprite;
+
             return spriteSet.rightSprite != null ? spriteSet.rightSprite : spriteSet.fullSprite;
+        }
 
         // 2 voisins opposés
         if (hasTop && hasBottom && !hasLeft && !hasRight)
@@ -211,30 +295,52 @@ public class AutoTileBlock : MonoBehaviour
             return spriteSet.horizontalSprite != null ? spriteSet.horizontalSprite :  spriteSet.fullSprite;
 
         // 2 voisins adjacents (coins)
-        if (hasBottom && hasRight && !hasTop && !hasLeft)
-            return spriteSet.bottomRightSprite != null ? spriteSet.bottomRightSprite : spriteSet.fullSprite;
+        if (hasBottom && hasRight && !hasTop &&!hasLeft)
+        {
+            return spriteSet.topLeftSprite != null ? spriteSet.topLeftSprite : spriteSet.fullSprite;
+        }
         if (hasBottom && hasLeft && !hasTop && !hasRight)
-            return spriteSet.bottomLeftSprite != null ? spriteSet.bottomLeftSprite : spriteSet.fullSprite;
-        if (hasTop && hasRight && !hasBottom && !hasLeft)
+        {
             return spriteSet.topRightSprite != null ? spriteSet.topRightSprite : spriteSet.fullSprite;
+            
+        }
+        if (hasTop && hasRight && !hasBottom && !hasLeft)
+        {
+            return spriteSet.bottomLeftSprite != null ? spriteSet.bottomLeftSprite : spriteSet.fullSprite;
+        }
         if (hasTop && hasLeft && !hasBottom && !hasRight)
-            return spriteSet.topLeftSprite != null ? spriteSet.topLeftSprite :  spriteSet.fullSprite;
+        {
+            return spriteSet.bottomRightSprite != null ? spriteSet.bottomRightSprite : spriteSet.fullSprite;
+        }
 
         // 1 voisin
         if (hasTop && !hasBottom && !hasLeft && !hasRight)
-            return spriteSet.borderTopSprite != null ? spriteSet.borderTopSprite : spriteSet.fullSprite;
+            return spriteSet.borderBottomSprite != null ? spriteSet.borderBottomSprite : spriteSet.fullSprite;
         if (hasBottom && !hasTop && !hasLeft && !hasRight)
-            return spriteSet.borderBottomSprite != null ?  spriteSet.borderBottomSprite : spriteSet.fullSprite;
+            return spriteSet.borderTopSprite != null ?  spriteSet.borderTopSprite : spriteSet.fullSprite;
         if (hasLeft && !hasTop && !hasBottom && !hasRight)
-            return spriteSet.borderLeftSprite != null ? spriteSet.borderLeftSprite : spriteSet.fullSprite;
-        if (hasRight && !hasTop && !hasBottom && !hasLeft)
             return spriteSet.borderRightSprite != null ? spriteSet.borderRightSprite : spriteSet.fullSprite;
+        if (hasRight && !hasTop && !hasBottom && !hasLeft)
+            return spriteSet.borderLeftSprite != null ? spriteSet.borderLeftSprite : spriteSet.fullSprite;
+
 
         return spriteSet.fullSprite;
     }
 
     private bool HasNeighbor(Vector2 direction)
     {
+        if (registeredInGrid)
+        {
+            Vector2Int offset = new Vector2Int(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y));
+            Vector2Int target = GridPosition + offset;
+            if (TryGetBlockAt(target, out var neighborBlock))
+            {
+                float neighborHealth = (float)neighborBlock.currentHealth / neighborBlock.maxHealth;
+                return neighborHealth > 0.5f;
+            }
+            return false;
+        }
+
         Vector2 checkPosition = (Vector2)transform.position + direction * tileSize;
     
         Collider2D[] hits = Physics2D.OverlapCircleAll(checkPosition, 0.1f);
@@ -282,6 +388,18 @@ public class AutoTileBlock : MonoBehaviour
 
     private void UpdateNeighbors()
     {
+        if (registeredInGrid)
+        {
+            Vector2Int[] dirs = new Vector2Int[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right,
+                                                   new Vector2Int(-1,1), new Vector2Int(1,1), new Vector2Int(-1,-1), new Vector2Int(1,-1) };
+            foreach (var d in dirs)
+            {
+                Vector2Int target = GridPosition + d;
+                if (TryGetBlockAt(target, out var neighbor) && neighbor != null)
+                    neighbor.UpdateVisuals();
+            }
+            return;
+        }
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
         
         foreach (Vector2 dir in directions)
@@ -313,11 +431,56 @@ public class AutoTileBlock : MonoBehaviour
                 }
             }
         }
+
+        Vector2[] diagDirs = { new Vector2(-1,1), new Vector2(1,1), new Vector2(-1,-1), new Vector2(1,-1) };
+        foreach (Vector2 d in diagDirs)
+        {
+            Vector2 checkPosition = (Vector2)transform.position + d * tileSize;
+            Collider2D[] hits = Physics2D.OverlapCircleAll(checkPosition, 0.1f);
+            foreach (var hit in hits)
+            {
+                if (hit == null) continue;
+                if (hit.isTrigger) continue;
+                if (hit.transform == transform) continue;
+                AutoTileBlock neighbor = hit.GetComponent<AutoTileBlock>();
+                if (neighbor == null) neighbor = hit.GetComponentInParent<AutoTileBlock>();
+                if (neighbor != null && neighbor != this)
+                {
+                    neighbor.UpdateVisuals();
+                }
+            }
+        }
     }
 
     public void ForceUpdateVisuals()
     {
         UpdateVisuals();
+    }
+
+    private void OnDestroy()
+    {
+        if (registeredInGrid && allBlocks.TryGetValue(GridPosition, out var existingBlock))
+        {
+            if (existingBlock == this)
+            {
+                allBlocks.Remove(GridPosition);
+            }
+        }
+    }
+
+    public void RegisterGridPosition(Vector2Int gridPos)
+    {
+        if (!registeredInGrid && !allBlocks.TryGetValue(gridPos, out var existingBlock))
+        {
+            GridPosition = gridPos;
+            allBlocks[gridPos] = this;
+            registeredInGrid = true;
+        }
+    }
+
+    private static bool TryGetBlockAt(Vector2Int pos, out AutoTileBlock block)
+    {
+        return allBlocks.TryGetValue(pos, out block);
     }
 
 }

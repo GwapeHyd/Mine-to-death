@@ -15,21 +15,55 @@ MonoBehaviour:
   hintFarSprite: {fileID: 0}
   hintNearSprite: {fileID: 0}
   coinBlockSprite: {fileID: 0}
-  actionFeedbackSprite: {fileID: 21300000, guid: 73671b8f797fb1346b902c21cd0cfc4a, type: 3}
-  fullSprite: {fileID: -1092630627, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  topSprite: {fileID: 1480051826, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  bottomSprite: {fileID: -473639462, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  leftSprite: {fileID: -1352787879, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  rightSprite: {fileID: 187558713, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  topLeftSprite: {fileID: 1519595696, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  topRightSprite: {fileID: -565746072, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  bottomLeftSprite: {fileID: 1873355254, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  bottomRightSprite: {fileID: -4269807479533203371, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  horizontalSprite: {fileID: 553650228, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  verticalSprite: {fileID: -1195160916, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderLeftSprite: {fileID: -102717338, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderRightSprite: {fileID: 1018244135, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderTopSprite: {fileID: 708769874, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  borderBottomSprite: {fileID: 801973281, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  isolatedSprite: {fileID: -1166954311, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
-  damagedSprite: {fileID: 2059792854, guid: fe22f0ea7e4e67c4d893fcd5b37b9927, type: 3}
+  actionFeedbackSprite: {fileID: 0}
+  fullSprite: {fileID: 1910372905, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  topSprite: {fileID: 2016839057, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  topInnerLeftSprite: {fileID: -226794906, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  topInnerRightSprite: {fileID: -70796509, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  bottomSprite: {fileID: -2080163036, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  bottomInnerLeftSprite: {fileID: -75533583, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  bottomInnerRightSprite: {fileID: -1005307406, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  leftSprite: {fileID: 1568080912, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  leftInnerBottomSprite: {fileID: -1036283956, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  leftInnerTopSprite: {fileID: 2051875575, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  rightSprite: {fileID: 305974920, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  rightInnerBottomSprite: {fileID: -267882124, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  rightInnerTopSprite: {fileID: 2025674623, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  topLeftSprite: {fileID: -5758607010487177149, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  topRightSprite: {fileID: -953826206, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  bottomLeftSprite: {fileID: 1811504997, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  bottomRightSprite: {fileID: 244766389, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerTopSprite: {fileID: -360229428, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerBottomSprite: {fileID: 1985035447, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerLeftSprite: {fileID: 1983971925, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerRightSprite: {fileID: 968623665, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerTopLeftSprite: {fileID: 1532021514, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerTopRightSprite: {fileID: -1125539359, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerBottomLeftSprite: {fileID: -959722469, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerBottomRightSprite: {fileID: 287818540, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerDiagTopLeftSprite: {fileID: -137700705, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  innerDiagTopRightSprite: {fileID: -438752061, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  diagTopLeftSprite: {fileID: 1043194732, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  diagTopRightSprite: {fileID: -481127274, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  diagBottomLeftSprite: {fileID: 1990440737, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  diagBottomRightSprite: {fileID: -247250936, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  interTopLeftSprite: {fileID: -5758607010487177149, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  interTopRightSprite: {fileID: -953826206, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  interBottomLeftSprite: {fileID: 1811504997, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  interBottomRightSprite: {fileID: 244766389, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  interInnerTopLeftSprite: {fileID: 0}
+  interInnerTopRightSprite: {fileID: 0}
+  interInnerBottomLeftSprite: {fileID: 0}
+  interInnerBottomRightSprite: {fileID: 0}
+  interInnerTopLeftSprite2: {fileID: 0}
+  interInnerTopRightSprite2: {fileID: 0}
+  interInnerBottomLeftSprite2: {fileID: 0}
+  interInnerBottomRightSprite2: {fileID: 1983971925, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  horizontalSprite: {fileID: -1843687990, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  verticalSprite: {fileID: -738040537, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  borderLeftSprite: {fileID: 284210765, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  borderRightSprite: {fileID: -136174481, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  borderTopSprite: {fileID: 1844198004, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  borderBottomSprite: {fileID: 1170882436, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  isolatedSprite: {fileID: -1513864205, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  damagedSprite: {fileID: 0}

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Tilemaps;
 
 public class CaveGenerator : MonoBehaviour
 {
@@ -259,6 +260,12 @@ public class CaveGenerator : MonoBehaviour
                     GameObject block = Instantiate(prefabToSpawn, position, Quaternion.identity, blocksParent);
                     block.name = $"{GetBlockTypeName(blockType)}_{x}_{y}";
 
+                    AutoTileBlock atb = block.GetComponent<AutoTileBlock>();
+                    if (atb != null)
+                    {
+                        atb.RegisterGridPosition(new Vector2Int(x, y));
+                    }
+
                     if (blockType == 5)
                     {
                         CoinBlock coinBlock = block.GetComponent<CoinBlock>();
@@ -276,7 +283,6 @@ public class CaveGenerator : MonoBehaviour
 
                     if (blockType >= 2)
                     {
-                        AutoTileBlock atb = block.GetComponent<AutoTileBlock>();
                         if (atb != null)
                         {
                             var field = atb.GetType().GetField("isSpecialBlock", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
