@@ -52,7 +52,7 @@ public class FairyShopItem : MonoBehaviour
             descriptionText.text = itemDescription;
 
         if (costText != null)
-            costText.text = $"{cost} Deaths";
+            costText.text = $"{cost}";
 
         if (iconImage != null)
             iconImage.sprite = itemIcon.sprite;
@@ -162,10 +162,10 @@ public class FairyShopItem : MonoBehaviour
         {
             if (isPurchased)
             {
-                costText.text = "Purchased";
+                costText.text = "$$$";
             }
             else
-                costText.text = $"{cost} Deaths";
+                costText.text = $"{cost}";
         }
     }
 

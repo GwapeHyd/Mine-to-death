@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 602962483082979886}
   m_Layer: 8
   m_Name: BonusBlock
-  m_TagString: Untagged
+  m_TagString: BonusBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,8 +376,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialBlock
   isSpecialBlock: 1
+  SpecialType: 0
   maxHealth: 100
   spriteSet: {fileID: 0}
+  forceOwnSprite: 0
+  ownSprite: {fileID: 0}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
   tileSize: 1

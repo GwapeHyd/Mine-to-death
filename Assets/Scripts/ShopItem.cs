@@ -25,6 +25,8 @@ public class ShopItem : MonoBehaviour
     [SerializeField] private Button purchaseButton;
     [SerializeField] private TextMeshProUGUI totalStatsText;
 
+    [SerializeField] private AudioClip purchaseSound;
+
     public enum ItemType
     {
         HealthUpgrade,
@@ -85,6 +87,10 @@ public class ShopItem : MonoBehaviour
             costMultiplier *= 2;
             UpdateCostText();
             UpdatePurchaseButton();
+            if (purchaseSound != null)
+            {
+                AudioManager.Instance.PlaySound(purchaseSound, 0.5f);
+            }
         }
         else
         {

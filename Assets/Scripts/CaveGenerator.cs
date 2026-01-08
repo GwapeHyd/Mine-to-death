@@ -24,6 +24,9 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private GameObject hintBlockNearPrefab;
     [SerializeField] private GameObject coinBlockPrefab;
     [SerializeField] private GameObject mineralBlockPrefab;
+    [SerializeField] private GameObject mediumMineralBlockPrefab;
+    [SerializeField] private GameObject largeMineralBlockPrefab;
+    
     [SerializeField] private Transform blocksParent;
 
     [Header("Bonus Block Settings")]
@@ -43,9 +46,17 @@ public class CaveGenerator : MonoBehaviour
 
     [Header("Minerals Settings")]
     [SerializeField, Range(0f, 1f)] private float mineralSpawnChance = 0.05f;
+    [SerializeField] private int minDepthForMineralBlocks = 5;
+    [SerializeField, Range(0f, 1f)] private float mediumMineralSpawnChance = 0.03f;
+    [SerializeField] private int minDepthForMediumMineralBlocks = 30;
+    [SerializeField, Range(0f, 1f)] private float largeMineralSpawnChance = 0.01f;
+    [SerializeField] private int minDepthForLargeMineralBlocks = 60;
+
     [SerializeField] private int minNeighborsForMineral = 8;
 
     [SerializeField] private AutoTileSpriteSet mineralSpriteSet;
+    [SerializeField] private AutoTileSpriteSet mediumMineralSpriteSet;
+    [SerializeField] private AutoTileSpriteSet largeMineralSpriteSet;
 
     private System.Random random;
     private int[,] caveMap;
@@ -71,6 +82,8 @@ public class CaveGenerator : MonoBehaviour
         PlaceBonusBlock();
         PlaceHintBlocks();
         PlaceMineralBlocks();
+        PlaceMediumMineralBlocks();
+        PlaceLargeMineralBlocks();
         SpawnBlocks();
     }
 
@@ -143,6 +156,8 @@ public class CaveGenerator : MonoBehaviour
         {
             if (IsEdgePosition(wallPos)) continue;
 
+            if (wallPos.y < minDepthForMineralBlocks) continue;
+
             if (caveMap[wallPos.x, wallPos.y] != 1) continue;
 
             int neighborWalls = GetSurroundingWallCount(wallPos.x, wallPos.y);
@@ -180,6 +195,106 @@ public class CaveGenerator : MonoBehaviour
         }
 
         Debug.Log($"Placed {chosenIndices.Count} mineral blocks.");
+    
+    }
+    private void PlaceMediumMineralBlocks()
+    {
+        if (mediumMineralBlockPrefab == null) return;
+
+        List<Vector2Int> candidates = new List<Vector2Int>();
+
+        foreach (Vector2Int wallPos in wallPositions)
+        {
+            if (IsEdgePosition(wallPos)) continue;
+
+            if (wallPos.y < minDepthForMediumMineralBlocks) continue;
+
+            if (caveMap[wallPos.x, wallPos.y] != 1) continue;
+
+            int neighborWalls = GetSurroundingWallCount(wallPos.x, wallPos.y);
+            if (neighborWalls >= minNeighborsForMineral)
+            {
+                candidates.Add(wallPos);
+            }
+        }
+
+        if (candidates.Count == 0)
+            {
+                Debug.LogWarning("No valid positions found for medium mineral blocks.");
+                return;
+            }
+
+        int targetCount = Mathf.FloorToInt(candidates.Count * mediumMineralSpawnChance);
+        targetCount = Mathf.Clamp(targetCount, 0, candidates.Count);
+        if (mediumMineralSpawnChance > 0f && targetCount == 0)
+            targetCount = 1; // Ensure at least one if percentage > 0
+        
+        HashSet<int> chosenIndices = new HashSet<int>();
+        int attempts = 0;
+        while (chosenIndices.Count < targetCount && attempts < candidates.Count * 3)
+        {
+            int randomIndex = random.Next(candidates.Count);
+            chosenIndices.Add(randomIndex);
+            attempts++;
+        }
+
+        foreach (int index in chosenIndices)
+        {
+            Vector2Int pos = candidates[index];
+            if (!IsEdgePosition(pos))
+                caveMap[pos.x, pos.y] = 7; 
+        }
+
+        Debug.Log($"Placed {chosenIndices.Count} medium mineral blocks.");
+    
+    }
+    private void PlaceLargeMineralBlocks()
+    {
+        if (largeMineralBlockPrefab == null) return;
+
+        List<Vector2Int> candidates = new List<Vector2Int>();
+
+        foreach (Vector2Int wallPos in wallPositions)
+        {
+            if (IsEdgePosition(wallPos)) continue;
+            if (wallPos.y < minDepthForLargeMineralBlocks) continue;
+            if (caveMap[wallPos.x, wallPos.y] != 1) continue;
+
+            int neighborWalls = GetSurroundingWallCount(wallPos.x, wallPos.y);
+            if (neighborWalls >= minNeighborsForMineral)
+            {
+                candidates.Add(wallPos);
+            }
+        }
+
+        if (candidates.Count == 0)
+            {
+                Debug.LogWarning("No valid positions found for large mineral blocks.");
+                return;
+            }
+
+        int targetCount = Mathf.FloorToInt(candidates.Count * largeMineralSpawnChance);
+        targetCount = Mathf.Clamp(targetCount, 0, candidates.Count);
+        if (largeMineralSpawnChance > 0f && targetCount == 0)
+            targetCount = 1; // Ensure at least one if percentage > 0
+        
+        HashSet<int> chosenIndices = new HashSet<int>();
+        int attempts = 0;
+        while (chosenIndices.Count < targetCount && attempts < candidates.Count * 3)
+        {
+            int randomIndex = random.Next(candidates.Count);
+            chosenIndices.Add(randomIndex);
+            attempts++;
+        }
+
+        foreach (int index in chosenIndices)
+        {
+            Vector2Int pos = candidates[index];
+            if (!IsEdgePosition(pos))
+                caveMap[pos.x, pos.y] = 8; 
+        }
+
+        Debug.Log($"Placed {chosenIndices.Count} large mineral blocks.");
     
     }
     private void PlaceHintBlocks()
@@ -324,10 +439,21 @@ public class CaveGenerator : MonoBehaviour
                     {
                         atb.RegisterGridPosition(new Vector2Int(x, y));
 
+                        if (blockType == 8 && largeMineralSpriteSet != null)
+                        {
+                            atb.SetSpriteSet(largeMineralSpriteSet);
+                        }
+                        if (blockType == 7 && mediumMineralSpriteSet != null)
+                        {
+                            atb.SetSpriteSet(mediumMineralSpriteSet);
+                        }
+
                         if (blockType == 6 && mineralSpriteSet != null)
                         {
-                        atb.SetSpriteSet(mineralSpriteSet);
+                            atb.SetSpriteSet(mineralSpriteSet);
                         }
+
+                        atb.RegisterGridPosition(new Vector2Int(x, y));
 
                         if (blockType == 2 || blockType == 3 || blockType == 4 || blockType == 5) 
                         {
@@ -380,6 +506,8 @@ public class CaveGenerator : MonoBehaviour
             case 4 : return hintBlockNearPrefab;
             case 5 : return coinBlockPrefab;
             case 6 : return mineralBlockPrefab;
+            case 7 : return mediumMineralBlockPrefab;
+            case 8 : return largeMineralBlockPrefab;
             default: return defaultBlockPrefab;
         }
     }
@@ -394,6 +522,8 @@ public class CaveGenerator : MonoBehaviour
             case 4 : return "HintBlockNear";
             case 5 : return "CoinBlock";
             case 6 : return "MineralBlock";
+            case 7 : return "MediumMineralBlock";
+            case 8 : return "LargeMineralBlock";
             default: return "UnknownBlock";
         }
     }

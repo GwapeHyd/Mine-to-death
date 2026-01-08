@@ -117,7 +117,7 @@ public class SanityManager : MonoBehaviour
             }
         }
 
-        if (hintBlocksDestroyed < maxHintBlocks)
+        if (hintBlocksDestroyed < maxHintBlocks - 1)
         {
             bonusBlock.SetActive(false);
         }
