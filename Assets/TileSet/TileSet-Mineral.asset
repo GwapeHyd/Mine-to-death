@@ -17,19 +17,25 @@ MonoBehaviour:
   coinBlockSprite: {fileID: 0}
   mineralBlockSprite: {fileID: 0}
   actionFeedbackSprite: {fileID: 0}
+  bonusBlockSprite: {fileID: 0}
   fullSprite: {fileID: 1124594303, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  fullFullSprite: {fileID: 0}
   topSprite: {fileID: 0}
   topInnerLeftSprite: {fileID: 0}
   topInnerRightSprite: {fileID: 0}
+  topInnerBottomSprite: {fileID: 0}
   bottomSprite: {fileID: 0}
   bottomInnerLeftSprite: {fileID: 0}
   bottomInnerRightSprite: {fileID: 0}
+  bottomInnerTopSprite: {fileID: 0}
   leftSprite: {fileID: 0}
   leftInnerBottomSprite: {fileID: 0}
   leftInnerTopSprite: {fileID: 0}
+  leftInnerRightSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   rightInnerBottomSprite: {fileID: 0}
   rightInnerTopSprite: {fileID: 0}
+  rightInnerLeftSprite: {fileID: 0}
   topLeftSprite: {fileID: 0}
   topRightSprite: {fileID: 0}
   bottomLeftSprite: {fileID: 0}
@@ -67,4 +73,4 @@ MonoBehaviour:
   borderTopSprite: {fileID: 0}
   borderBottomSprite: {fileID: 0}
   isolatedSprite: {fileID: 0}
-  damagedSprite: {fileID: -443565991, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  damagedSprite: {fileID: -1125539359, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}

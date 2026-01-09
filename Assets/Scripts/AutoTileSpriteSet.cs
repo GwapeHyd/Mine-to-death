@@ -13,18 +13,23 @@ public class AutoTileSpriteSet : ScriptableObject
 
     [Header("Full Health Sprites")]
     public Sprite fullSprite;
+    public Sprite fullFullSprite;
     public Sprite topSprite;
     public Sprite topInnerLeftSprite;
     public Sprite topInnerRightSprite;
+    public Sprite topInnerBottomSprite;
     public Sprite bottomSprite;
     public Sprite bottomInnerLeftSprite;
     public Sprite bottomInnerRightSprite;
+    public Sprite bottomInnerTopSprite;
     public Sprite leftSprite;
     public Sprite leftInnerBottomSprite;
     public Sprite leftInnerTopSprite;
+    public Sprite leftInnerRightSprite;
     public Sprite rightSprite;
     public Sprite rightInnerBottomSprite;
     public Sprite rightInnerTopSprite;
+    public Sprite rightInnerLeftSprite;
     public Sprite topLeftSprite;
     public Sprite topRightSprite;
     public Sprite bottomLeftSprite;

@@ -20,6 +20,7 @@ public class Shop : MonoBehaviour
 
     private bool isPlayerInRange = false;
     private bool isShopOpen = false;
+    private bool isActivated = false;
     private PlayerController playerController;
 
     private void Start()
@@ -57,7 +58,17 @@ public class Shop : MonoBehaviour
         {
             isPlayerInRange = true;
             if (interactionFeedback != null)
+            {
                 interactionFeedback.SetActive(true);
+                if (!isActivated)
+                {
+                    interactionFeedback.GetComponent<TMPro.TextMeshPro>().text = "Come back later ...";
+                }
+                else
+                {
+                    interactionFeedback.GetComponent<TMPro.TextMeshPro>().text = "Press A to Open Shop";
+                }
+            }
         }
     }
 
@@ -145,6 +156,16 @@ public class Shop : MonoBehaviour
             {
                 tmp.color = newColor;
             }
+        }
+    }
+
+    public void ActivateShop()
+    {
+        isActivated = true;
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("ActivateShop");
         }
     }
 }

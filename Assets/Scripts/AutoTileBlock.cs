@@ -353,54 +353,65 @@ public class AutoTileBlock : MonoBehaviour
            
             // 1 diag
             if (!hasTopLeft && !hasTopRight && !hasBottomLeft && hasBottomRight)
-                return spriteSet.diagBottomLeftSprite != null ? spriteSet.diagBottomLeftSprite : spriteSet.fullSprite;
-            if (!hasTopLeft && !hasTopRight && hasBottomLeft && !hasBottomRight)
-                return spriteSet.diagBottomRightSprite != null ? spriteSet.diagBottomRightSprite : spriteSet.fullSprite;
-            if (!hasTopLeft && hasTopRight && !hasTopLeft && !hasTopRight)
-                return spriteSet.diagTopLeftSprite != null ? spriteSet.diagTopLeftSprite : spriteSet.fullSprite;
-            if (hasTopLeft && !hasTopRight && !hasBottomLeft && !hasBottomRight)
                 return spriteSet.diagTopRightSprite != null ? spriteSet.diagTopRightSprite : spriteSet.fullSprite;
+            if (!hasTopLeft && !hasTopRight && hasBottomLeft && !hasBottomRight)
+                return spriteSet.diagTopLeftSprite != null ? spriteSet.diagTopLeftSprite : spriteSet.fullSprite;
+            if (!hasTopLeft && hasTopRight && !hasTopLeft && !hasTopRight)
+                return spriteSet.diagBottomLeftSprite != null ? spriteSet.diagBottomLeftSprite : spriteSet.fullSprite;
+            if (hasTopLeft && !hasTopRight && !hasBottomLeft && !hasBottomRight)
+                return spriteSet.diagBottomRightSprite != null ? spriteSet.diagBottomRightSprite : spriteSet.fullSprite;
 
-            return spriteSet.fullSprite;
+            return spriteSet.fullFullSprite;
         }
 
         // 3 voisins sans le haut
         if (!hasTop && hasBottom && hasLeft && hasRight)
         {
-            if (!hasBottomLeft)
-                return spriteSet.topInnerLeftSprite != null ? spriteSet.topInnerLeftSprite : spriteSet.fullSprite;    
-            if (!hasBottomRight)
+            if (hasBottomLeft && hasBottomRight)
+                return spriteSet.topSprite != null ? spriteSet.topSprite : spriteSet.fullSprite;
+            if (!hasBottomLeft && hasBottomRight)
+                return spriteSet.topInnerLeftSprite != null ? spriteSet.topInnerLeftSprite : spriteSet.fullSprite;
+            if (!hasBottomRight && hasBottomLeft)
                 return spriteSet.topInnerRightSprite != null ? spriteSet.topInnerRightSprite : spriteSet.fullSprite;
-
-            return spriteSet.topSprite != null ? spriteSet.topSprite : spriteSet.fullSprite;
+            
+            return spriteSet.topInnerBottomSprite != null ? spriteSet.topInnerBottomSprite : spriteSet.fullSprite;
             
         }
         if (hasTop && !hasBottom && hasLeft && hasRight)
         {
-            if (!hasTopLeft)
+            if (hasTopLeft && hasTopRight)
+                return spriteSet.bottomSprite != null ? spriteSet.bottomSprite : spriteSet.fullSprite;
+            if (!hasTopLeft && hasTopRight)
                 return spriteSet.bottomInnerLeftSprite != null ? spriteSet.bottomInnerLeftSprite : spriteSet.fullSprite;   
-            if (!hasTopRight)
+            if (!hasTopRight && hasTopLeft)
                 return spriteSet.bottomInnerRightSprite != null ? spriteSet.bottomInnerRightSprite : spriteSet.fullSprite;
-
-            return spriteSet.bottomSprite != null ? spriteSet.bottomSprite : spriteSet.fullSprite;
+            
+            return spriteSet.bottomInnerTopSprite != null ? spriteSet.bottomInnerTopSprite : spriteSet.fullSprite;
+            
         }
         if (hasTop && hasBottom && !hasLeft && hasRight)
         {
-            if (!hasTopRight)
+            if (hasTopRight && hasBottomRight)
+                return spriteSet.leftSprite != null ? spriteSet.leftSprite : spriteSet.fullSprite;
+            if (!hasTopRight && hasBottomRight)
                 return spriteSet.leftInnerTopSprite != null ? spriteSet.leftInnerTopSprite : spriteSet.fullSprite;
-            if (!hasBottomRight)
+            if (!hasBottomRight && hasTopRight)
                 return spriteSet.leftInnerBottomSprite != null ? spriteSet.leftInnerBottomSprite : spriteSet.fullSprite;
             
-            return spriteSet.leftSprite != null ? spriteSet.leftSprite : spriteSet.fullSprite;
+            return spriteSet.leftInnerRightSprite != null ? spriteSet.leftInnerRightSprite : spriteSet.fullSprite;
+              
         }
         if (hasTop && hasBottom && hasLeft && !hasRight)
         {
-            if (!hasTopLeft)
+            if (hasTopLeft && hasBottomLeft)
+                return spriteSet.rightSprite != null ? spriteSet.rightSprite : spriteSet.fullSprite;
+            if (!hasTopLeft && hasBottomLeft)
                 return spriteSet.rightInnerTopSprite != null ? spriteSet.rightInnerTopSprite : spriteSet.fullSprite;
-            if (!hasBottomLeft)
+            if (!hasBottomLeft && hasTopLeft)
                 return spriteSet.rightInnerBottomSprite != null ? spriteSet.rightInnerBottomSprite : spriteSet.fullSprite;
-
-            return spriteSet.rightSprite != null ? spriteSet.rightSprite : spriteSet.fullSprite;
+            
+            return spriteSet.rightInnerLeftSprite != null ? spriteSet.rightInnerLeftSprite : spriteSet.fullSprite;
+            
         }
 
         // 2 voisins opposés

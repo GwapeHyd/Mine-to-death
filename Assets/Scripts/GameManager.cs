@@ -43,15 +43,16 @@ public class GameManager : MonoBehaviour
         hintCloseText = hintCloseFeedbackGO.GetComponentInChildren<TextMeshPro>();
 
         currentHintBlocks = maxHintBlocks;
+
+        PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
+        playerHealth.onDeath.AddListener(ActivateShopOnFirstDeath);
+
+        StartGame();
     }
 
     private void Update()
     {
         if (bonusBlock == null || theExit == null) return;
-        if (bonusBlock.activeSelf && theExit.activeSelf)
-        {
-            theExit.SetActive(false);
-        }
 
         if (hintBlocksDestroyed < maxHintBlocks && bonusBlock.activeSelf)
         {
@@ -63,6 +64,15 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateHintFeedback();
+    }
+
+    private void ActivateShopOnFirstDeath()
+    {
+        Shop shop = FindFirstObjectByType<Shop>();
+        if (shop != null)
+        {
+            shop.ActivateShop();
+        }
     }
 
     private void UpdateHintFeedback()
@@ -124,6 +134,15 @@ public class GameManager : MonoBehaviour
         Debug.Log("All PlayerPrefs have been deleted.");
     }
 
+    public void StartGame()
+    {
+        StartCoroutine(StartGameRoutine());
+    }
+
+    private System.Collections.IEnumerator StartGameRoutine()
+    {
+        yield return new WaitForSeconds(2.5f);
+    }
     public void WinGame()
     {
         theExit.SetActive(true);
