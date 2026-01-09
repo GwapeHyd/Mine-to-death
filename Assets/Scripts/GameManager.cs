@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [Header("EndGame Settings")]
-    [SerializeField] private GameObject theExit;
+    [SerializeField] private GameObject chestContainer;
     [SerializeField] private GameObject bonusBlock;
 
     [Header("Hint Settings")]
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (bonusBlock == null || theExit == null) return;
+        if (bonusBlock == null || chestContainer == null) return;
 
         if (hintBlocksDestroyed < maxHintBlocks && bonusBlock.activeSelf)
         {
@@ -136,15 +136,11 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(StartGameRoutine());
+        chestContainer.SetActive(true);
     }
 
-    private System.Collections.IEnumerator StartGameRoutine()
-    {
-        yield return new WaitForSeconds(2.5f);
-    }
     public void WinGame()
     {
-        theExit.SetActive(true);
+        chestContainer.SetActive(false);
     }
 }
