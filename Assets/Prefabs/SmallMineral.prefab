@@ -435,7 +435,7 @@ MonoBehaviour:
   SpecialType: 0
   maxHealth: 10
   spriteSet: {fileID: 11400000, guid: e9c67be03fca2b64e994007be581000a, type: 2}
-  forceOwnSprite: 1
+  forceOwnSprite: 0
   ownSprite: {fileID: 1124594303, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}

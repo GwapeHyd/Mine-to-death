@@ -265,33 +265,6 @@ public class AutoTileBlock : MonoBehaviour
         {
             blockSpriteRenderer.sprite = ownSprite;
         }
-        Sprite interactionSprite = GetComponentInChildren<SpriteRenderer>()?.sprite;
-        if (interactionSprite == null || interactionSprite != GetFeedbackSprite())
-        {
-            UpdateInteractionFeedback();
-        }
-    }
-
-    private void UpdateInteractionFeedback()
-    {
-        if (actionFeedback == null) return;
-
-        SpriteRenderer feedbackSpriteRenderer = actionFeedback.GetComponent<SpriteRenderer>();
-        if (feedbackSpriteRenderer != null)
-        {
-            feedbackSpriteRenderer.sprite = GetFeedbackSprite();
-        }
-    }
-
-    private Sprite GetFeedbackSprite()
-    {
-        if (spriteSet == null)
-        {
-            Debug.LogWarning("Sprite set is not assigned!");
-            return null;
-        }
-
-        return spriteSet.actionFeedbackSprite;
     }
 
     private Sprite GetAutoTileSprite()
@@ -469,7 +442,7 @@ public class AutoTileBlock : MonoBehaviour
             if (TryGetBlockAt(target, out var neighborBlock))
             {
                 float neighborHealth = (float)neighborBlock.currentHealth / neighborBlock.maxHealth;
-                return neighborHealth > 0.5f;
+                return neighborHealth > 0;
             }
             return false;
         }
@@ -492,7 +465,7 @@ public class AutoTileBlock : MonoBehaviour
             if (neighborBlock != null && neighborBlock != this)
             {
                 float neighborHealth = (float)neighborBlock.currentHealth / neighborBlock.maxHealth;
-                return neighborHealth > 0.5f;
+                return neighborHealth > 0f;
             }
         }
     

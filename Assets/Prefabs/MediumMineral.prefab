@@ -359,7 +359,7 @@ MonoBehaviour:
   SpecialType: 3
   maxHealth: 25
   spriteSet: {fileID: 11400000, guid: 3e51448d7e5faf940853d3b488b470e2, type: 2}
-  forceOwnSprite: 1
+  forceOwnSprite: 0
   ownSprite: {fileID: -1958231707, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
