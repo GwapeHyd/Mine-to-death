@@ -176,10 +176,10 @@ MonoBehaviour:
   collectDelay: 0.5
   popScaleMultiplier: 1.4
   popDuration: 0.2
-  attractDelay: 1.5
-  attractRange: 5
+  attractDelay: 2
+  attractRange: 10
   attractSpeed: 10
   collectDistance: 0.2
   playerTag: Player
-  autoDestroy: 0
+  autoDestroy: 1
   autoDestroyTime: 15
