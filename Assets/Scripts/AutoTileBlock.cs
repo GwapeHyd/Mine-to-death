@@ -11,7 +11,8 @@ public enum SpecialType
     HintFar,
     HintNear,
     CoinBlock,
-    MineralBlock
+    MineralBlock,
+    BonusBlock
 }
 public class AutoTileBlock : MonoBehaviour
 {
@@ -31,9 +32,19 @@ public class AutoTileBlock : MonoBehaviour
     [Header("Feedback")]
     [SerializeField] protected SpriteRenderer blockSpriteRenderer;
     [SerializeField] protected GameObject actionFeedback;
+    [SerializeField] protected GameObject hpRoot;
+    [SerializeField] protected UnityEngine.UI.Image hpFill;
+    [SerializeField] protected CanvasGroup hpCanvasGroup;
+
+    [Header("Timings")]
+    [SerializeField] protected float hpDisplayDuration = 2f;
+    [SerializeField] protected float fadeDuration = 0.25f;
+    
+    
 
     [Header("Settings")]
     [SerializeField] protected float tileSize = 1f;
+
 
     [Header("Events")]
     public UnityEvent onBlockDestroyed;
@@ -42,7 +53,18 @@ public class AutoTileBlock : MonoBehaviour
     private static Dictionary<Vector2, AutoTileBlock> allBlocks = new Dictionary<Vector2, AutoTileBlock>();
     private bool registeredInGrid = false;
     public Vector2Int GridPosition { get; private set; }
-    
+    private Coroutine hideCoroutine;
+
+
+    private void Awake()
+    {
+        if (blockSpriteRenderer == null)
+            blockSpriteRenderer = GetComponent<SpriteRenderer>();
+
+        currentHealth = (maxHealth < 0) ? maxHealth : Mathf.Clamp(maxHealth, 0, maxHealth);
+        if (hpRoot != null) hpRoot.SetActive(false);
+        UpdateBar();
+    }
     private void Start()
     {
         currentHealth = maxHealth;
@@ -53,15 +75,37 @@ public class AutoTileBlock : MonoBehaviour
         if (blockSpriteRenderer == null)
             blockSpriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (!isSpecialBlock)
+        if (isSpecialBlock)
         {
-            Invoke(nameof(InitialUpdate), 0.2f);
+            UpdateVisuals();
+            UpdateNeighbors();
+        }
+        else
+        {
+            Invoke(nameof(InitialUpdate), 0.1f);
         }
     }
+
+    public void MarkAsSpecial(SpecialType specialType)
+    {
+        isSpecialBlock = true;
+        SpecialType = specialType;
+
+        if (blockSpriteRenderer == null)
+            blockSpriteRenderer = GetComponent<SpriteRenderer>();
+
+        UpdateVisuals();
+        UpdateNeighbors();
+    }
+
 
     public void SetSpriteSet(AutoTileSpriteSet newSpriteSet)
     {
         spriteSet = newSpriteSet;
+
+        if (blockSpriteRenderer == null)
+            blockSpriteRenderer = GetComponent<SpriteRenderer>();
+            
         UpdateVisuals();
         UpdateNeighbors();
     }
@@ -100,6 +144,8 @@ public class AutoTileBlock : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
+        ShowAndResetHideTimer();
+        UpdateBar();
 
         UpdateVisuals();
         onBlockHit?.Invoke();
@@ -108,6 +154,65 @@ public class AutoTileBlock : MonoBehaviour
         {
             DestroyBlock();
         }
+    }
+
+    private void ShowAndResetHideTimer()
+    {
+        if (hideCoroutine != null)
+        {
+            StopCoroutine(hideCoroutine);
+        }
+
+        if (hpRoot == null || hpFill == null) return;
+
+        hpRoot.SetActive(true);
+
+        if (hpCanvasGroup != null)
+        {
+            hpCanvasGroup.alpha = 1f;
+        }
+
+        hideCoroutine = StartCoroutine(HideHpBarAfterDelay());
+    }
+
+    private IEnumerator HideHpBarAfterDelay()
+    {
+        yield return new WaitForSeconds(hpDisplayDuration);
+
+        if (hpCanvasGroup == null)
+        {
+            hpRoot.SetActive(false);
+            yield break;
+        }
+
+        float elapsed = 0f;
+        float startAlpha = hpCanvasGroup.alpha;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / fadeDuration);
+            hpCanvasGroup.alpha = Mathf.Lerp(startAlpha, 0f, t);
+            yield return null;
+        }
+
+        hpCanvasGroup.alpha = 0f;
+        hpRoot.SetActive(false);
+        hideCoroutine = null;
+    }
+
+    private void UpdateBar()
+    {
+        if (hpFill == null) return;
+
+        if (maxHealth <= 0)
+        {
+            hpFill.fillAmount = 0f;
+            return;
+        }
+
+        float fillAmount = (float)currentHealth / maxHealth;
+        hpFill.fillAmount = fillAmount;
     }
 
     protected virtual void UpdateVisuals()
@@ -134,6 +239,9 @@ public class AutoTileBlock : MonoBehaviour
                     break;
                 case SpecialType.CoinBlock:
                     blockSpriteRenderer.sprite = spriteSet.coinBlockSprite;
+                    break;
+                case SpecialType.BonusBlock:
+                    blockSpriteRenderer.sprite = spriteSet.bonusBlockSprite;
                     break;
             }
             return;
@@ -478,6 +586,11 @@ public class AutoTileBlock : MonoBehaviour
             if (existingBlock == this)
             {
                 allBlocks.Remove(GridPosition);
+            }
+
+            if (existingBlock.SpecialType == SpecialType.BonusBlock)
+            {
+                GameManager.Instance.WinGame();
             }
         }
     }

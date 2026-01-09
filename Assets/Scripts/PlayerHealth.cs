@@ -23,11 +23,13 @@ public class PlayerHealth : MonoBehaviour
     public UnityEvent onTakeDamage;
 
     private Rigidbody2D rb;
+    private Animator animator;
     private Transform respawnPoint;
     private void Start()
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         spawnPosition = respawnPoint != null ? respawnPoint.position : transform.position;
 
         LoadMaxHealth();
@@ -79,13 +81,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
         onHealthChanged?.Invoke(currentHealth);
-        Debug.Log($"Player healed {amount}. Current health: {currentHealth}/{maxHealth}");
     }
     public void Die()
     {
         if (isDead) return;
 
-        Debug.Log("Player died!");
         numberOfDeaths++;
         onDeathCountChanged?.Invoke(numberOfDeaths);
         isDead = true;
@@ -96,8 +96,18 @@ public class PlayerHealth : MonoBehaviour
         controller.enabled = false;
         }
 
-    StartCoroutine(RespawnRoutine());
+    StartCoroutine(DeathAndRespawn());
     }   
+
+    private System.Collections.IEnumerator DeathAndRespawn()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+        }
+        StartCoroutine(RespawnRoutine());
+        yield return null;
+    }
 
     private System.Collections.IEnumerator RespawnRoutine()
     {
@@ -113,15 +123,16 @@ public class PlayerHealth : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
         }
-        currentHealth = maxHealth;
+        Heal(maxHealth);
         invincibilityTimer = 0f;
         isInvincible = false;
         isDead = false;
-        onHealthChanged?.Invoke(currentHealth);
         PlayerController controller = GetComponent<PlayerController>();
         if (controller != null)
         {
             controller.enabled = true;
+            controller.SetIsAttacking(false);
+            Debug.Log("Player respawned and controller re-enabled.");
         }
     }
 

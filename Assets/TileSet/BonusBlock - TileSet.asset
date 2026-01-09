@@ -17,6 +17,7 @@ MonoBehaviour:
   coinBlockSprite: {fileID: 0}
   mineralBlockSprite: {fileID: 0}
   actionFeedbackSprite: {fileID: 0}
+  bonusBlockSprite: {fileID: -1971752718, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   fullSprite: {fileID: -1971752718, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
   topSprite: {fileID: 0}
   topInnerLeftSprite: {fileID: 0}

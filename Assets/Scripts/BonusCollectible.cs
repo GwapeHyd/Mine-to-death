@@ -56,7 +56,7 @@ public class BonusCollectible : MonoBehaviour
     {
         if (collision.CompareTag(playerTag) && !isBeingCollected)
         {
-            CollectItem(collision.gameObject);
+           
         }
     }
 

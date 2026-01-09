@@ -56,6 +56,7 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private AutoTileSpriteSet mineralSpriteSet;
     [SerializeField] private AutoTileSpriteSet mediumMineralSpriteSet;
     [SerializeField] private AutoTileSpriteSet largeMineralSpriteSet;
+    [SerializeField] private AutoTileSpriteSet bonusBlockSpriteSet;
 
     private System.Random random;
     private int[,] caveMap;
@@ -78,11 +79,14 @@ public class CaveGenerator : MonoBehaviour
         Random.InitState(seed);
 
         GenerateCaveMap();
-        PlaceBonusBlock();
-        PlaceHintBlocks();
+    
         PlaceMineralBlocks();
         PlaceMediumMineralBlocks();
         PlaceLargeMineralBlocks();
+
+        PlaceBonusBlock();
+        PlaceHintBlocks();
+
         SpawnBlocks();
     }
 
@@ -399,8 +403,13 @@ public class CaveGenerator : MonoBehaviour
 
     private void SpawnBlocks()
     {
-        if (defaultBlockPrefab == null) return;
+        if (defaultBlockPrefab == null) 
+        {
+            Debug.LogWarning("Default block prefab is not assigned. Cannot spawn blocks.");
+            return;
+        }
 
+        Debug.Log("Spawning cave blocks...");
         if (blocksParent == null)
         {
             GameObject blocksParentGO = new GameObject("Cave Blocks");
@@ -433,10 +442,16 @@ public class CaveGenerator : MonoBehaviour
                     GameObject block = Instantiate(prefabToSpawn, position, Quaternion.identity, blocksParent);
                     block.name = $"{GetBlockTypeName(blockType)}_{x}_{y}";
 
+                    spawnedBlocks.Add(block);
+
                     AutoTileBlock atb = block.GetComponent<AutoTileBlock>();
                     if (atb != null)
                     {
                         atb.RegisterGridPosition(new Vector2Int(x, y));
+                        if (blockType == 2 && bonusBlockSpriteSet != null)
+                        {
+                            atb.SetSpriteSet(bonusBlockSpriteSet);
+                        }
 
                         if (blockType == 8 && largeMineralSpriteSet != null)
                         {
@@ -454,7 +469,7 @@ public class CaveGenerator : MonoBehaviour
 
                         atb.RegisterGridPosition(new Vector2Int(x, y));
 
-                        if (blockType == 2 || blockType == 3 || blockType == 4 || blockType == 5) 
+                        if (blockType == 3 || blockType == 4 || blockType == 5) 
                         {
                         if (atb != null)
                         {
@@ -481,6 +496,17 @@ public class CaveGenerator : MonoBehaviour
                             }
                         } 
                     }
+                    SpriteRenderer[] srs = block.GetComponentsInChildren<SpriteRenderer>(true);
+            if (srs == null || srs.Length == 0)
+                Debug.LogWarning($"{block.name} : no SpriteRenderer found on prefab. Check prefab structure.");
+            else
+            {
+                foreach (var sr in srs)
+                {
+                    Debug.Log($"{block.name} : SpriteRenderer on '{sr.gameObject.name}' sprite={(sr.sprite != null ? sr.sprite.name : "null")} enabled={sr.enabled} color={sr.color} sortingLayer={sr.sortingLayerName} order={sr.sortingOrder} activeInHierarchy={sr.gameObject.activeInHierarchy}");
+                }
+            }
+
                 }
             }
         }
@@ -489,7 +515,7 @@ public class CaveGenerator : MonoBehaviour
         {
             if (go != null)
             {
-                DestroyImmediate(go);
+               // DestroyImmediate(go);
             }
         }
         spawnedBlocks.Clear();

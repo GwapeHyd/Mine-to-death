@@ -21,15 +21,12 @@ public class SanityManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("SanityManager Awake called.");
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
             onSanityChanged = new UnityEvent<int, int>();
             currentSanity = maxSanity;
-
-            Debug.Log("SanityManager instance set.");
         }
         else
         {
@@ -117,6 +114,7 @@ public class SanityManager : MonoBehaviour
     {
         SetMaxSanity(maxSanity + 5);
         IncreaseSanity(5);
+        onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
 
     public void SetMaxSanity(int newMaxSanity)

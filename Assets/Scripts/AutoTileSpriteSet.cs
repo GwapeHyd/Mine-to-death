@@ -9,6 +9,7 @@ public class AutoTileSpriteSet : ScriptableObject
     public Sprite coinBlockSprite;
     public Sprite mineralBlockSprite;
     public Sprite actionFeedbackSprite;
+    public Sprite bonusBlockSprite;
 
     [Header("Full Health Sprites")]
     public Sprite fullSprite;

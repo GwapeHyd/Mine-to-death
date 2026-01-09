@@ -50,6 +50,21 @@ TextureImporter:
   - first:
       213: -2399188949718692438
     second: 1bit-Char-Sheet_15
+  - first:
+      213: 6184086992341443137
+    second: 1bit-Char-Sheet_16
+  - first:
+      213: 9007993636930140670
+    second: 1bit-Char-Sheet_17
+  - first:
+      213: 9020953582831072319
+    second: 1bit-Char-Sheet_18
+  - first:
+      213: -3265126947597111240
+    second: 1bit-Char-Sheet_19
+  - first:
+      213: 2798362320435678288
+    second: 1bit-Char-Sheet_20
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -117,7 +132,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -523,10 +538,120 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14220a6da5a42d550800000000000000
+      internalID: 6184086992341443137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1bit-Char-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef933348c72d20d70800000000000000
+      internalID: 9007993636930140670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1bit-Char-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f34feef0d7dd03d70800000000000000
+      internalID: 9020953582831072319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1bit-Char-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8303bed2750ffa2d0800000000000000
+      internalID: -3265126947597111240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1bit-Char-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05c086e34b7c5d620800000000000000
+      internalID: 2798362320435678288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1bit-Char-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f216899550ca53489103d0bbb927412
-      internalID: 1381279101
+      spriteID: 12d589a4639b21c409cbff33dbf0674f
+      internalID: -1676900546
       vertices: []
       indices: 
       edges: []
@@ -535,7 +660,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 699192bf172f41249b8b160d726b533f
+    spriteID: a369cba1bcedd7d45b0bf296c6e04973
     internalID: 0
     vertices: []
     indices: 
@@ -555,8 +680,13 @@ TextureImporter:
       1bit-Char-Sheet_13: 6079451242721473682
       1bit-Char-Sheet_14: 7358520568196516491
       1bit-Char-Sheet_15: -2399188949718692438
-      1bit-Char-Sheet_16: 1381279101
+      1bit-Char-Sheet_16: 6184086992341443137
+      1bit-Char-Sheet_17: 9007993636930140670
+      1bit-Char-Sheet_18: 9020953582831072319
+      1bit-Char-Sheet_19: -3265126947597111240
       1bit-Char-Sheet_2: -2304168255599891827
+      1bit-Char-Sheet_20: 2798362320435678288
+      1bit-Char-Sheet_21: -1676900546
       1bit-Char-Sheet_3: 6108308913261428714
       1bit-Char-Sheet_4: -4556730138945543401
       1bit-Char-Sheet_5: 246250433944974308

@@ -47,11 +47,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (bonusBlock == null || theExit == null) return;
+        if (bonusBlock.activeSelf && theExit.activeSelf)
+        {
+            theExit.SetActive(false);
+        }
+
         if (hintBlocksDestroyed < maxHintBlocks && bonusBlock.activeSelf)
         {
             bonusBlock.SetActive(false);
         }
-        else
+        else if (hintBlocksDestroyed >= maxHintBlocks && !bonusBlock.activeSelf)
         {
             bonusBlock.SetActive(true);
         }
@@ -120,6 +126,6 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
-        
+        theExit.SetActive(true);
     }
 }

@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 2485203748950899332}
   - component: {fileID: 1128553039576084580}
   - component: {fileID: 5878733071178256376}
-  - component: {fileID: 602962483082979886}
+  - component: {fileID: 7912481416666272537}
   m_Layer: 8
   m_Name: BonusBlock
   m_TagString: BonusBlock
@@ -340,7 +340,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &602962483082979886
+--- !u!114 &7912481416666272537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -349,11 +349,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5151982795548472252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1266b15efe984347b642250531debb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b8adc1dee4f6f4e9d7f35cc50c0146, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpecialBlock
+  m_EditorClassIdentifier: Assembly-CSharp::AutoTileBlock
   isSpecialBlock: 1
-  SpecialType: 0
+  SpecialType: 4
   maxHealth: 500
   spriteSet: {fileID: 11400000, guid: 78d1c3da968ef794b98626e1e3028287, type: 2}
   forceOwnSprite: 1
@@ -367,4 +367,3 @@ MonoBehaviour:
   onBlockHit:
     m_PersistentCalls:
       m_Calls: []
-  hintSound: {fileID: 0}

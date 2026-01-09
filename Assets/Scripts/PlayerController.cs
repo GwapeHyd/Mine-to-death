@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using Unity.VisualScripting;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -9,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float maxFallSpeed = 15f;
-    [SerializeField] private float jumpForce = 8f;
     
     [Header("Physics")]
     [SerializeField] private float gravityScale = 3f;
@@ -31,6 +31,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode throwKey = KeyCode.R;
     [SerializeField] private float throwCooldown = 1f;
 
+    [Header("Double jump")]
+    [SerializeField] private int maxJumps = 2;
+    [SerializeField] private float jumpForce = 8f;
+    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private float jumpBufferTime = 0.2f;
+    private int jumpCount = 0;
+    [SerializeField] private bool enableDoubleJump = false;
+    [SerializeField] private bool requireReleaseBetweenJumps = true;
+    [SerializeField] private float minTimeBetweenJumps = 0.1f;
+    private float lastJumpTime = -Mathf.Infinity;
+
+
     [Header("Audio")]
     [SerializeField] private AudioClip hitSound;
     [SerializeField] private GameObject hitEffectPrefab;
@@ -44,6 +56,14 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded() => isGrounded;
     private bool isAttacking;
     private bool canThrowHead = false;
+    private int jumpsRemaining = 0;
+    private float lastJumpPressedTime;
+    private float lastGroundedTime; 
+    private bool jumpButtonHeldLastFrame = false;
+    private bool jumpReleasedSinceLastJump = true;
+    public bool CanDoubleJump() => enableDoubleJump;
+    private int EffectiveMaxJumps() => enableDoubleJump ? maxJumps : 1;
+    
 
     private List<AutoTileBlock> blocksInRange = new List<AutoTileBlock>();
 
@@ -54,10 +74,32 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         animator = GetComponent<Animator>();
+        jumpsRemaining = maxJumps;
     }
 
     private void Update()
     {
+        bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
+        bool jumpHeld = Input.GetKey(KeyCode.Space); 
+
+        if (jumpPressed) lastJumpPressedTime = Time.time;
+
+        bool nowGrounded = Physics2D.OverlapCircle(groundCheck. position, groundCheckRadius, groundLayer);
+        if (nowGrounded)
+        {
+            lastGroundedTime = Time.time;
+        }
+        if (nowGrounded && !isGrounded)
+        {
+            jumpsRemaining = EffectiveMaxJumps();
+            jumpReleasedSinceLastJump = true;
+        }
+        isGrounded = nowGrounded;
+
+        if (!jumpHeld) jumpReleasedSinceLastJump = true;
+
+        TryConsumeJump();
+
         if (!isAttacking)
         {
             moveInput = Input.GetAxis("Horizontal");
@@ -75,13 +117,7 @@ public class PlayerController : MonoBehaviour
             else
                 transform.localScale = new Vector3(-1, 1, 1);
         }
-        
-        isGrounded = Physics2D.OverlapCircle(groundCheck. position, groundCheckRadius, groundLayer);
-        
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Jump();
-        }
+    
         
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
@@ -93,7 +129,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(attackKey) && !isAttacking && isGrounded)
+        if (Input.GetKey(attackKey) && !isAttacking && isGrounded)
         {
             Attack();
         }
@@ -123,6 +159,49 @@ public class PlayerController : MonoBehaviour
         }
         animator.SetFloat("MoveX", Mathf.Abs(rb.linearVelocity.x));
         animator.SetFloat("MoveY", rb.linearVelocity.y);
+    }
+    
+    public void SetCanDoubleJump(bool enabled)
+    {
+        enableDoubleJump = enabled;
+        jumpsRemaining = Mathf.Min(jumpsRemaining, EffectiveMaxJumps());
+    }
+    private void TryConsumeJump()
+    {
+        if (Time.time - lastJumpPressedTime > jumpBufferTime)
+            return;
+        if (Time.time - lastJumpTime < minTimeBetweenJumps)
+            return;
+        if (Time.time - lastGroundedTime <= coyoteTime && jumpsRemaining > 0)
+        {
+            DoJump();
+            lastJumpPressedTime = -999f; 
+        }
+
+        if (!isGrounded && jumpsRemaining > 0 && CanDoubleJump())
+        {
+            if (requireReleaseBetweenJumps && !jumpReleasedSinceLastJump)
+            {
+                return; 
+            }
+
+            DoJump();
+            lastJumpPressedTime = -999f;
+        }
+    }
+
+    private void DoJump()
+    {
+        Vector2 v = rb.linearVelocity;
+        v.y =0f;
+        rb.linearVelocity = v;
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        jumpsRemaining = Mathf.Max(0, jumpsRemaining - 1);
+        jumpReleasedSinceLastJump = false;
+        lastJumpTime = Time.time;
+
+        animator.SetBool("isJumping", true);
     }
 
     private void HandleHeadThrow()
@@ -184,13 +263,6 @@ public class PlayerController : MonoBehaviour
         hasActiveProjetile = false;
     }
 
-    private void Jump()
-    {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        animator.SetBool("isJumping", true);
-
-    }
     
     private void OnDrawGizmosSelected()
     {
@@ -269,8 +341,19 @@ public class PlayerController : MonoBehaviour
         canThrowHead = true;
     }
 
+    public void EnableDoubleJump()
+    {
+        enableDoubleJump = true;
+        jumpsRemaining = Mathf.Min(jumpsRemaining, EffectiveMaxJumps());
+    }
+
     public float GetMoveInput()
     {
         return moveInput;
+    }
+
+    public void SetIsAttacking(bool attacking)
+    {
+        isAttacking = attacking;
     }
 }
