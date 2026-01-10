@@ -21,7 +21,6 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private GameObject bonusBlockPrefab;
     [SerializeField] private GameObject hintBlockFarPrefab;
     [SerializeField] private GameObject hintBlockNearPrefab;
-    [SerializeField] private GameObject coinBlockPrefab;
     [SerializeField] private GameObject mineralBlockPrefab;
     [SerializeField] private GameObject mediumMineralBlockPrefab;
     [SerializeField] private GameObject largeMineralBlockPrefab;
@@ -37,11 +36,8 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private int hintBlockNearCount = 3;
     [SerializeField] private float farHintMinDistance = 30f;
     [SerializeField] private float nearHintMinDistance = 15f;
-
-    [Header("Coin Block Settings")]
-    [SerializeField] private float coinBlockSpawnChance = .05f;
     [SerializeField] private float surfaceLevel = 200f;
-    [SerializeField] private int minDepthForCoinBlocks = 20;
+
 
     [Header("Minerals Settings")]
     [SerializeField, Range(0f, 1f)] private float mineralSpawnChance = 0.05f;
@@ -430,15 +426,6 @@ public class CaveGenerator : MonoBehaviour
                     
                     float blockDepth = surfaceLevel - position.y;
 
-                    if (blockType == 1 && !IsEdgePosition(new Vector2Int(x,y)) && coinBlockPrefab != null && blockDepth >= minDepthForCoinBlocks)
-                    {
-                        if (coinRandom.NextDouble() < coinBlockSpawnChance)
-                        {
-                            prefabToSpawn = coinBlockPrefab;
-                            blockType = 5;
-                        }
-                    }
-
                     GameObject block = Instantiate(prefabToSpawn, position, Quaternion.identity, blocksParent);
                     block.name = $"{GetBlockTypeName(blockType)}_{x}_{y}";
 
@@ -515,7 +502,8 @@ public class CaveGenerator : MonoBehaviour
             case 2 : return bonusBlockPrefab;
             case 3 : return hintBlockFarPrefab;
             case 4 : return hintBlockNearPrefab;
-            case 5 : return coinBlockPrefab;
+            case 5 : 
+                return defaultBlockPrefab;
             case 6 : return mineralBlockPrefab;
             case 7 : return mediumMineralBlockPrefab;
             case 8 : return largeMineralBlockPrefab;

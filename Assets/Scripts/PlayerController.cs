@@ -22,13 +22,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Mining")]
     [SerializeField] private int damagePerHit = 50;
-    public int DamagePerHit => damagePerHit;   
-    [SerializeField] private KeyCode attackKey = KeyCode.E;
+    public int DamagePerHit => damagePerHit;  
 
     [Header("Head Projectile")]
     [SerializeField] private HeadProjectile headProjectilePrefab;
     [SerializeField] private Vector3 headProjectileSpawnOffset = new Vector3(0, 0.5f, 0);
-    [SerializeField] private KeyCode throwKey = KeyCode.R;
     [SerializeField] private float throwCooldown = 1f;
 
     [Header("Double jump")]
@@ -46,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip hitSound;
     [SerializeField] private GameObject hitEffectPrefab;
 
+
     private Animator animator; 
     private Rigidbody2D rb;
     private float moveInput;
@@ -61,6 +60,7 @@ public class PlayerController : MonoBehaviour
     private bool jumpReleasedSinceLastJump = true;
     public bool CanDoubleJump() => enableDoubleJump;
     private int EffectiveMaxJumps() => enableDoubleJump ? maxJumps : 1;
+    private InputReader input;
     
 
     private List<AutoTileBlock> blocksInRange = new List<AutoTileBlock>();
@@ -72,17 +72,30 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         animator = GetComponent<Animator>();
+        input = GetComponent<InputReader>();
         jumpsRemaining = maxJumps;
     }
 
     private void Update()
     {
-        bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
-        bool jumpHeld = Input.GetKey(KeyCode.Space); 
+        if (input != null)
+        {
+            if (input.ConsumeJumpPressed())
+            {
+                lastJumpPressedTime = Time.time;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                lastJumpPressedTime = Time.time;
+            }
+        }
 
-        if (jumpPressed) lastJumpPressedTime = Time.time;
+        bool jumpHeld = input != null ? input.JumpHeld : Input.GetKey(KeyCode.Space);
 
-        bool nowGrounded = Physics2D.OverlapCircle(groundCheck. position, groundCheckRadius, groundLayer);
+        bool nowGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if (nowGrounded)
         {
             lastGroundedTime = Time.time;
@@ -93,14 +106,14 @@ public class PlayerController : MonoBehaviour
             jumpReleasedSinceLastJump = true;
         }
         isGrounded = nowGrounded;
-
+        
         if (!jumpHeld) jumpReleasedSinceLastJump = true;
 
         TryConsumeJump();
 
         if (!isAttacking)
         {
-            moveInput = Input.GetAxis("Horizontal");
+            moveInput = input != null ? input.Move.x : Input.GetAxis("Horizontal");
         }
         else
         {
@@ -116,8 +129,17 @@ public class PlayerController : MonoBehaviour
                 transform.localScale = new Vector3(-1, 1, 1);
         }
     
+        bool fastFall = false;
+        if (input != null)
+        {
+            fastFall = input.Move.y < -0.5f;
+        }
+        else
+        {
+            fastFall = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+        }
         
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        if (fastFall)
         {
             rb. gravityScale = gravityScale * fastFallMultiplier;
         }
@@ -127,17 +149,31 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKey(attackKey) && !isAttacking && isGrounded)
+        if (input != null ? input.Fire : Input.GetKeyDown(KeyCode.E))
         {
-            Attack();
+            if (!isAttacking && isGrounded)
+                Attack();
         }
 
         animator.SetBool("isJumping", !isGrounded);
 
         if (!hasActiveProjectile && canThrowHead)
         {
-            HandleHeadThrow();
+            bool rPressedThisFrame = false;
+            if (input != null)
+            {
+                rPressedThisFrame = input.FireSpecialPressedThisFrame;
+            }
+            else
+            {
+                rPressedThisFrame = Input.GetKeyDown(KeyCode.R);
+            }
+            if (rPressedThisFrame && Time.time - lastThrowTime >= throwCooldown)
+            {
+                ThrowHead();
+            }
         }
+        
 
         if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.gameOver)
         {
@@ -206,14 +242,6 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("isJumping", true);
     }
-
-    private void HandleHeadThrow()
-    {
-        if (Input.GetKeyDown(throwKey) && Time.time - lastThrowTime >= throwCooldown)
-        {
-            ThrowHead();
-        }
-    }  
 
     private void ThrowHead()
     {

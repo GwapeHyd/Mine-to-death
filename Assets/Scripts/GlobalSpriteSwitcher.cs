@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GlobalSpriteSwitcher : MonoBehaviour
@@ -40,12 +39,6 @@ public class GlobalSpriteSwitcher : MonoBehaviour
         UpdateAllAutoTileBlocks();
         UpdateAllSpecialBlocks();
         UpdateAllUIColorSets();
-
-        if (ThemeManager.Instance != null)
-        {
-            ThemeManager.Instance.SetIndex(currentIndex);
-        }
-        
     }
 
     private void UpdateAllAnimators()

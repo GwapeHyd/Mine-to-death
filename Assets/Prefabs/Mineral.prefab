@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mineral
   mineralValue: 1
-  collectEffect: {fileID: 0}
+  collectEffect: {fileID: 8530216131361220289, guid: 4b873102ba9fed64d9cc439d2c06e50f, type: 3}
   collectSound: {fileID: 8300000, guid: 9b81cf1da2b5b4d4aa0fc90e9dbd764d, type: 3}
   launchForce: 3
   launchSpreadAngle: 45

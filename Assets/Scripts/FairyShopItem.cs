@@ -19,8 +19,6 @@ public class FairyShopItem : MonoBehaviour
     [SerializeField] private Image iconImage;
     [SerializeField] private Button purchaseButton;
 
-    [SerializeField] private GameObject effectVFX;
-
     private PlayerHealth playerHealth;
     private bool isPurchased = false;
 
@@ -103,10 +101,7 @@ public class FairyShopItem : MonoBehaviour
             case PsychosisType.Insanity:
                 if (playerController != null)
                     playerController.EnableHeadThrowing();
-                    if (effectVFX != null)
-                    {
-                        Instantiate(effectVFX, playerController.transform.position, Quaternion.identity);
-                    }
+                    GameManager.Instance.ActivateHeadThrowTutorial();
                 break;
             case PsychosisType.Madness:
                 if (SanityManager.Instance != null)

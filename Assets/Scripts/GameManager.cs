@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject hintFarFeedbackGO;
     [SerializeField] private GameObject hintCloseFeedbackGO;
     [SerializeField] private GameObject endMenuUI;
+
+
+    [SerializeField] private GameObject upgradeText;
     public int maxHintBlocks;
     private int currentHintBlocks = 0;
     public int hintFarBlocksDestroyed;
@@ -199,5 +202,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         endMenuUI.SetActive(true);
             Time.timeScale = 0f;
+    }
+
+    public void ActivateHeadThrowTutorial()
+    {
+        upgradeText.SetActive(true);
+        StartCoroutine(HeadThrowTutorialCoroutine());
+    }
+
+    private IEnumerator HeadThrowTutorialCoroutine()
+    {
+        yield return new WaitForSeconds(8f);
+        upgradeText.SetActive(false);
     }
 }

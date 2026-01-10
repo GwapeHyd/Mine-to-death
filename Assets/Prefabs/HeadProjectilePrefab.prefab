@@ -185,5 +185,5 @@ MonoBehaviour:
   damage: 5
   maxLifetime: 5
   spriteRenderer: {fileID: 3584914740869359199}
-  launchSound: {fileID: 0}
-  bounceSound: {fileID: 0}
+  launchSound: {fileID: 8300000, guid: c64d0dd98ee540c4283a2d6bad03807b, type: 3}
+  bounceSound: {fileID: 8300000, guid: 26ff581c409c11d4f8f454f0df748a72, type: 3}
