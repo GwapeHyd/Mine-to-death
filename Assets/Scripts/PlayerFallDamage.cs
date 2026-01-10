@@ -14,6 +14,7 @@ public class PlayerFallDamage : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField] private GameObject hitEffectPrefab;
+    [SerializeField] private GameObject dustEffectPrefab;
     [SerializeField] private AudioClip hitSound;
 
     // Optional: layer name used when falling onto blocks (used in OverlapPointAll fallback)
@@ -120,6 +121,10 @@ public class PlayerFallDamage : MonoBehaviour
                                 if (hitEffectPrefab != null)
                                 {
                                     Instantiate(hitEffectPrefab, landingContact.Value.point, Quaternion.identity);
+                                }
+                                if (dustEffectPrefab != null)
+                                {
+                                    Instantiate(dustEffectPrefab, landingContact.Value.point, Quaternion.identity);
                                 }
                                 if (hitSound != null && AudioManager.Instance != null)
                                 {

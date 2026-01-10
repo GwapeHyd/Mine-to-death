@@ -12,6 +12,7 @@ public class SanityManager : MonoBehaviour
     [SerializeField] private int sanityDecreaseRate = 1;
 
     [SerializeField] private GameObject fairyShopGO;
+    [SerializeField] private GameObject dialogue;
     
     private int currentSanity;
     private float sanityDecreaseTimer = 1f;
@@ -81,9 +82,13 @@ public class SanityManager : MonoBehaviour
                 if (playerHealth != null)
                 {
                     playerHealth.Die();
-                    fairyShopGO.SetActive(true);
                     currentSanity = maxSanity;
                     onSanityChanged?.Invoke(currentSanity, maxSanity);
+                    if (fairyShopGO != null && !fairyShopGO.activeSelf)
+                    {
+                        fairyShopGO.SetActive(true);
+                        dialogue.SetActive(true);
+                    }
                 }
             }
         }
@@ -110,7 +115,7 @@ public class SanityManager : MonoBehaviour
     public void AddMadnessPsychosis()
     {
         SetMaxSanity(maxSanity + 10);
-        IncreaseSanity(10);
+        IncreaseSanity(maxSanity);
         onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
 
