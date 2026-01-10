@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
             HandleHeadThrow();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.gameOver)
         {
             GameManager.Instance.TogglePauseMenu();
         }

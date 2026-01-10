@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -54,13 +55,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (bonusBlock == null || chestContainer == null) return;
         if (gameOver)
         {
-            endMenuUI.SetActive(true);
-            Time.timeScale = 0f;
+            StartCoroutine(EndGameCoroutine());
             return;
         }
+        if (bonusBlock == null || chestContainer == null) return;
+        
 
         if (hintBlocksDestroyed < maxHintBlocks && bonusBlock.activeSelf)
         {
@@ -160,7 +161,12 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        // redirige vers la page d'accueil ou une page "merci"
+        Application.OpenURL("https://gwapehyd.itch.io/mine-to-death-test-build");
+#else
         Application.Quit();
+#endif
     }  
 
     public void TogglePauseMenu()
@@ -186,5 +192,12 @@ public class GameManager : MonoBehaviour
         {
             fairyShop.isLeveledUp = true;
         }
+    }
+
+    private IEnumerator EndGameCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        endMenuUI.SetActive(true);
+            Time.timeScale = 0f;
     }
 }
