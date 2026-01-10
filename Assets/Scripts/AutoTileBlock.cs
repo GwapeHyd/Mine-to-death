@@ -248,11 +248,9 @@ public class AutoTileBlock : MonoBehaviour
         }
         float healthPercentage = (float)currentHealth / maxHealth;
 
-        // État endommagé (50% ou moins)
         if (healthPercentage <= 0.5f && healthPercentage > 0f)
         {
             blockSpriteRenderer.sprite = spriteSet.damagedSprite;
-            Debug.Log($"Set to damaged sprite for {gameObject.name}");
             return;
         }
 

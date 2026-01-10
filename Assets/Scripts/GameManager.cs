@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("Hint Settings")]
     [SerializeField] private GameObject hintFarFeedbackGO;
     [SerializeField] private GameObject hintCloseFeedbackGO;
+    [SerializeField] private GameObject endMenuUI;
     public int maxHintBlocks;
     private int currentHintBlocks = 0;
     public int hintFarBlocksDestroyed;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     private TextMeshPro hintFarText;
     private TextMeshPro hintCloseText;
+    public bool gameOver = false;
 
 
     private void Awake()
@@ -53,6 +55,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (bonusBlock == null || chestContainer == null) return;
+        if (gameOver)
+        {
+            endMenuUI.SetActive(true);
+            return;
+        }
 
         if (hintBlocksDestroyed < maxHintBlocks && bonusBlock.activeSelf)
         {
@@ -142,5 +149,28 @@ public class GameManager : MonoBehaviour
     public void WinGame()
     {
         chestContainer.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }  
+
+    public void TogglePauseMenu()
+    {
+        if (gameOver) return;
+
+        bool isPaused = Time.timeScale == 0f;
+
+        if (isPaused)
+        {
+            Time.timeScale = 1f;
+            endMenuUI.SetActive(false);
+        }
+        else
+        {
+            endMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 }

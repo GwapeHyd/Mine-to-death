@@ -59,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         if (isInvincible || isDead) return;
-
+        Debug.Log("Player took damage: " + amount);
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
 

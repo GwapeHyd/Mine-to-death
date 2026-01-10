@@ -151,6 +151,4 @@ public class PlayerFallDamage : MonoBehaviour
         }
     }
 
-    // Optional: keep leaveGroundY updated if player jumps (e.g., using velocity), but OnCollisionExit2D handles typical cases.
-    // You can also track leaving ground via other triggers or logic (e.g., jumping code) and set leaveGroundY there.
 }

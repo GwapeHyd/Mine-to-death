@@ -435,14 +435,14 @@ MonoBehaviour:
   SpecialType: 3
   maxHealth: 200
   spriteSet: {fileID: 11400000, guid: 7eca951560531d0469a52d175b67d4ee, type: 2}
-  forceOwnSprite: 1
-  ownSprite: {fileID: 1846112666, guid: 40f90d38f93a71d47a6e9cedef638b3c, type: 3}
+  forceOwnSprite: 0
+  ownSprite: {fileID: -1699652215, guid: b87795ff040b73342a52dca50b998e15, type: 3}
   blockSpriteRenderer: {fileID: 2485203748950899332}
   actionFeedback: {fileID: 420959365672535837}
   hpRoot: {fileID: 2603484004676160798}
   hpFill: {fileID: 4133660740807852265}
   hpCanvasGroup: {fileID: 5472422668021915822}
-  hpDisplayDuration: 2
+  hpDisplayDuration: 0.5
   fadeDuration: 0.25
   tileSize: 1
   onBlockDestroyed:

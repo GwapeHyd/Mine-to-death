@@ -140,6 +140,11 @@ public class PlayerController : MonoBehaviour
         {
             HandleHeadThrow();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.Instance.TogglePauseMenu();
+        }
     }
 
     private void FixedUpdate()
@@ -294,8 +299,7 @@ public class PlayerController : MonoBehaviour
             }
 
             PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-            PlayerStateManager playerStateManager = GetComponent<PlayerStateManager>();
-            if (playerHealth != null && playerStateManager != null && playerStateManager.ShouldTakeMiningDamage())
+            if (playerHealth != null)
             {
                 playerHealth.TakeDamageFromMining();
             }
