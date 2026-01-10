@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float moveInput;
     private float lastThrowTime = 0f;
-    private bool hasActiveProjetile = false;
+    private bool hasActiveProjectile = false;
     private bool isGrounded;
     public bool IsGrounded() => isGrounded;
     private bool isAttacking;
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("isJumping", !isGrounded);
 
-        if (!hasActiveProjetile && canThrowHead)
+        if (!hasActiveProjectile && canThrowHead)
         {
             HandleHeadThrow();
         }
@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour
             headProjectile.SetDamage(damagePerHit);
             headProjectile.Initialize(transform, throwDirection, headProjectileSpawnOffset);
             headProjectile.Launch(throwDirection);
-            hasActiveProjetile = true;
+            hasActiveProjectile = true;
             lastThrowTime = Time.time;
 
             StartCoroutine(WaitForProjectileDestruction(headProjectile));
@@ -260,7 +260,7 @@ public class PlayerController : MonoBehaviour
         {
             yield return null;
         }
-        hasActiveProjetile = false;
+        hasActiveProjectile = false;
     }
 
     

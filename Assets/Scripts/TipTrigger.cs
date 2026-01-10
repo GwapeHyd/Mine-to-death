@@ -2,47 +2,42 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
+using UnityEditor;
+using Unity.VisualScripting;
 
 
 public class TipTrigger : MonoBehaviour
 {
     [Tooltip("Liste locale de tips spécifiques à ce trigger. Si vide, utilisera le TipManager global.")]
-    [SerializeField] private List<string> localTips = new List<string>();
+    [SerializeField] private string[] localTips;
+    [SerializeField] private float textSpeed;
     [SerializeField] private bool triggerOnce = true;
     private bool hasTriggered = false;
     [SerializeField] private GameObject tipUI;
 
-    private TipManager tipManager;
+    private int index;
 
     private void Awake()
     {
-        tipManager = FindFirstObjectByType<TipManager>();
-    }
-    public string GetFirstTip()
-    {
-        if (localTips != null && localTips.Count > 0)
-        {
-            return localTips[0];
-        }
-        else if (tipManager != null)
-        {
-            return tipManager.GetNextTip();
-        }
-        return string.Empty;
+        index = -1;
     }
 
-    public string GetTip()
+    private void StartDialogue()
     {
-        if (localTips != null && localTips.Count > 0)
+        StartCoroutine(TypeLine());
+    }
+
+    private IEnumerator TypeLine()
+    {      
+        TextMeshPro tipText = tipUI.GetComponentInChildren<TextMeshPro>();
+        tipText.text = "";
+
+        foreach (char letter in localTips[index].ToCharArray())
         {
-            int randomIndex = UnityEngine.Random.Range(0, localTips.Count);
-            return localTips[randomIndex];
+            tipText.text += letter;
+            yield return new WaitForSeconds(textSpeed);
         }
-        else if (tipManager != null)
-        {
-            return tipManager.GetNextTip();
-        }
-        return string.Empty;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -51,26 +46,13 @@ public class TipTrigger : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            string tip = GetTip();
-            if (tip != localTips[0])
+            index++;
+            tipUI.SetActive(true);  
+            StartDialogue();     
+            if (index >= localTips.Length)
             {
-                if (triggerOnce && !hasTriggered)
-                {
-                    tip = GetFirstTip();
-                    hasTriggered = true;
-                }
-            }
-            
-            if (!string.IsNullOrEmpty(tip))
-            {
-                tipUI.SetActive(true);
-                TextMeshPro tipText = tipUI.GetComponentInChildren<TextMeshPro>();
-                if (tipText != null)
-                {
-                    Debug.Log("Displaying tip: " + tip);
-                    tipText.text = tip;
-                }
                 hasTriggered = true;
+                index = 0;
             }
         }
     }

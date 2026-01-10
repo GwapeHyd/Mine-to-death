@@ -62,7 +62,7 @@ public class Shop : MonoBehaviour
                 interactionFeedback.SetActive(true);
                 if (!isActivated)
                 {
-                    interactionFeedback.GetComponent<TMPro.TextMeshPro>().text = "Come back later ...";
+                    interactionFeedback.GetComponent<TMPro.TextMeshPro>().text = "Come back later";
                 }
                 else
                 {

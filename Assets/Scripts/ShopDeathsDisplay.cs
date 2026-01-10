@@ -28,7 +28,7 @@ public class ShopDeathsDisplay : MonoBehaviour
     {
         if (deathsText != null)
         {
-            deathsText.text = $"Your Deaths: {totalDeaths}";
+            deathsText.text = $"{totalDeaths}";
         }
     }
 

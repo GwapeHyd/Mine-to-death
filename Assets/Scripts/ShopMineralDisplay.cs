@@ -26,7 +26,7 @@ public class ShopMineralDisplay : MonoBehaviour
     {
         if (mineralText != null)
         {
-            mineralText.text = $"Your Minerals: {totalMinerals}";
+            mineralText.text = $"{totalMinerals}";
         }
     }
 

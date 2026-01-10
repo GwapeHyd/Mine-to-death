@@ -33,7 +33,6 @@ public class PlayerHealth : MonoBehaviour
         spawnPosition = respawnPoint != null ? respawnPoint.position : transform.position;
 
         LoadMaxHealth();
-        Debug.Log($"PlayerHealth initialized. Current Health: {currentHealth}/{maxHealth}");    
         onHealthChanged?. Invoke(currentHealth);
     }
     private void Update()
@@ -64,7 +63,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
 
-        Debug.Log($"Player took {amount} damage. Current health: {currentHealth}/{maxHealth}");
         onHealthChanged?.Invoke(currentHealth);
         onTakeDamage?.Invoke();
         isInvincible = true;
@@ -132,7 +130,6 @@ public class PlayerHealth : MonoBehaviour
         {
             controller.enabled = true;
             controller.SetIsAttacking(false);
-            Debug.Log("Player respawned and controller re-enabled.");
         }
     }
 
@@ -157,7 +154,6 @@ public class PlayerHealth : MonoBehaviour
     {
         PlayerPrefs.SetInt("MaxHealth", maxHealth);
         PlayerPrefs.Save();
-        Debug.Log($"Max health {maxHealth} saved to PlayerPrefs.");
     }
 
     public void LoadMaxHealth()
@@ -165,12 +161,11 @@ public class PlayerHealth : MonoBehaviour
         if (PlayerPrefs.HasKey("MaxHealth"))
         {
             maxHealth = PlayerPrefs.GetInt("MaxHealth", 10);
-            Debug.Log($"Max health loaded from PlayerPrefs: {maxHealth}");
             currentHealth = maxHealth;
         }
         else
         {
-            Debug.Log("No saved max health found in PlayerPrefs. Using default.");
+            Debug.LogWarning("No saved max health found in PlayerPrefs. Using default.");
         }
     }
 
