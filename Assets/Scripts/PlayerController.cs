@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 8f;
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private float jumpBufferTime = 0.2f;
-    private int jumpCount = 0;
     [SerializeField] private bool enableDoubleJump = false;
     [SerializeField] private bool requireReleaseBetweenJumps = true;
     [SerializeField] private float minTimeBetweenJumps = 0.1f;
@@ -59,7 +58,6 @@ public class PlayerController : MonoBehaviour
     private int jumpsRemaining = 0;
     private float lastJumpPressedTime;
     private float lastGroundedTime; 
-    private bool jumpButtonHeldLastFrame = false;
     private bool jumpReleasedSinceLastJump = true;
     public bool CanDoubleJump() => enableDoubleJump;
     private int EffectiveMaxJumps() => enableDoubleJump ? maxJumps : 1;
@@ -322,7 +320,6 @@ public class PlayerController : MonoBehaviour
     public void AttackFinished()
     {
         isAttacking = false;
-        Debug.Log("Attack finished.");
     }
 
     public void AddBlockInRange(AutoTileBlock block)

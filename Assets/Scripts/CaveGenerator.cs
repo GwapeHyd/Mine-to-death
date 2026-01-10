@@ -482,20 +482,6 @@ public class CaveGenerator : MonoBehaviour
                         }
                         }
                     }
-
-                    if (blockType == 5)
-                    {
-                        CoinBlock coinBlock = block.GetComponent<CoinBlock>();
-                        if (coinBlock != null)
-                        {
-                            var field = coinBlock.GetType().GetField("surfaceLevel", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-                            if (field != null)
-                            {
-                                field.SetValue(coinBlock, surfaceLevel);
-                            }
-                        } 
-                    }
                     SpriteRenderer[] srs = block.GetComponentsInChildren<SpriteRenderer>(true);
             if (srs == null || srs.Length == 0)
                 Debug.LogWarning($"{block.name} : no SpriteRenderer found on prefab. Check prefab structure.");

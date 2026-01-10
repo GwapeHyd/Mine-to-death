@@ -19,8 +19,6 @@ public class SanityUI : MonoBehaviour
 
         SanityManager.Instance.onSanityChanged.AddListener(UpdateSanityUI);
         UpdateSanityUI(SanityManager.Instance.CurrentSanity, SanityManager.Instance.MaxSanity);
-
-        Debug.Log("SanityUI initialized and subscribed to SanityManager.");
     }
 
     private void OnDestroy()
@@ -47,8 +45,6 @@ public class SanityUI : MonoBehaviour
         }
 
         fill.fillAmount = (float)currentSanity / maxSanity;
-
-        Debug.Log($"Sanity UI updated: {currentSanity}/{maxSanity}");
     }
 
     public void SetUIColor(Color newColor, Color newColor2)

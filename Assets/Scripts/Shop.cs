@@ -66,7 +66,7 @@ public class Shop : MonoBehaviour
                 }
                 else
                 {
-                    interactionFeedback.GetComponent<TMPro.TextMeshPro>().text = "Press A to Open Shop";
+                    interactionFeedback.GetComponent<TMPro.TextMeshPro>().text = "Press E to Open Shop";
                 }
             }
         }

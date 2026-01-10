@@ -54,7 +54,6 @@ public class Vortex : MonoBehaviour
         }
 
         rb.linearVelocity = Vector2.zero;
-        Time.timeScale = 0f;
     }
 
 }

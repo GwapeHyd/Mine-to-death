@@ -30,7 +30,6 @@ public class SanityManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Duplicate SanityManager instance found. Destroying the new one.");
             Destroy(gameObject);
         }
     }
@@ -95,7 +94,6 @@ public class SanityManager : MonoBehaviour
     {
         currentSanity -= amount;
         currentSanity = Mathf.Max(currentSanity, 0);
-        Debug.Log($"Sanity decreased by {amount}. Current sanity: {currentSanity}/{maxSanity}");
 
         onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
@@ -104,7 +102,6 @@ public class SanityManager : MonoBehaviour
     {
         currentSanity += amount;
         currentSanity = Mathf.Min(currentSanity, maxSanity);
-        Debug.Log($"Sanity increased by {amount}. Current sanity: {currentSanity}/{maxSanity}");
 
         onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
@@ -112,8 +109,8 @@ public class SanityManager : MonoBehaviour
 
     public void AddMadnessPsychosis()
     {
-        SetMaxSanity(maxSanity + 5);
-        IncreaseSanity(5);
+        SetMaxSanity(maxSanity + 10);
+        IncreaseSanity(10);
         onSanityChanged?.Invoke(currentSanity, maxSanity);
     }
 

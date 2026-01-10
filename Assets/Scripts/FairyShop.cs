@@ -19,6 +19,7 @@ public class FairyShop : MonoBehaviour
     private bool isPlayerInRange = false;
     private bool isShopOpen = false;
     private PlayerController playerController;
+    public bool isLeveledUp = false;
 
     private void Start()
     {
@@ -46,6 +47,13 @@ public class FairyShop : MonoBehaviour
         if (isShopOpen && Input.GetKeyDown(KeyCode.Escape))
         {
             CloseShop();
+        }
+
+        if (isLeveledUp)
+        {
+            Animator animator = GetComponent<Animator>();
+            if (animator != null)
+                animator.SetTrigger("Upgrade");
         }
     }
 
@@ -122,7 +130,6 @@ public class FairyShop : MonoBehaviour
         {
             Image[] images = fairyShopUI.GetComponentsInChildren<Image>();
             Image backgroundImage = fairyShopUI.GetComponent<Image>(); 
-            Debug.Log($"Found {images.Length} images in Fairy Shop UI.");   
             foreach (var img in images)
             {
                 img.color = newColor2;

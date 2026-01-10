@@ -83,7 +83,6 @@ public class ShopItem : MonoBehaviour
         if (MineralManager.Instance.SpendMinerals(ItemCost))
         {
             ApplyItemEffect();
-            Debug.Log($"Purchased {itemName} for {ItemCost} minerals.");
             costMultiplier *= 2;
             UpdateCostText();
             UpdatePurchaseButton();
@@ -91,10 +90,6 @@ public class ShopItem : MonoBehaviour
             {
                 AudioManager.Instance.PlaySound(purchaseSound, 0.5f);
             }
-        }
-        else
-        {
-            Debug.Log("Not enough minerals to purchase this item.");
         }
     }
 
@@ -117,7 +112,6 @@ public class ShopItem : MonoBehaviour
                         int currentMax = (int)field.GetValue(playerHealth);
                         field.SetValue(playerHealth, currentMax + effectValue);
                         playerHealth.Heal(effectValue);
-                        Debug.Log($"Increased max health by {effectValue}.");
                         totalStatsText.text = $"{currentMax + effectValue}";
                     }
                 }
@@ -137,8 +131,6 @@ public class ShopItem : MonoBehaviour
                         totalStatsText.text = $"{currentDamage + effectValue}";
                     }
 
-                    
-                    Debug.Log($"Increased damage by {effectValue}.");
                 }
                 break;
 
@@ -171,7 +163,6 @@ public class ShopItem : MonoBehaviour
         {
             MineralManager.Instance.onMineralCountChanged.AddListener(OnMineralsChanged);
             UpdatePurchaseButton();
-            Debug.Log("<color=red>ShopItem registered to MineralManager's onMineralCountChanged event.</color>");
         }
     }
 

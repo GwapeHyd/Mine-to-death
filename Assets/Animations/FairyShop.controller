@@ -36,7 +36,7 @@ AnimatorController:
   m_Name: FairyShop
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: UpgradeFairyShop
+  - m_Name: Upgrade
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -69,7 +69,7 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6245584595331156311}
-    m_Position: {x: 410, y: 200, z: 0}
+    m_Position: {x: 410, y: 180, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -89,7 +89,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: UpgradeFairyShop
+    m_ConditionEvent: Upgrade
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6245584595331156311}

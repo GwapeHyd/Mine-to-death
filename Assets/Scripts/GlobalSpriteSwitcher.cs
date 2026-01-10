@@ -113,11 +113,6 @@ public class GlobalSpriteSwitcher : MonoBehaviour
         {
             healthUI.SetUIColor(selectedColor);
         }
-        CoinUI coinUI = FindFirstObjectByType<CoinUI>();
-        if (coinUI != null)
-        {
-            coinUI.SetUIColor(selectedColor);
-        }
         Fairy fairy = FindFirstObjectByType<Fairy>();
         if (fairy != null)
         {

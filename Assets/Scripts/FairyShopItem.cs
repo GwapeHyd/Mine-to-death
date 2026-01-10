@@ -80,7 +80,6 @@ public class FairyShopItem : MonoBehaviour
         if (playerHealth.SpendDeaths(cost))
         {
             ApplyItemEffect();
-            Debug.Log($"Purchased {itemName} for {cost} deaths.");
             if (psychosisType == PsychosisType.Insanity)
             {
                 isPurchased = true;
@@ -88,15 +87,10 @@ public class FairyShopItem : MonoBehaviour
             else if (psychosisType == PsychosisType.Madness)
             {
                 cost++;
-
             }
 
             UpdateCostText();
             UpdatePurchaseButton();
-        }
-        else
-        {
-            Debug.Log("Not enough deaths to purchase this item.");
         }
     }
 
@@ -133,9 +127,8 @@ public class FairyShopItem : MonoBehaviour
         if (playerHealth != null)
         {
             playerHealth.onDeath.AddListener(OnDeathsChanged);
-            UpdatePurchaseButton();
-            Debug.Log("<color=red>FairyShopItem registered to PlayerHealth's onDeathCountChanged event.</color>");
         }
+        UpdatePurchaseButton();
     }
 
 
@@ -151,9 +144,7 @@ public class FairyShopItem : MonoBehaviour
 
     private void OnDeathsChanged()
     {
-        Debug.Log("FairyShopItem detected death count changing...");
         UpdatePurchaseButton();
-        Debug.Log("FairyShopItem updated purchase button state.");
     }
 
     private void UpdateCostText()

@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
         if (gameOver)
         {
             endMenuUI.SetActive(true);
+            Time.timeScale = 0f;
             return;
         }
 
@@ -149,6 +150,12 @@ public class GameManager : MonoBehaviour
     public void WinGame()
     {
         chestContainer.SetActive(false);
+        ActivateFairyShop();
+        PlayerController playerController = FindFirstObjectByType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.EnableDoubleJump();
+        }
     }
 
     public void QuitGame()
@@ -158,8 +165,6 @@ public class GameManager : MonoBehaviour
 
     public void TogglePauseMenu()
     {
-        if (gameOver) return;
-
         bool isPaused = Time.timeScale == 0f;
 
         if (isPaused)
@@ -171,6 +176,15 @@ public class GameManager : MonoBehaviour
         {
             endMenuUI.SetActive(true);
             Time.timeScale = 0f;
+        }
+    }
+
+    private void ActivateFairyShop()
+    {
+        FairyShop fairyShop = FindFirstObjectByType<FairyShop>();
+        if (fairyShop != null)
+        {
+            fairyShop.isLeveledUp = true;
         }
     }
 }

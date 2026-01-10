@@ -29,8 +29,31 @@ public class TipTrigger : MonoBehaviour
     }
 
     private IEnumerator TypeLine()
-    {      
+    {    
+        if (localTips == null || localTips.Length == 0)
+        {
+            Debug.LogWarning("No local tips assigned to this TipTrigger.");
+            yield break;
+        }
+
+        if (index < 0 || index >= localTips.Length)
+        {
+            Debug.LogWarning("Tip index out of range.");
+            yield break;
+        }
+
+        if (tipUI == null)
+        {
+            Debug.LogWarning("Tip UI GameObject is not assigned.");
+            yield break;
+        }
+
         TextMeshPro tipText = tipUI.GetComponentInChildren<TextMeshPro>();
+        if (tipText == null)
+        {
+            Debug.LogWarning("No TextMeshPro component found in Tip UI.");
+            yield break;
+        }
         tipText.text = "";
 
         foreach (char letter in localTips[index].ToCharArray())
@@ -46,14 +69,34 @@ public class TipTrigger : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            if (localTips == null || localTips.Length == 0)
+            {
+                Debug.LogWarning("No local tips assigned to this TipTrigger.");
+                return;
+            }
+            if (tipUI == null)
+            {
+                Debug.LogWarning("Tip UI GameObject is not assigned.");
+                return;
+            }
+
             index++;
-            tipUI.SetActive(true);  
-            StartDialogue();     
+
             if (index >= localTips.Length)
             {
-                hasTriggered = true;
-                index = 0;
+                if (triggerOnce)
+                {
+                    hasTriggered = true;
+                    return;
+                }
+                else
+                {
+                    index = 0; 
+                }
+                
             }
+            tipUI.SetActive(true);  
+            StartDialogue();          
         }
     }
 
