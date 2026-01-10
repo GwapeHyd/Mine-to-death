@@ -112,7 +112,6 @@ public class FairyShopItem : MonoBehaviour
                 Debug.LogWarning("Unknown item effect.");
                 break;
         }
-        playerController.EnableHeadThrowing();
     }
 
     private void OnEnable()

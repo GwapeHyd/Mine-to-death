@@ -137,7 +137,7 @@ public class PlayerHealth : MonoBehaviour
         if (numberOfDeaths >= amount)
         {
             numberOfDeaths -= amount;
-            onDeath?.Invoke();
+            onDeathCountChanged?.Invoke(numberOfDeaths);
             return true;
         }
         return false;

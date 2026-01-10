@@ -17,23 +17,11 @@ public class TheDoor : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 interactionPrompt.SetActive(false);
-                interactionPrompt.GetComponent<TextMeshPro>().text = "Press E to Close Door";
+                interactionPrompt.GetComponent<TextMeshPro>().text = "Press E to open door";
                 isDoorOpen = true;
                 doorAnimator.SetTrigger("OpenDoor");
                 StartCoroutine(WaitForAnimationToDesactivateColliderCoroutine(.8f));
                 StartCoroutine(CloseDoorAfterDelayCoroutine(5.0f));
-            }
-        }
-
-        if (interactionPrompt != null && interactionPrompt.activeSelf && isDoorOpen)
-        {
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                interactionPrompt.SetActive(false);
-                interactionPrompt.GetComponent<TextMeshPro>().text = "Press E to Open Door";
-                isDoorOpen = false;
-                doorAnimator.SetTrigger("CloseDoor");
-                StartCoroutine(WaitForAnimationToActivateColliderCoroutine(1.0f));
             }
         }
     }

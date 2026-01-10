@@ -162,8 +162,8 @@ public class ShopItem : MonoBehaviour
         if (MineralManager.Instance != null)
         {
             MineralManager.Instance.onMineralCountChanged.AddListener(OnMineralsChanged);
-            UpdatePurchaseButton();
         }
+        UpdatePurchaseButton();
     }
 
 
@@ -177,9 +177,7 @@ public class ShopItem : MonoBehaviour
 
     private void OnMineralsChanged(int totalMinerals)
     {
-        Debug.Log("ShopItem detected mineral count changing...");
         UpdatePurchaseButton();
-        Debug.Log("ShopItem updated purchase button state.");
     }
 
     private void UpdateCostText()
